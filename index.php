@@ -9,14 +9,21 @@ class app_index extends GeneralView
 	{
 		if(empty($_GET['p']) or $_GET['p']=='index')
 		{
-			include WEBPATH.'/gold/sitedict'.date('Ymd').'.php';
-		    	$this->swoole->tpl->assign('dict',$sitedict);
+			$gets['select'] = 'id,title,substring(content,1,300) as des,addtime';
+			$gets['limit'] = 10;
+			$model = createModel('News');
+			$list = $model->gets($gets);
+			foreach($list as &$l)
+			{
+			    $l['des'] = mb_substr(strip_tags($l['des']),0,120);
+			}
+			$this->swoole->tpl->assign('list',$list);
 			$this->swoole->tpl->display('index.html');
 		}
 		else
 		{
 			$page = $_GET['p'];
-			$model = createModel('News');
+			$model = createModel('CPage');
 			$det = $model->get($page,'pagename');
 			$this->swoole->tpl->assign('det',$det);
 			$this->swoole->tpl->display('index_page.html');

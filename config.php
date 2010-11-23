@@ -9,7 +9,7 @@ define("DBMS","mysql");
 define("DBHOST","localhost");
 define("DBUSER","root");
 define("DBPASSWORD","root");
-define("DBNAME","entsite");
+define("DBNAME","swoolecms");
 define("DBCHARSET","utf8");
 define("DBSETNAME",true);
 
@@ -40,7 +40,7 @@ define('DESKEY','jcxh@21xiehou.com');
 require('libs/lib_config.php');
 $php->autoload('db','tpl','cache');
 $php->loadConfig();
-$php->config->cms['html_static'] = false;
+$php->config->cms['html_static'] = true;
 $php->config->cms['pagesize'] = 10;
 //动态配置系统
 $php->tpl->assign('_site_','/site/'.SITENAME);

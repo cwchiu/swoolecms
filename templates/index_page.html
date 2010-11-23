@@ -1,62 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{$det.title}}-恒泰大通黄金投资有限公司</title>
-<meta name="Copyright" content="恒泰大通黄金投资有限公司" />
-<meta name="description" content="恒泰大通黄金投资有限公司,黄金,大通,黄金投资,黄金投资有限公司,黄金投资分析,现货黄金投资" />
-<meta name="keywords" content="黄金,大通,黄金投资,黄金投资有限公司,黄金投资分析,现货黄金投资" />
-<link href="/site/hengtai/style/css.css" rel="stylesheet" type="text/css">
+<title>PHP开发社区 Swoole开发框架官方网站</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<meta name="Copyright" content="Swoole.com" />
+<meta name="description" content="Swoole是一个PHP高级开发框架" />
+<meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
 </head>
 
 <body>
 {{include file='header.html'}}
-<table width="951" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="9" rowspan="2"><img src="/site/hengtai/images/index-top-nav_20.gif" width="6" height="179" /></td>
-    <td width="937" height="28"><img src="/site/hengtai/images/banner-{{$det.tplname|default:$det.cid}}.jpg" width="940" height="173" /></td>
-    <td width="10" rowspan="2"><img src="/site/hengtai/images/index-top-nav_22.gif" width="5" height="179" /></td>
-  </tr>
-  <tr>
-    <td height="6"><img src="/site/hengtai/images/index-top-nav_23.gif" width="940" height="6" /></td>
-  </tr>
-</table>
-<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td height="50">&nbsp;</td>
-  </tr>
-</table>
-<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="692" valign="top"><table width="692" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td height="37" colspan="3" background="/site/hengtai/images/ceshi.jpg" class="lanmu_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$det.title}}</td>
-        </tr>
-      <tr>
-        <td height="376" colspan="3" valign="top" background="/site/hengtai/images/meiti_bg.jpg"><table width="691" height="883"  border="0" cellpadding="0" cellspacing="40">
-          <tr>
-            <td height="803" valign="top">{{$det.content}}
-              </td>
-          </tr>
-        </table></td>
-        </tr>
-      <tr>
-        <td width="19"><img src="/site/hengtai/images/meiti_10.gif" width="19" height="14" /></td>
-        <td width="672" background="/site/hengtai/images/meiti_12.gif"></td>
-        <td width="10"><img src="/site/hengtai/images/meiti_14.gif" width="18" height="14" /></td>
-      </tr>
-    </table></td>
-    <td width="24">&nbsp;</td>
-    <td width="239" valign="top"><p>{{if $det.pagename=='daili'}}
-      {{include file='block/left2.html'}}
-      {{elseif $det.pagename=='fangshi' or $det.pagename=='quankuan' or $det.pagename=='guizhe2' or $det.pagename=='yufu' or $det.pagename=='guizhe'or $det.pagename=='xuzhi' or $det.pagename=='fengxian'}}
-        {{include file='block/left4.html'}}
-        {{else}}
-        {{include file='block/left.html'}}
-    {{/if}}</p></td>
-  </tr>
-</table>
+<div id='main'>
+<div id='mleft'>
+<div>当前位置： <a href="/">首页</a> &gt;&gt; {{$det.fname}}</div>
+  <h2><span class="font_18">{{$det.title}}</span>  </h2>
+  <p>{{$det.content}}</p>
+</div>
 
- {{include file='footer.html'}}
+<div id='mright'>
+</div>
+</div>
+{{include file='footer.html'}}
 </body>
 </html>

@@ -1,0 +1,38 @@
+@charset "utf-8";
+.bg1{
+	border-bottom:2px #ccc solid;
+	background-color: #e3e9ff;
+}
+#header{	
+	height:80px;	
+}
+#footer{
+	border-top:2px #ccc solid;
+	height:60px;
+	text-align:center;
+	padding-top:5px;
+}
+#header ul li{	
+	width:80px;
+	list-style:none;	
+	float:left	
+}
+
+#main{	
+	font:14px "微软雅黑,Arial, Helvetica, sans-serif";
+	line-height:160%;
+}
+
+#mleft{
+	width:720px;
+	float:left;
+	border-right:2px #ccc solid;
+	padding:5px;
+}
+#mleft ul li{
+	line-height:160%;
+}
+#mright{
+	width:240px;
+	float:left;
+}

@@ -1,37 +1,37 @@
 @charset "utf-8";
+html{ overflow-y:scroll; }
 body {
 	padding: 0px;
-	font-size: 12px;
+	width:960px;
+	margin:0 auto;
 	line-height: 160%;
 	color: #000000;
-	font-family: Arial, Helvetica, sans-serif,"宋体";
-	margin: 0px;
-	background-color: #0f3051;
-	background-repeat: repeat;
-	background-position: center top;
-	background-image: url(../images/bg_hw.jpg);	
+	font:14px "微软雅黑,Arial, Helvetica, sans-serif";
 }
 td {
 	font-size:12px;
 	line-height:160%;
 	color: #000000;
 }
-
 img{
    border:0px;
-   }
+}
+li{
+	list-style:none;
+		
+}
 .position{
 color:#7c3628;
 font-size: 12px;
 	line-height: 160%;
 }
-
-
-
 .wit_12 {
     color: #ffffff;
 	font-size: 12px;
 	line-height: 160%;
+}
+.hei28{
+	height:28px;
 }
 
 .wit_13 {
@@ -65,9 +65,6 @@ font-size: 12px;
 	color: #000000;
 	text-decoration:none;
 }
-
-
-
 .input1 {
 	font-size: 12px;
 	color: #FFFFFF;
@@ -78,6 +75,48 @@ font-size: 12px;
 	font-size: 12px;
 	line-height: 160%;
 	color: #8b1b1a;
+}
+.clear{
+	clear:both;
+}
+.date{
+	color:#666;
+	float:right
+}
+.pager {
+float:left;
+font-size:13px;
+margin:0 0 0 70px;
+padding:20px 0 15px;
+text-align:center;
+width:550px;
+}
+.pager span {
+border:1px solid #CCCCCC;
+margin-right:2px;
+padding:3px 6px;
+}
+.pager .current {
+background:none repeat scroll 0 0 #B6B6B6;
+border:1px solid #CCCCCC;
+color:#FFFFFF;
+font-weight:bold;
+padding:3px 6px;
+}
+.pager a {
+border:1px solid #CCCCCC;
+color:#333333;
+padding:3px 6px;
+text-decoration:none;
+}
+.pager a:hover {
+background:none repeat scroll 0 0 #B6B6B6;
+color:#FFFFFF;
+}
+.pager .nobold:hover {
+background:none repeat scroll 0 0 #B6B6B6;
+color:#FFFFFF;
+font-weight:normal;
 }
 .red_12b {
 	font-size: 12px;
@@ -97,31 +136,11 @@ font-size: 12px;
 	font-weight: bold;
 }
 
-a {
-    color: #441922;
-	font-size: 12px;
-	line-height: 160%;
-}
-
-a:link {
-	color: #441922;
-	text-decoration: none;
-}
-a:visited  {
-	color: #441922;
-	text-decoration: none;
-}
-a:hover  {
-	color: #7A3727;
-	text-decoration: underline;
-}
-a:active {
-	color: #441922;
-	text-decoration:underline;
-}
-
-
-
+a{cursor:pointer}
+a:link { color: #00C; text-decoration: none; }
+a:visited { color: #00C; text-decoration: none; }
+a:hover { color: #FFFFFF; text-decoration: none; background: #003399; }
+a:active { color: #FFFFFF; text-decoration: none; background: #FF9933; }
 
 .hui_12 {
     color: #441922;

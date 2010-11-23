@@ -1,7 +1,8 @@
-<?php 
+<?php
 require '../config.php';
 require 'check.php';
-require WEBPATH.'/dict/apps.php';
+require 'func.php';
+$apps = getApps();
 $php->tpl->assign("apps",$apps);
 if(isset($_GET['debug']))
 {

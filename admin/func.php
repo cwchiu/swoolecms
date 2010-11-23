@@ -46,7 +46,13 @@ function getChildCount($fid)
 function getApps()
 {
 	global $php;
-	return $php->db->query('select * from '.TABLE_PREFIX.'_app')->fechall();
+	$list = $php->db->query('select * from '.TABLE_PREFIX.'_apps')->fetchall();
+	$return = array();
+	foreach($list as $li)
+	{
+	    $return[$li['app']] = $li['name'];
+	}
+	return $return;
 }
 
 function getTags()
