@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>涛谱科技后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/static/js/forms.js"></script>
+<script language="javascript">
+function $(id)
+{
+	return document.getElementById(id);
+}
+</script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+
+body {
+	margin-left: 16px;
+}
+
+.num_t {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<br />
+{{include file='cms/list_header.html'}}
+<div class="t">
+<form action="admin_news.php?action=news_op" method="POST" name="mainform" target="op" id="mainform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr class="tr2">
+		<td align="center">ID</td>
+		<td align="center">标题</td>
+		<td align="center">大分类</td>
+		<td align="center">小分类</td>
+		<td align="center">推荐</td>
+		<td align="center">添加时间</td>
+		<td align="center">操作</td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3">
+		<td><label>
+		  <input name="ids[]" type="checkbox" id="ids[]" value="{{$list[ol].id}}" />
+		  </label>
+	    {{$list[ol].id}}</td>
+		<td><a href="/admin/admin.php?action=add&amp;id={{$list[ol].id}}&amp;app={{$app}}">{{$list[ol].title}}</a></td>
+		<td>{{askey key=$list[ol].fid key2=name data=$catelog}} </td>
+		<td>{{askey key=$list[ol].cid key2=name data=$catelog}} </td>
+		<td>{{askey key=$list[ol].digest data=$digest}} </td>
+		<td>{{$list[ol].addtime}}</td>
+		<td>
+		<a href="fengongsi.php?action=add&id={{$list[ol].id}}"><img src="/static/images/admin/edit.gif" alt="修改" border="0" /></a>	
+		<a href="/update.php?app=News&id={{$list[ol].id}}"><img src="/static/images/admin/update.gif" alt="更新" border="0" /></a>
+		<a href="/cms.php?app=News&id={{$list[ol].id}}" target="_blank"><img src="/static/images/admin/page_nav.png" alt="预览" width="16" height="16" border="0" /></a>	
+		<a href="fengongsi.php?action=news&del={{$list[ol].id}}">
+		<img src="/static/images/admin/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;</td>
+	</tr>
+	{{/section}}
+	<tr class="tr3" >
+	  <td align="center" colspan="7">{{$pager.render}}</td>
+	</tr>
+	<!--<tr class="tr4" >
+	  <td align="left" colspan="7"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td>操作:
+	        <select name="job" id="job" onchange="showTarget(this.value);">
+	          <option value="" selected="selected">选择操作</option>
+	          <option value="push">推荐到</option>			  
+			  <option value="cate">移动到</option>
+	          </select>
+	        <span id="target">
+	          <select name="push" id="push" style="display:none;" disabled="disabled">
+	            {{foreach item=ch key=k from=$digest}}
+                <option value="{{$k}}">{{$ch}}</option>	            
+                {{/foreach}}					
+	           </select>
+			   <select name="cate" id="cate" style="display:none;" disabled="disabled">
+	            {{foreach item=ch key=k from=$cates}}
+                <option disabled="disabled" style="font-size:14px; font-weight:bolder; color:#0033CC;">{{$ch.name}}</option>
+				 {{foreach item=c key=k2 from=$ch.child}}
+				 <option value="{{$k2}}">└─{{$c.name}}</option>
+				 {{/foreach}}
+                {{/foreach}}
+	           </select>
+	        </span>
+	        <input value="全选" onclick="CheckAll('ids[]');" type="button" class="btn" />
+	        <input value="提交" type="submit" class="btn" /></td>
+	      <td></td>
+	      </tr>
+	    </table></td>
+	  </tr>-->
+</table>
+</form>
+</div>
+<iframe height="500" width="1000" id="op" name="op"	style="display: none;"></iframe>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$det.title}}-{{$det.cname}}-恒泰大通黄金投资有限公司</title>
+<meta name="Copyright" content="恒泰大通黄金投资有限公司" />
+<meta name="description" content="{{$det.description}}" />
+<meta name="keywords" content="{{$det.keywords}}" />
+<link href="/site/hengtai/style/css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+{{include file='header.html'}}
+<table width="951" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="9" rowspan="2"><img src="/site/hengtai/images/index-top-nav_20.gif" width="6" height="179" /></td>
+    <td width="937" height="28"><img src="/site/hengtai/images/banner-{{if $ccate.id==9}}{{$cate.id}}{{else}}{{$ccate.id}}{{/if}}.jpg" width="940" height="173" /></td>
+    <td width="10" rowspan="2"><img src="/site/hengtai/images/index-top-nav_22.gif" width="5" height="179" /></td>
+  </tr>
+  <tr>
+    <td height="6"><img src="/site/hengtai/images/index-top-nav_23.gif" width="940" height="6" /></td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="50">&nbsp;</td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="692" valign="top"><table width="692" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="37" colspan="3" background="/site/hengtai/images/ceshi.jpg" class="lanmu_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$cate.name}}</td>
+        </tr>
+      <tr>
+        <td height="376" colspan="3" valign="top" background="/site/hengtai/images/meiti_bg.jpg"><table width="691"  border="0" cellpadding="0" cellspacing="40">
+          <tr>
+            <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="40" align="center"><span class="font_18">{{$det.title}}</span></td>
+              </tr>
+              <tr>
+                <td height="1" bgcolor="#696969"></td>
+              </tr>
+              <tr>
+                <td height="30" align="center">发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'恒泰大通'}}　　编辑：{{$det.uname|default:'管理员'}}</td>
+              </tr>
+              <tr>
+                <td height="30" align="left"><p>{{$det.content}}<br />
+                  </p>
+                  <p></p></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+        </tr>
+      <tr>
+        <td width="19"><img src="/site/hengtai/images/meiti_10.gif" width="19" height="14" /></td>
+        <td width="672" background="/site/hengtai/images/meiti_12.gif"></td>
+        <td width="10"><img src="/site/hengtai/images/meiti_14.gif" width="18" height="14" /></td>
+      </tr>
+    </table></td>
+    <td width="24">&nbsp;</td>
+    <td width="239" valign="top">{{include file='block/left.html'}}</td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="25">&nbsp;</td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+{{include file='footer.html'}}
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>网觉天下管理后台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<style>
+body{background-color:#f3f2ef;}
+</style>
+<div style="width:350px; margin:auto;margin-top:30px;top:300px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="13" height="13"><img src="/static/images/admin/l1_c.gif" width="13" height="13"></td>
+    <td background="/static/images/admin/top_line.gif"></td>
+    <td width="13" height="13"><img src="/static/images/admin/r1_c.gif" width="13" height="13"></td>
+  </tr>
+  <tr>
+    <td background="/static/images/admin/l_line.gif"></td>
+    <td style="padding:10px; background-color:#FFFFFF">
+	<form action="login.php" method="post" target="_parent" name="login">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr><td colspan="2">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width=2><img src="/static/images/admin/line_lft.png"></td>
+        <td background="/static/images/admin/loginline.png" style="color:white; font-weight:bold;height:30px; padding-left:10px;">管理员登陆</td>
+        <td><img src="/static/images/admin/line_rt.png"></td>
+        </tr>
+      </table>
+      </td></tr>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+        </tr>
+      <tr class="tr">
+        <td width="30%" style="padding-left:15px;">用户名:</td>
+        <td width="70%"><input type="hidden" name="login" id="login" >
+		  <INPUT name=username class="input" id=username value="{{$smarty.cookies.admin_username}}"></td>
+      </tr>
+      <tr class="tr">
+        <td style="padding-left:15px">密&nbsp;&nbsp;&nbsp;码:</td>
+        <td>
+		<INPUT type=password name=password id="password" class="input" />        </td>
+      </tr>
+
+      <tr class="tr">
+        <td colspan="2" align="center">
+        <input type="hidden" name="action" value="in" />
+        <input type="submit" name="Submit" value="登录" class="btn" />
+        <input type="button" name="Submit2" value="返回" class="btn" onClick="window.history.go(-1);" />        </td>
+        </tr>
+	  <tr class="tr">
+	    <td colspan="2" align="center">&nbsp;</td>
+	    </tr>
+    </table>
+	</form>
+	</td>
+    <td background="/static/images/admin/r_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="13" height="13" background="/static/images/admin/l2_c.gif"></td>
+    <td height="13" background="/static/images/admin/bot_line.gif"></td>
+    <td background="/static/images/admin/r2_c.gif"></td>
+  </tr>
+</table>
+
+</div>
+<script language="JavaScript">
+document.login.username.focus();
+</script>
+</body>
+</html>

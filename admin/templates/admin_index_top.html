@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>VeryCMS - Powered by PHPWind.Net</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/static/js/admin.js"></script>
+<base target='mainFrame' />
+</head>
+
+<body>
+<style>
+.frameTop{
+	background: url('/static/images/admin/top_bg.png') top left no-repeat;
+	background-color:#cfe2f6;
+	height: 45px;
+	min-width: 610px;
+	width: 100%;
+	margin: 0 auto;
+}
+.topLogo{
+	float:left;
+	height:45px;
+	width:280px;
+	background: url('/static/images/admin/logo.png') top left no-repeat;
+}
+.nav{
+	padding-top: 10px;
+	float: right;
+}
+.nav a:link,
+.nav a:visited,
+.nav a:active,
+.nav a:hover{
+	float: left;
+	display: block;
+	padding: 6px 8px;
+	margin: 0px 5px 0px 0px;
+	color: #333;
+	text-decoration: none;
+}
+.nav a:hover{
+	color: white;
+	background: #8cd6ff;
+}
+.navPanel{
+	background: #8cd6ff url('/static/images/admin/menu.png') top left repeat-x;
+	line-height: 200%;
+	border-top:1px #8cd6ff solid;
+}
+.innerNavPanel {
+	margin: 0 auto;
+	width: 800px;
+}
+.topButtons{
+	line-height: 200%;
+	white-space: nowrap;
+	width: 100%; /* ie6 fix */
+	overflow: hidden;
+	border-left: 1px solid #8cd6ff;
+}
+.topButtons a:link,
+.topButtons a:active,
+.topButtons a:visited,
+.topButtons a:hover
+{
+	float: left;
+	display: block;
+	padding: 4px 20px;
+	color: #333;
+	font-size:12px;
+	text-decoration: none;
+	border-right: 1px solid #8cd6ff;
+	border-left: 1px solid #fff;
+	background: #F4FBE1 url('/static/images/admin/bg_btn.png');
+}
+.navActive{
+	color: #395500;
+	background: #8cd6ff url('/static/images/admin/bg_btn_hover.png') top left repeat-x;
+}
+.topButtons a:hover
+{
+	color: #395500;
+	background: #8cd6ff url('/static/images/admin/bg_btn_hover.png') top left repeat-x;
+}
+.topImage {
+	float:right;
+	padding:5px 8px 5px 0;
+	cursor:pointer
+}
+</style>
+<div class="frameTop">
+	<div class="nav">
+		<a href="/" title="站点首页" target="_blank">站点首页</a>
+		<a href="login.php?logout" title="Login out" target="_parent" onClick="return loginOut();">退出登录</a>	</div>
+  <div class="topLogo"></div>
+</div>
+<div class="navPanel">
+<img src="/static/images/admin/close.png" class="topImage" onClick="closeSys();" title="关闭本系统">
+<img src="/static/images/admin/fresh.png" class="topImage" onClick="parent.mainFrame.location.reload();" title="刷新主框架">
+<img src="/static/images/admin/back.png" class="topImage" onClick="parent.mainFrame.history.go(-1);" title="后退">
+	<div class="innerNavPanel">
+		<div class="topButtons">
+		<a href="index.php?page=main" target="mainFrame" onclick="ShowMenu('setting');">管理首页</a>
+		{{foreach item=v key=k from=$apps}}
+		<a href="admin.php?app={{$k}}" onclick="ShowMenu('{{$k}}');">{{$v}}管理</a> 
+		{{/foreach}}
+        </div>
+</div>
+</body>
+</html>

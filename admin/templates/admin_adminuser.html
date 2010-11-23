@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Exp Yixiuwang!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/css/admin.css" rel="stylesheet"
+	type="text/css" />
+<meta content="MSHTML 6.00.5730.13" name="GENERATOR" />
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+
+body {
+	margin-left: 16px;
+}
+
+.num_t {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<br />
+
+<table width="50%" border="1" align="center" cellpadding="0"
+	cellspacing="0" style="border-collapse: collapse">
+	<tr class="tr2">
+		<td width="24" align="center">序号</td>
+		<td width="50%" align="center">用户名</td>
+		<td align="center">姓名</td>
+		<td align="center">类型</td>
+		<td width="10%" align="center">操作</td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3" t_one="t_one">
+		<td width="24">{{$list[ol].id}}</td>
+		<td width="50%">{{$list[ol].username}}</td>
+		<td>{{$list[ol].realname}}</td>
+		<td>{{askey data=$groups key=$list[ol].ugroup}}</td>
+		<td>{{if $user.ugroup=='root'}}<a
+			href="?action=users&amp;del={{$list[ol].id}}"><img
+			src="/static/images/admin/del.gif" alt="删除" border="0" align="absmiddle"
+			onclick="return confirm('您确定要删除此内容？');" /></a>{{/if}}</td>
+  </tr>
+	{{/section}}
+	<tr class="tr3" t_one="t_one">
+		<td colspan="5">{{$page}}/{{$pages}} 页,{{if $pages == 0}}{{else}}
+		{{if $page==1}}首页&nbsp;{{else}} <a href="?page=1">首页</a>&nbsp;&nbsp;{{/if}}
+		{{if $page==1}}{{else}}<a href="page={{$page - 1}}">上一页</a>{{/if}}&nbsp;
+		<script language="JavaScript" type="text/javascript">
+                 c_page=10*parseInt({{$page}}/10);
+        
+                 for(i=c_page-1;i<=c_page+10;i++)
+                 {
+                 if(i<=0) continue;
+                 if(i=={{$page}}) document.write("&nbsp;"+i);
+                 else document.write("&nbsp;<a href='?page="+i+"'>"+i+"</a>");
+                 if(i=={{$pages}}) break;
+                 }
+                 
+                 if(parseInt({{$pages}}/10)>parseInt(c_page/10)) document.write("&nbsp;……");
+                  </script> &nbsp;{{if $page!=$pages}}<a href="?page={{$page+1}}">下一页</a>
+		{{/if}}{{/if}}</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+{{if $user.ugroup=='root'}}
+<table width="50%" border="1" align="center" cellpadding="0"
+	cellspacing="0" style="border-collapse: collapse">
+	<tr class="tr2">
+		<td colspan="2" align="center">增加管理员</td>
+	</tr>
+	<form id="form1" name="form1" method="post">
+  <tr class="tr3" t_one="t_one">
+		<td width="96">用户名</td>
+		<td width="383"><label> 
+        <input type="text" name="username" id="username" /> </label></td>
+	</tr>
+	<tr class="tr3" t_one="t_one">
+		<td>密码</td>
+		<td><input name="password" type="text" class="t3 input " id="password" /></td>
+	</tr>
+	<tr class="tr3" t_one="t_one">
+		<td>用户组</td>
+		<td><label> 		
+		<select name="ugroup" id="ugroup">
+		{{foreach from=$groups item=v key=k}}
+			<option value="{{$k}}">{{$v}}</option>
+		{{/foreach}}
+		</select> </label></td>
+	</tr>
+	<tr class="tr3" t_one="t_one">
+		<td>姓名</td>
+		<td><input type="text" name="realname" id="realname" /></td>
+	</tr>
+	<tr class="tr3" t_one="t_one">
+		<td colspan="2"><label> <input type="submit" value="提交" />
+		</label></td>
+	</tr>
+	</form>
+</table>
+{{/if}}
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站后台管理系统</title>
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:291px;
+	top:52px;
+	width:248px;
+	height:93px;
+	z-index:10;
+}
+.leftmenu td,.leftmenu2 td{
+	height:30px;
+	color:#333333;
+	padding-left:30px;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+.leftmenu td{
+	background-image:url(/static/images/admin/bg_menu.png);
+}
+.leftmenu2 td{
+	background-image:url(/static/images/admin/bg_menu2.png);	
+}
+.leftH td {
+	color:#333;
+	padding:2px 0px 3px 20px;
+	text-align: left;color:#000000;
+	font-size:14px;
+	height:30px;
+	background-image:url(/static/images/admin/bg_head.gif);
+	font-weight:bold;
+}
+a:link {
+	color: #333333;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #333333;
+}
+a:hover {
+	text-decoration: none;
+	color: #333333;
+}
+a:active {
+	text-decoration: none;
+	color: #333333;
+}
+.t
+{
+	display:'';
+}
+-->
+</style>
+<base target='mainFrame' />
+</head>
+<body>
+
+<div class="m"></div>
+<div id="menus" style="margin:0 5px 0 5px; width:170px;">
+
+<div class="t" id="setting">
+<table border="0" cellspacing="0" cellpadding="0" width=100%>
+  <tr class="leftH">
+    <td>系统管理</td>
+  </tr>
+  {{if checkAG('root')}}
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin_news.php?action=users">管理用户</a></td>
+  </tr>
+  {{/if}}
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin_news.php?action=chpasswd">修改登录密码</a></td>
+  </tr>
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="index.php?page=html">更新静态页面</a></td>
+  </tr>
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin.php?action=dict">黄金数据管理</a></td>
+  </tr>
+</table>
+</div>
+
+<div class="t" id="gb">
+<table border="0" cellspacing="0" cellpadding="0" width=100%>
+  <tr class="leftH">
+    <td>留言管理</td>
+  </tr>
+  
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin_news.php?action=guestbook">在线留言管理</a></td>
+  </tr>
+</table>
+</div>
+{{foreach item=v from=$apps key=k}}
+<div class="t" id="{{$k}}">
+<table border="0" cellspacing="0" cellpadding="0" width=100%>
+  <tr class="leftH">
+    <td>{{$v}}管理</td>
+  </tr>
+  
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin.php?action=list&app={{$k}}">所有{{$v}}管理</a></td>
+  </tr>
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin.php?action=add&app={{$k}}">增加新{{$v}}</a></td>
+  </tr>
+  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
+    <td><a href="admin.php?action=category&app={{$k}}">{{$v}}分类管理</a></td>
+  </tr>
+</table>
+</div>
+{{/foreach}}
+</div>
+<script language="javascript">
+var nav='setting';
+Showmenu();
+function Showmenu(){
+	var menus = document.getElementById('menus');
+	var menu = menus.getElementsByTagName('div');
+	for(var i =0;i<menu.length;i++){
+		if(menu[i].id==nav){
+			menu[i].style.display="block";
+		}else{
+			menu[i].style.display="none";
+		}
+	}
+
+}
+function ShowMain(job){
+	var main=parent.mainFrame;
+	var top=parent.topFrame;
+	top.document.getElementById('loadMsg').style.display='';
+	main.location='/admin.php?adminjob='+job;
+}
+
+function changeBg(obj,value){
+	if(value==1)
+		var c = 'leftmenu2';
+	else 
+		var c = 'leftmenu';
+	obj.className=c;
+}
+</script>
+</body>
+</html>

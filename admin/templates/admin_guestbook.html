@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>涛谱科技后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/static/js/forms.js"></script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+
+body {
+	margin-left: 16px;
+}
+
+.num_t {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<br />
+<div class="t">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+	<tr class="tr4">
+		<td width="17%" style="TEXT-ALIGN: center">合计：<span
+			class="num_t">{{$pager.total}}</span></td>
+	    <td width="51%" style="TEXT-ALIGN: center">
+		<form action="admin_news.php?action=news_search" method="post" name="form1" id="form1">
+		</form></td>
+	</tr>
+</table>
+</div>
+<div class="t">
+<form action="admin_news.php?action=news_lots" method="POST" name="mainform" id="mainform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr class="tr2">
+		<td align="center">ID</td>
+		<td align="center">联 系 人</td>
+		<td align="center">称谓</td>
+		<td align="center">年龄</td>
+		<td align="center">联系电话</td>
+		<td align="center">联系时间</td>
+		<td align="center">邮件</td>
+		<td align="center">是否联系</td>
+		<td align="center">时间</td>
+		<td align="center">操作</td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3">
+		<td>{{$list[ol].id}}</td>
+		<td>{{$list[ol].realname}}</td>
+		<td>{{$list[ol].title}}</td>
+		<td>{{$list[ol].age}}</td>
+		<td>{{$list[ol].mobile}}</td>
+		<td>{{$list[ol].ctime}}</td>
+		<td>{{$list[ol].email}}</td>
+		<td>{{$list[ol].conn}}</td>
+		<td>{{$list[ol].addtime}}</td>
+		<td><a href="admin.php?action=guestbook&amp;app={{$app}}&amp;id={{$list[ol].id}}">查看详细</a><a	href="admin.php?action=guestbook&del={{$list[ol].id}}&app={{$app}}"><img
+			src="/static/images/admin/del.gif" alt="删除" border="0"
+			align="absmiddle" onclick="return confirm('您确定要删除此内容？');" /></a><!--<a href="admin_news.php?action=reply&amp;id={{$list[ol].id}}">&nbsp;回答</a>--></td>
+	</tr>
+	{{/section}}
+	<tr class="tr3" >
+	  <td align="center" colspan="10">{{$pager.render}}</td>
+	</tr>
+	<tr class="tr4" >
+	  <td align="left" colspan="10">&nbsp;</td>
+	  </tr>
+</table>
+</form>
+</div>
+<iframe height="500" width="1000" id="op" name="op"
+	style="display: none;"></iframe>
+</body>
+</html>

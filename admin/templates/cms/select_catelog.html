@@ -1,0 +1,16 @@
+{{if $cates}}
+	<tr class="line">
+	  <td>分类</td>
+	  <td><label>
+	    <select name="cid" id="cid">
+		{{foreach item=v from=$cates}}		
+	      <option value="">请选择</option>
+		<option value="{{$v.id}}" disabled="disabled" style="font-size:14px;">{{$v.name}}</option>		
+			{{foreach item=v2 from=$v.child}}
+			<option value="{{$v2.id}}" {{if $det.cid==$v2.id}} selected="selected"{{/if}}>└─{{$v2.name}}</option>
+			{{/foreach}}
+		{{/foreach}}	      
+        </select>
+	  </label></td>
+    </tr>
+	{{/if}}

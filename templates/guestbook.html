@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>恒泰大通黄金投资有限公司</title>
+<meta name="Copyright" content="恒泰大通黄金投资有限公司" />
+<meta name="description" content="恒泰大通黄金投资有限公司,黄金,大通,黄金投资,黄金投资有限公司,黄金投资分析,现货黄金投资" />
+<meta name="keywords" content="黄金,大通,黄金投资,黄金投资有限公司,黄金投资分析,现货黄金投资" />
+<link href="/site/hengtai/style/css.css" rel="stylesheet" type="text/css">
+<SCRIPT  language="JavaScript" src="/static/js/validator.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" src="/static/js/pcas.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" type=text/javascript>
+window.onload = function(){
+	validator_each('form1');
+	new PCAS("province","city","area");
+}
+</SCRIPT>
+<style >
+form li{float:left;width:140px;}
+</style>
+</head>
+
+<body>
+{{include file='header.html'}}
+<table width="951" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="9" rowspan="2"><img src="/site/hengtai/images/index-top-nav_20.gif" width="6" height="179" /></td>
+    <td width="937" height="28"><img src="/site/hengtai/images/banner-zhuce.jpg" width="940" height="173" /></td>
+    <td width="10" rowspan="2"><img src="/site/hengtai/images/index-top-nav_22.gif" width="5" height="179" /></td>
+  </tr>
+  <tr>
+    <td height="6"><img src="/site/hengtai/images/index-top-nav_23.gif" width="940" height="6" /></td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="50">&nbsp;</td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="692" valign="top"><table width="692" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="37" colspan="3" background="/site/hengtai/images/ceshi.jpg" class="lanmu_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册模拟账号</td>
+        </tr>
+      <tr>
+        <td height="376" colspan="3" valign="top" background="/site/hengtai/images/meiti_bg.jpg">
+        <form method="post" id="form1">
+        <table width="691" height="710"  border="0" cellpadding="0" cellspacing="40">
+          <tr>
+            <td height="561" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td colspan="2"><img src="/site/hengtai/images/info.jpg" width="133" height="25" /></td>
+                </tr>
+              <tr>
+                <td height="30" colspan="2" class="tip">温馨提示：请填写您的真实信息，我们将通过电话与您确认后予以开通</td>
+                </tr>
+              <tr>
+                <td height="30" colspan="2" class="tip">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width="27%" height="30" align="right">真实姓名：</td>
+                <td width="73%"><input type="text" name="realname" id="realname" empty="真实姓名不能为空！" /></td>
+              </tr>
+              <tr>
+                <td height="30" align="right">称谓：</td>
+                <td>{{$forms.title}}</td>
+              </tr>
+              <tr>
+                <td height="30" align="right">年龄：</td>
+                <td>{{$forms.age}}</td>
+              </tr>
+              <tr>
+                <td height="30" align="right">所在地：</td>
+                <td><select name="province">
+                </select>
+                  &nbsp;
+                  <select name="city">
+                  </select>
+                  &nbsp;
+                  <select name="area">
+                  </select></td>
+              </tr>
+              <tr>
+                <td height="30" align="right">移动电话：</td>
+                <td><input type="text" name="mobile" id="mobile" empty="移动电话不能为空！" ctype='Mobile|移动电话格式错误' /></td>
+              </tr>
+              <tr>
+                <td height="30" align="right">电子邮箱：</td>
+                <td><input type="text" name="email" id="email" empty="电子邮箱不能为空！" ctype='Email|邮箱格式错误' /></td>
+              </tr>
+              <tr>
+                <td height="30" align="right">何时联系您方便：</td>
+                <td>{{$forms.ctime}}</td>
+              </tr>
+              <tr>
+                <td height="30" align="right">您所关注的产品/服务：</td>
+                <td>{{$forms.product}}</td>
+              </tr>
+              <tr>
+                <td height="30" align="right">您如何得知我们：:</td>
+                <td>{{$forms.source}}</td>
+              </tr>
+              <tr>
+                <td height="30" align="right">是否有投资顾问曾与您联系：</td>
+                <td><input type="radio" name="conn" id="radio" value="有" />
+                  有
+                  <input type="radio" name="conn" id="radio2" value="没有" />
+                  没有</td>
+              </tr>
+              <tr>
+                <td height="30" align="right">附言：</td>
+                <td><label>
+                  <textarea name="content" id="content" cols="45" rows="5"></textarea>
+                </label></td>
+              </tr>
+              <tr>
+                <td height="30" colspan="2" align="center">&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="30" colspan="2" align="center">
+                <input type="image" src="/site/hengtai/images/subit.jpg" width="67" height="29" onclick="validator_force('form1')" /></td>
+              </tr>
+              </table></td>
+          </tr>
+        </table>
+        </form>
+        </td>
+        </tr>
+      <tr>
+        <td width="19"><img src="/site/hengtai/images/meiti_10.gif" width="19" height="14" /></td>
+        <td width="672" background="/site/hengtai/images/meiti_12.gif"></td>
+        <td width="10"><img src="/site/hengtai/images/meiti_14.gif" width="18" height="14" /></td>
+      </tr>
+    </table></td>
+    <td width="24">&nbsp;</td>
+    <td width="239" valign="top">{{include file='block/left.html'}} </td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="25">&nbsp;</td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+{{include file='footer.html'}} 
+</body>
+</html>

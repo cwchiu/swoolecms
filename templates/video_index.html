@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$ccate.name}}_恒泰大通黄金投资有限公司</title>
+<link href="/site/hengtai/style/css.css" rel="stylesheet" type="text/css">
+<meta name="Copyright" content="恒泰大通黄金投资有限公司" />
+<meta name="description" content="{{$ccate.description}}" />
+<meta name="keywords" content="{{$ccate.keywords}}" />
+</head>
+
+<body>
+{{include file='header.html'}}
+<table width="951" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="9" rowspan="2"><img src="/site/hengtai/images/index-top-nav_20.gif" width="6" height="179" /></td>
+    <td width="937" height="28"><img src="/site/hengtai/images/banner-video.jpg" width="940" height="173" /></td>
+    <td width="10" rowspan="2"><img src="/site/hengtai/images/index-top-nav_22.gif" width="5" height="179" /></td>
+  </tr>
+  <tr>
+    <td height="6"><img src="/site/hengtai/images/index-top-nav_23.gif" width="940" height="6" /></td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="50">&nbsp;</td>
+  </tr>
+</table>
+<table width="955" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="692" valign="top"><table width="692" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="37" colspan="3" background="/site/hengtai/images/ceshi.jpg" class="lanmu_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$ccate.name}}</td>
+        </tr>
+      <tr>
+        <td height="376" colspan="3" valign="top" background="/site/hengtai/images/meiti_bg.jpg"><table width="691"  border="0" cellpadding="0" cellspacing="40">
+          <tr>
+            <td valign="top">
+			{{getall _name=ct from=st_catelog app=Video fid=$ccate.id order=id}}
+			{{foreach from=$ct item=v}}			
+			  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="80%" height="28" bgcolor="#C3A26D" class="xueyuan_title">&nbsp;&nbsp;&nbsp;&nbsp;{{$v.name}}</td>
+                <td width="20%" align="center" bgcolor="#C3A26D" >
+				<a href="{{magic func=link use=list app=Video level=cid id=$v.id}}" class="more">查看更多</a></td>
+              </tr>
+              <tr>
+                <td height="1" colspan="2" bgcolor="#5E4325"></td>
+              </tr>
+              <tr>
+                <td colspan="2" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+			  {{db _name=v2 from=st_video select=id,name,flvtime,pic limit=8 cid=$v.id order='id desc'}}
+                <td height="200" align="center"><table width="145" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="145"><img src="/site/hengtai/images/vod-top-1.jpg" width="145" height="11" /></td>
+                  </tr>
+                  <tr>
+                    <td height="85" align="center" valign="top" background="/site/hengtai/images/vod-top-2.jpg"><a href="{{magic func=link app=Video id=$v2[v2].id}}"><img src="{{$v2[v2].pic}}" width="121" height="85" border="0" /></a></td>
+                  </tr>
+                  <tr>
+                    <td height="21" align="left" valign="bottom" background="/site/hengtai/images/vod-top-2.jpg"><table width="145" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="15" height="28">&nbsp;</td>
+                        <td width="130"><a href="{{magic func=link app=Video id=$v2[v2].id}}" class="news">{{$v2[v2].name|mbcut:10}}</a></td>
+                      </tr>
+                    </table><a href="{{magic func=link app=Video id=$v2[v2].id}}" class="news"></a></td>
+                  </tr>
+                  <tr>
+                    <td height="28" background="/site/hengtai/images/vod-top-3.jpg"><table width="145" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="130" align="right" valign="top"><span class="vod_time">{{$v2[v2].flvtime}}</span></td>
+                        <td width="15" valign="top" class="vod_time">&nbsp;</td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+				{{if $k%4==3}}</tr><tr>{{/if}}
+				{{/db}} </tr>
+            </table>
+                  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="25">&nbsp;</td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>   
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td height="25">&nbsp;</td>
+                </tr>
+              </table>         
+        {{/foreach}}
+           </td>
+          </tr>
+        </table></td>
+        </tr>
+      <tr>
+        <td width="19"><img src="/site/hengtai/images/meiti_10.gif" width="19" height="14" /></td>
+        <td width="672" background="/site/hengtai/images/meiti_12.gif"></td>
+        <td width="10"><img src="/site/hengtai/images/meiti_14.gif" width="18" height="14" /></td>
+      </tr>
+    </table></td>
+    <td width="24">&nbsp;</td>
+    <td width="239" valign="top">{{include file='block/left.html'}}</td>
+  </tr>
+</table>
+
+ {{include file='footer.html'}}
+</body>
+</html>

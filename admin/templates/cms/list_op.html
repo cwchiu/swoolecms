@@ -1,0 +1,32 @@
+<tr class="tr4" >
+<td align="left" colspan="7"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>操作:
+	<select name="job" id="job" onChange="showTarget(this.value);">
+	  <option value="" selected="selected">选择操作</option>
+	  <option value="push">推荐到</option>			  
+	  <option value="cate">移动到</option>
+	  </select>
+	<span id="target">
+	  <select name="push" id="push" style="display:none;" disabled="disabled">
+		{{foreach item=v from=$tags}}
+		<option value="{{$v.id}}">{{$v.name}}</option>	            
+		{{/foreach}}					
+	   </select>
+					   
+	   <select name="cate" id="cate"  style="display:none;" disabled="disabled">
+	   <option value="">请选择</option>
+		{{foreach item=v from=$cates}}
+		  <option value="{{$v.id}}" disabled="disabled" style="font-size:14px;">{{$v.name}}</option>		
+			{{foreach item=v2 from=$v.child}}
+			<option value="{{$v2.id}}" {{if $det.cid==$v2.id}} selected="selected"{{/if}}>--{{$v2.name}}</option>
+			{{/foreach}}
+		{{/foreach}}				  
+		</select>
+	</span>
+	<input value="全选" onClick="CheckAll('ids[]');" type="button" class="btn" />
+	<input value="提交" type="submit" class="btn" /></td>
+  <td></td>
+  </tr>
+</table></td>
+</tr>

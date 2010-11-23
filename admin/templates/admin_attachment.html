@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Exp Yixiuwang!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<meta content="MSHTML 6.00.5730.13" name="GENERATOR" />
+<style type="text/css">
+<!--
+body,td,th {
+    font-size: 12px;
+}
+
+body {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.num_t {
+    color: #FF0000;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.STYLE1 {
+    color: #FF0000;
+    font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<script   language="Javascript">
+window.onload=function()
+{
+    window.parent.document.getElementById("upload_resource").style.height=document.body.scrollHeight;
+//自适应文件内容高度，将此段代码放在iframe的src所指向的文件里，temp4是iframe的名称
+}
+</script>
+<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#ece9d8" cellspacing="0" style="border-collapse: collapse">
+  <tr class="head">
+    <td colspan="2">上传附件</td>
+  </tr>
+  <tr class="tr2">
+    <td width="8%" style="text-align: center">字段名</td>
+    <td width="92%" style="text-align: center">内容</td>
+  </tr>
+  <tr class="line">
+        <td>上传附件</td>
+    <td><input name="media" type="file" class="input" id="media"
+            size="70" />
+      <input name="aid" type="hidden" id="aid" value="<?php echo $id;?>" /></td>
+  </tr>
+  <tr class="line">
+    <td>文件名称</td>
+    <td><input class="input" name="title" id="title" value="" /></td>
+  </tr>
+
+  <tr class="line">
+    <td colspan="2" align="left">      <input
+            type="submit" class="btn" value="上传" />    </td>
+  </tr>
+</table>
+</form>
+<br />
+
+<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#ece9d8" cellspacing="0" style="border-collapse: collapse">
+    <tr class="tr2">
+        <td width="11%" align="center">序号</td>
+        <td width="26%" align="center">文件名</td>
+        <td width="29%" align="center">下载地址</td>
+        <td width="22%" align="center">上传时间</td>
+        <td width="12%" align="center">操作</td>
+    </tr>
+    <?php foreach($list as $li): ?>
+    <tr class="tr3" t_one="t_one">
+        <td><?php echo $li['id'];?></td>
+        <td><?php echo $li['title'];?></td>
+        <td><a href="<?php echo $li['url'];?>" target="_blank"><?php echo $li['url'];?></a></td>
+        <td><?php echo $li['addtime'];?></td>
+        <td><a href="?action=attachment&del=<?php echo $li['id'];?>&app=<?php echo $_GET['app'];?>&aid=<?php echo $id;?>"><img
+            src="/static/images/admin/del.gif" alt="删除" border="0" align="absmiddle"
+            onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;&nbsp;
+            <a href="javascript:window.parent.fck_insert('<?php echo cms_htmlcode($li["url"]); ?>')">插入编辑器</a></td>
+    </tr>
+    <?php endforeach;?>
+</table>
+</body>
+</html>
