@@ -1,9 +1,18 @@
-<div id='header' class="bg1"><br />
-<br />
-<ul>
+{{magic func=cate app=News}}
+<div id='header' class="bg1">
+<table width="100%" border="0">
+  <tr>
+    <td width="72" height="80" align="center"><img src="../static/images/logo.jpg" width="55" height="55" /></td>
+    <td width="918" height="80">
+  <ul>
   <li><a href="/">网站首页</a></li>
-  <li></li>
+  {{foreach item=v from=$cate}}
+  <li><a href="/news/list_{{$v.id}}.html">{{$v.name}}</a></li>
+  {{/foreach}}
   <li><a href="/about.html">关于我们</a></li>
 </ul>
+</td>
+  </tr>
+</table>
 </div>
 <div class="clear"></div>

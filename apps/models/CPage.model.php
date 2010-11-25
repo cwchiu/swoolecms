@@ -1,5 +1,5 @@
 <?php
-class CPage extends Model
+class Cpage extends Model
 {
 	//Here write Database table's name
 	public $table = 'st_page';

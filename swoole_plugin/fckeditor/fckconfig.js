@@ -47,6 +47,13 @@ FCKConfig.PreloadImages = [ FCKConfig.SkinPath + 'images/toolbar.start.gif', FCK
 FCKConfig.PluginsPath = FCKConfig.BasePath + 'plugins/' ;
 
 // FCKConfig.Plugins.Add( 'autogrow' ) ;
+// ----------------------
+// Configure Syntax highlighter for 2.0.x
+FCKConfig.Plugins.Add('syntaxhighlight2','zh-cn');
+// default language options:
+// c++,csharp,css,delphi,java,jscript,php,python,ruby,sql,vb,xhtml
+FCKConfig.SyntaxHighlight2LangDefault = 'php';
+
 FCKConfig.AutoGrowMax = 400 ;
 
 // FCKConfig.ProtectedSource.Add( /<%[\s\S]*?%>/g ) ;	// ASP style server side code <%...%>
@@ -111,7 +118,7 @@ FCKConfig.ToolbarSets["Default"] = [
 */
 
 FCKConfig.ToolbarSets["Default"] = [
-	['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
+	['Source','SyntaxHighLight2','DocProps','-','Save','NewPage','Preview','-','Templates'],
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
 	'/',

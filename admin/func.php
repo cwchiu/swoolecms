@@ -72,7 +72,7 @@ function getHtmlList($app,$cate_id,$page=1,$level='fid')
 	return file_get_contents($url);
 }
 
-function cms_attachment(&$params)
+function cms_attachment(&$params,&$smarty)
 {
 	$attachment = <<<HTML
     <script language="javascript">
@@ -87,7 +87,7 @@ HTML;
 	return $attachment;
 }
 
-function cms_link(&$params)
+function cms_link(&$params,&$smarty)
 {
 	global $php;
 	if($php->config->cms['html_static'])
@@ -104,7 +104,41 @@ function cms_link(&$params)
 	}
 }
 
-function cms_htmlcode($file)
+function cms_cate(&$params,&$smarty)
+{
+    if(empty($params['app'])) exit('App名称不能为空');
+    if(empty($params['name'])) $params['name'] = 'cate';
+    if(empty($params['fid'])) $params['fid'] = 0;
+    $smarty->_tpl_vars[$params['name']] = getChildCategory($params['app'],(int)$params['fid']);
+}
+
+function cms_list(&$params,&$smarty)
+{
+    if(empty($params['cid'])) exit('分类不能为空');
+    $cid = (int)$params['cid'];
+    if(empty($params['name'])) $params['name'] = 'list'.$cid;
+    $cate = getCategory($cid);
+    $model = createModel($cate['app']);
+
+    if($cate['fid']==0) $gets['fid'] = $cid;
+    else $gets['cid'] = $cid;
+
+    if(empty($params['select'])) $params['select'] = 'id,title,addtime';
+    if(empty($params['num'])) $
+
+	if(array_key_exists('titlelen',$params))
+	{
+	    $params['select'] = str_replace('title',"substring( title, 1, {$params['titlelen']} ) AS title,title as title_full",$params['select']);
+	}
+	$smarty->_tpl_vars[$params['name']] = $model->gets($gets);
+}
+
+function cms_det(&$params,&$smarty)
+{
+
+}
+
+function cms_htmlcode($file,&$smarty)
 {
 	if(!function_exists('file_ext')) import_func('file');
 	$ext = file_ext($file);

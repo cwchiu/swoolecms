@@ -9,7 +9,7 @@ class app_index extends GeneralView
 	{
 		if(empty($_GET['p']) or $_GET['p']=='index')
 		{
-			$gets['select'] = 'id,title,substring(content,1,300) as des,addtime';
+			$gets['select'] = 'id,title,substring(content,1,1000) as des,addtime';
 			$gets['limit'] = 10;
 			$model = createModel('News');
 			$list = $model->gets($gets);

@@ -143,7 +143,8 @@ class admin extends GeneralView
 				$fcate = getCategory($fid);
 				$_POST['fname'] = $fcate['name'];
 			}
-
+			//将远程图片本地化
+			Swoole_content::image_local($_POST['content']);
 			if(!empty($_POST['id']))
 			{
 				//如果得到id，说明提交的是修改的操作

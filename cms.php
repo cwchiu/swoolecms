@@ -47,6 +47,7 @@ elseif(!empty($_GET['cid']))
         $php->tpl->assign("fid",$cate_id);
         $php->tpl->assign("ccate",$cate);
         if($cate['tplname']) $tplname = $cate['tplname'];
+        $gets['fid'] = $cate_id;
     }
     else
     {
@@ -54,13 +55,14 @@ elseif(!empty($_GET['cid']))
         $php->tpl->assign("cate",$cate);
         $ccate = $php->db->query("select * from st_catelog where id={$cate['fid']} limit 1")->fetch();
         $php->tpl->assign("ccate",$ccate);
+        $gets['cid'] = $cate_id;
     }
 
     $pager = null;
     $gets['order'] = 'addtime desc';
     $gets['page'] = empty($_GET['page'])?1:$_GET['page'];
     $gets['pagesize'] = empty($model->pagesize)?$php->config->cms['pagesize']:$model->pagesize;
-    $gets['select'] = "*";
+    $gets['select'] = "id,title,addtime";
     $list = $model->gets($gets,$pager);
     if($php->config->cms['html_static']) $pager->page_tpl = WEBROOT."/$app/list_{$cate_id}_%s.html";
 

@@ -4,7 +4,7 @@ class News extends Model
 	//Here write Database table's name
 	public $table = 'st_news';
 	public $catelog_table ='st_catelog';
-	public $pagesize=25;
+	public $pagesize=10;
 
 	function getAllCatelog()
 	{
