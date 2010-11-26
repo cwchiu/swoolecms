@@ -23,6 +23,9 @@ ul{
 li{
 	list-style:none;		
 }
+.dot_ul{
+	list-style: disc inside url("../images/li.gif");		
+}
 .position{
 color:#7c3628;
 font-size: 12px;
@@ -84,7 +87,6 @@ font-size: 12px;
 }
 .date{
 	color:#666;
-	float:right
 }
 .pager {
 float:left;

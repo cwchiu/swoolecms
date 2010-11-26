@@ -14,6 +14,7 @@
 {{include file='header.html'}}
 <div id='main'>
 <div id='mleft'>
+<h2>技术资讯 </h2>
 <ul>
 {{foreach item=v from=$list}}
 <li><a href="{{magic func=link app=News id=$v.id}}" class="news"><strong>{{$v.title}}</strong></a>
@@ -34,10 +35,26 @@
 <li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>
-<!--{{magic func=list cid=44 num=10}}-->
+<!--{{magic func=list cid=44 num=10 order=id}}-->
 <h3 style="margin-left:5px;">Swoole使用手册</h3>
 <ul>
 {{foreach from=$list44 item=v}}
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+{{/foreach}}
+</ul>
+
+<!--{{magic func=list cid=47 num=10}}-->
+<h3 style="margin-left:5px;">MySQL最新文章</h3>
+<ul>
+{{foreach from=$list47 item=v}}
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+{{/foreach}}
+</ul>
+
+<!--{{magic func=list cid=48 num=10}}-->
+<h3 style="margin-left:5px;">Linux最新文章</h3>
+<ul>
+{{foreach from=$list48 item=v}}
 <li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>

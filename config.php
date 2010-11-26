@@ -1,4 +1,5 @@
 <?php
+ini_set('session.cookie_domain','swoole.com');
 define('DEBUG','on');
 define("WEBPATH",str_replace("\\","/",dirname(__FILE__)));
 define("WEBROOT",'http://'.$_SERVER['SERVER_NAME']);

@@ -8,27 +8,9 @@
 <meta name="Copyright" content="Swoole.com" />
 <meta name="description" content="Swoole是一个PHP高级开发框架" />
 <meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
-<script src="/static/scripts/shCore.js"></script>
-<script src="/static/scripts/shBrushBash.js"></script>
-<script src="/static/scripts/shBrushCpp.js"></script>
-<script src="/static/scripts/shBrushCSharp.js"></script>
-<script src="/static/scripts/shBrushCss.js"></script>
-<script src="/static/scripts/shBrushDelphi.js"></script>
-<script src="/static/scripts/shBrushDiff.js"></script>
-<script src="/static/scripts/shBrushGroovy.js"></script>
-<script src="/static/scripts/shBrushJava.js"></script>
-<script src="/static/scripts/shBrushJScript.js"></script>
-<script src="/static/scripts/shBrushPhp.js"></script>
-<script src="/static/scripts/shBrushPlain.js"></script>
-<script src="/static/scripts/shBrushPython.js"></script>
-<script src="/static/scripts/shBrushRuby.js"></script>
-<script src="/static/scripts/shBrushScala.js"></script>
-<script src="/static/scripts/shBrushSql.js"></script>
-<script src="/static/scripts/shBrushVb.js"></script>
-<script src="/static/scripts/shBrushXml.js"></script>
-
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/facebox.js"></script>
+<script src="/js.php?g=sh"></script>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/facebox.js"></script>
 <link type="text/css" rel="stylesheet" href="/static/css/facebox.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
@@ -51,7 +33,7 @@
 			  images[i].width = maxw;			  
 		  }
 		  images[i].rel="facebox";
-		  images[i].href = images[i].src;
+		  if(!$.browser.msie) images[i].href = images[i].src;
 	  }
 	  $('#content img').facebox();
     })
@@ -69,6 +51,21 @@
 </div>
 
 <div id='mright'>
+<!--{{magic func=cate app=News name=cates fid=$det.fid}}-->
+<h3 style="margin-left:5px;">相关分类</h3>
+<ul>
+{{foreach from=$cates item=v}}
+<li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/News/list_{{$v.id}}.html">{{$v.name}}</a></li>
+{{/foreach}}
+</ul>
+
+<!--{{magic func=list name=about cid=$det.cid num=10}}-->
+<h3 style="margin-left:5px;">相关文章</h3>
+<ul>
+{{foreach from=$about item=v}}
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+{{/foreach}}
+</ul>
 </div>
 </div>
 {{include file='footer.html'}}

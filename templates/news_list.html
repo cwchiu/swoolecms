@@ -26,6 +26,22 @@
 </div>
 
 <div id='mright'>
+<!--{{magic func=cate app=News name=cates fid=$ccate.id}}-->
+<h3 style="margin-left:5px;">相关分类</h3>
+<ul>
+{{foreach from=$cates item=v}}
+<li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/News/list_{{$v.id}}.html">{{$v.name}}</a></li>
+{{/foreach}}
+</ul>
+
+<!--{{magic func=list name=about cid=$cid num=10}}-->
+<h3 style="margin-left:5px;">相关文章</h3>
+<ul>
+{{foreach from=$about item=v}}
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+{{/foreach}}
+</ul>
+
 </div>
 </div>
 {{include file='footer.html'}}

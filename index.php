@@ -11,6 +11,7 @@ class app_index extends GeneralView
 		{
 			$gets['select'] = 'id,title,substring(content,1,1000) as des,addtime';
 			$gets['limit'] = 10;
+			$gets['fid'] = 9;
 			$model = createModel('News');
 			$list = $model->gets($gets);
 			foreach($list as &$l)

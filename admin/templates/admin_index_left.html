@@ -72,32 +72,22 @@ a:active {
   </tr>
   {{if checkAG('root')}}
   <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
-    <td><a href="admin_news.php?action=users">管理用户</a></td>
+    <td><a href="admin.php?action=users">管理用户</a></td>
   </tr>
   {{/if}}
   <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
-    <td><a href="admin_news.php?action=chpasswd">修改登录密码</a></td>
+    <td><a href="admin.php?action=chpasswd">修改登录密码</a></td>
   </tr>
   <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
     <td><a href="index.php?page=html">更新静态页面</a></td>
   </tr>
   <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
-    <td><a href="admin.php?action=dict">黄金数据管理</a></td>
+    <td><a href="admin.php?action=guestbook">在线留言管理</a></td>
   </tr>
-</table>
+  </table>
 </div>
 
-<div class="t" id="gb">
-<table border="0" cellspacing="0" cellpadding="0" width=100%>
-  <tr class="leftH">
-    <td>留言管理</td>
-  </tr>
-  
-  <tr class="leftmenu" onmouseover="changeBg(this,1);" onmouseout="changeBg(this,0);">
-    <td><a href="admin_news.php?action=guestbook">在线留言管理</a></td>
-  </tr>
-</table>
-</div>
+
 {{foreach item=v from=$apps key=k}}
 <div class="t" id="{{$k}}">
 <table border="0" cellspacing="0" cellpadding="0" width=100%>

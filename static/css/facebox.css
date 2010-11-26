@@ -63,9 +63,12 @@
 }
 
 #facebox_overlay {
-  position: fixed;
-  top: 0px;
-  left: 0px;
+  position: absolute;
+  left:0px;top:0px;
+	filter: Alpha(Opacity = 30);
+	opacity: 0.3;
+	background-color: #000000;
+	z-index: 1;
   height:100%;
   width:100%;
 }

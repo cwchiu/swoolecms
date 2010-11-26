@@ -20,7 +20,15 @@
 </div>
 
 <div id='mright'>
+    <!--{{magic func=list name=re app=Cpage cid=$det.cid select=id,title,pagename}}-->
+    <h3 style="margin-left:5px;"></h3>
+    <ul>
+    {{foreach from=$re item=v}}
+    <li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/{{$v.pagename}}.html">{{$v.title}}</a></li>
+    {{/foreach}}
+    </ul>
 </div>
+
 </div>
 {{include file='footer.html'}}
 </body>

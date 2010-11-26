@@ -69,6 +69,7 @@ elseif(!empty($_GET['cid']))
     $pager = array('total'=>$pager->total,'render'=>$pager->render());
     $php->tpl->assign('pager',$pager);
     $php->tpl->assign("list",$list);
+	$php->tpl->assign('cid',$cate_id);
     $php->tpl->display($tplname);
 }
 ?>

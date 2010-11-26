@@ -59,7 +59,7 @@ body {
 		<td><a href="/admin/admin.php?action=add&amp;id={{$list[ol].id}}&amp;app={{$app}}">{{$list[ol].title}}</a></td>
 		<td>{{$list[ol].fname}}</td>
 		<td>{{$list[ol].cname}}</td>
-		<td>{{askey key=$list[ol].digest data=$digest}} </td>
+		<td>{{askey key=$list[ol].tagid data=$tags}} </td>
 		<td>{{$list[ol].addtime}}</td>
 		<td>
 		<a href="admin.php?app={{$app}}&amp;action=add&amp;id={{$list[ol].id}}"><img src="/static/images/admin/edit.gif" alt="修改" border="0" /></a>	

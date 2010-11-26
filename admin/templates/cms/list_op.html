@@ -9,8 +9,8 @@
 	  </select>
 	<span id="target">
 	  <select name="push" id="push" style="display:none;" disabled="disabled">
-		{{foreach item=v from=$tags}}
-		<option value="{{$v.id}}">{{$v.name}}</option>	            
+		{{foreach item=v key=k from=$tags}}
+		<option value="{{$k}}">{{$v}}</option>	            
 		{{/foreach}}					
 	   </select>
 					   
