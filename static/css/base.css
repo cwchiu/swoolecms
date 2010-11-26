@@ -16,9 +16,12 @@ td {
 img{
    border:0px;
 }
+ul{
+	margin:5px;
+	padding:0;
+}
 li{
-	list-style:none;
-		
+	list-style:none;		
 }
 .position{
 color:#7c3628;

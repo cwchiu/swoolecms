@@ -124,11 +124,18 @@ function cms_list(&$params,&$smarty)
     else $gets['cid'] = $cid;
 
     if(empty($params['select'])) $params['select'] = 'id,title,addtime';
-    if(empty($params['num'])) $
+    if(empty($params['num'])) $params['num']=10;
 
-	if(array_key_exists('titlelen',$params))
+    //查询的条数
+    $gets['limit'] = (int)$params['num'];
+    //查询的字段
+    $gets['select'] = $params['select'];
+
+    if(!empty($params['order'])) $gets['order'] = $params['order'];
+
+	if(!empty($params['titlelen']))
 	{
-	    $params['select'] = str_replace('title',"substring( title, 1, {$params['titlelen']} ) AS title,title as title_full",$params['select']);
+	    $gets['select'] = str_replace('title',"substring( title, 1, {$gets['titlelen']} ) AS title,title as title_full",$gets['select']);
 	}
 	$smarty->_tpl_vars[$params['name']] = $model->gets($gets);
 }

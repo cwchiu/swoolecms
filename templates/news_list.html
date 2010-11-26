@@ -14,15 +14,15 @@
 {{include file='header.html'}}
 <div id='main'>
 <div id='mleft'>
-<div>当前位置： <a href="/">首页</a> &gt;&gt; <a href="/{{$app}}/list_{{$ccate.id}}.html">{{$ccate.name}}</a>
+<div id='pos'>当前位置： <a href="/">首页</a> &gt;&gt; <a href="/{{$app}}/list_{{$ccate.id}}.html">{{$ccate.name}}</a>
 {{if $cate}} &gt;&gt; {{$cate.name}}{{/if}}</div>
 <ul>
 {{foreach item=v from=$list}}
 <li class="hei28"><a href="{{magic func=link app=News id=$v.id}}" class="news">{{$v.title}}</a>
 <span class="date">{{$v.addtime|mbcut:10}}</span></li>
 {{/foreach}}
-<li>{{$pager.render}}</li>
 </ul>
+{{$pager.render}}
 </div>
 
 <div id='mright'>

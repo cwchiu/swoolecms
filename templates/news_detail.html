@@ -26,11 +26,35 @@
 <script src="/static/scripts/shBrushSql.js"></script>
 <script src="/static/scripts/shBrushVb.js"></script>
 <script src="/static/scripts/shBrushXml.js"></script>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/facebox.js"></script>
+<link type="text/css" rel="stylesheet" href="/static/css/facebox.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
 <script type="text/javascript">
 	SyntaxHighlighter.config.clipboardSwf = '/static/scripts/clipboard.swf';
 	SyntaxHighlighter.all();
+	$.facebox.settings.closeImage = '/static/images/closelabel.png';
+    $.facebox.settings.loadingImage = '/static//images/loading.gif';
+	
+	jQuery(document).ready(function($) {      
+	  var images = document.getElementById("content").getElementsByTagName("img");
+	  var maxh=700;
+	  var maxw=700;
+	  for(var i=0;i<images.length;i++)
+	  {
+		  //建议只判断高度或者宽度其中一个，那样可以自动按比例缩放
+		  if(images[i].width>maxw) //判断图片的宽度，如果大于700，则设置为700，值可以自己修改
+		  {			  
+			  images[i].height = parseInt(images[i].height*maxw/images[i].width);
+			  images[i].width = maxw;			  
+		  }
+		  images[i].rel="facebox";
+		  images[i].href = images[i].src;
+	  }
+	  $('#content img').facebox();
+    })
 </script>
 </head>
 
@@ -38,10 +62,10 @@
 {{include file='header.html'}}
 <div id='main'>
 <div id='mleft'>
-<div>当前位置： <a href="/">首页</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.fid}}.html">{{$det.fname}}</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.cid}}.html">{{$det.cname}}</a> &gt;&gt; 正文</div>
+<div id='pos'>当前位置： <a href="/">首页</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.fid}}.html">{{$det.fname}}</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.cid}}.html">{{$det.cname}}</a> &gt;&gt; 正文</div>
   <h2><span class="font_18">{{$det.title}}</span></h2>
   <p>发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'swoole.com'}}　　编辑：{{$det.uname|default:'管理员'}}</p>
-  <p>{{$det.content}}</p>
+  <div id='content'>{{$det.content}}</div>
 </div>
 
 <div id='mright'>

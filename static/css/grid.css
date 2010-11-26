@@ -30,10 +30,18 @@
 	border-right:2px #ccc solid;
 	padding:5px;
 }
+#mleft ul{	
+}
 #mleft ul li{
 	line-height:160%;
+	list-style: disc inside url("../images/li.gif");	
 }
 #mright{
-	width:240px;
+	width:220px;
 	float:left;
+	padding-left:5px;
+}
+#pos{
+	height:30px;
+	border-bottom:1px #CCC solid;
 }
