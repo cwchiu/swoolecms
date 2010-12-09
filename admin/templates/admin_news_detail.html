@@ -56,8 +56,10 @@
 	font: 0/ 8px arial
 }
 </style>
+
 <form action="" method="post" enctype="multipart/form-data">
-<table width="96%" border="1" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
+<div class="t">
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
 	<tr class="head">
 		<td colspan="2">增加内容</td>
 	</tr>
@@ -65,50 +67,66 @@
 		<td width="10%" style="text-align: center">字段</td>
 		<td width="90%" style="text-align: center">内容</td>
 	</tr>	
-	<tr class="line">
-		<td>标题</td>
-	  <td><input class="input" name="title" value="{{$det.title}}" size="70" />
+	<tr class="tr3">
+		<td><span class="tr3">标题</span></td>
+	  <td>
+	    <span class="tr3">
+	    <input class="input" name="title" value="{{$det.title}}" size="70" />
 	    <input type="hidden" name="id" value="{{$det.id}}" />
 	{{if !empty($smarty.get.fid)}}<input type="hidden" name="fid" value="{{$smarty.get.fid}}" />{{/if}}
-    {{if !empty($smarty.get.cid)}}<input type="hidden" name="cid" value="{{$smarty.get.cid}}" />{{/if}}
-    	</tr>
+    {{if !empty($smarty.get.cid)}}<input type="hidden" name="cid" value="{{$smarty.get.cid}}" />{{/if}}                      </span>      
+	</tr>
 	{{include file='cms/select_catelog.html'}}
-	<tr class="line">
-      <td>keywords</td>
-	  <td><input name="keywords" class="input" id="keywords" value="{{$det.keywords}}" size="70" /></td>
-    </tr>
-	<tr class="line">
-      <td>简单描述</td>
-	  <td><textarea name="description" cols="60" rows="4" id="description">{{$det.description}}</textarea></td>
-    </tr>
     {{if $det.pic}}
-	<tr class="line">
+	<tr class="tr3">
 	  <td>缩略图</td>
 	  <td><img src="{{$det.pic}}" width="240" /></td>
     </tr>
 	{{/if}}
-		<tr class="line">
+		<tr class="tr3">
 		<td>上传缩略图</td>
 		<td><input name="pic" type="file" id="pic" size="50" class="input" /></td>
 		</tr>
-	<tr class="line">
+	<tr class="tr3">
 		<td>文章内容</td>
 		<td>{{$editor}}</td>
 	</tr>
-	<tr class="line">
+	<tr class="tr3">
+	  <td>文章类型</td>
+	  <td><label>
+	        <input type="radio" name="is_ori" id="radio" value="0" {{if $det.is_ori==0}}checked="checked"{{/if}} /> 
+	        原创</label>&nbsp;&nbsp;          <label>
+	        <input type="radio" name="is_ori" id="radio2" value="1" {{if $det.is_ori==1}}checked="checked"{{/if}} /> 
+          转载</label></td>
+    </tr>
+	<tr class="tr3">
+	  <td>转载自</td>
+	  <td><input name="copyfrom" class="input" id="copyfrom" value="{{$det.copyfrom}}" size="70" /></td>
+    </tr>
+	<tr class="tr3">
+	  <td>keywords</td>
+	  <td><input name="keywords" class="input" id="keywords" value="{{$det.keywords}}" size="70" /></td>
+    </tr>
+	<tr class="tr3">
+	  <td>简单描述</td>
+	  <td><textarea name="description" cols="60" rows="4" id="description">{{$det.description}}</textarea></td>
+    </tr>
+	<tr class="tr3">
 	  <td>来源</td>
 	  <td><input name="source" class="input" id="source" value="{{$det.source}}" /></td>
     </tr>
-	<tr class="line">
+	<tr class="tr3">
 		<td>页面名称</td>
 		<td><input name="pagename" class="input" value="{{$det.pagename}}" /></td>
 	</tr>
-	<tr class="line">
-		<td colspan="2" align="center"><span class="sub"> <input
-			type="submit" value="确定" class="btn" />
+	<tr class="tr3">
+		<td colspan="2" align="center">		  <span class="tr3">
+		  <input type="submit" value="确定并提交" class="btn" />&nbsp;&nbsp;
+	      <input type="button" class="btn" value="取消并返回" onclick="history.back()" />
 		</span></td>
 	</tr>
 </table>
+</div>
 </form>
 </body>
 </html>

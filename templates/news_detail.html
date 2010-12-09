@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PHP开发社区 Swoole开发框架官方网站</title>
+<title>{{$det.title}}_PHP开发社区 Swoole开发框架官方网站</title>
 <link href="/static/css/base.css" rel="stylesheet" type="text/css">
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <meta name="Copyright" content="Swoole.com" />
-<meta name="description" content="Swoole是一个PHP高级开发框架" />
-<meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
+<meta name="description" content="{{$det.title}}" />
+<meta name="keywords" content="{{$det.title}}" />
 <script src="/js.php?g=sh"></script>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/facebox.js"></script>
@@ -45,9 +45,14 @@
 <div id='main'>
 <div id='mleft'>
 <div id='pos'>当前位置： <a href="/">首页</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.fid}}.html">{{$det.fname}}</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.cid}}.html">{{$det.cname}}</a> &gt;&gt; 正文</div>
-  <h2><span class="font_18">{{$det.title}}</span></h2>
-  <p>发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'swoole.com'}}　　编辑：{{$det.uname|default:'管理员'}}</p>
+<div class="main">
+  <h2><span class="font_18">
+  {{if $det.is_ori==1}}<img src="/static/images/zz.gif" alt="转载" width="22" height="25" align="top" /> {{else}}
+  <img src="/static/images/ori.gif" alt="原创" width="22" height="25" align="top" /> {{/if}}{{$det.title}}</span></h2>
+  <p>发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'swoole.com'}}　　编辑：{{$det.uname|default:'管理员'}}
+     {{if $det.copyfrom}}<br />转载自：<a href="{{$det.copyfrom}}">{{$det.copyfrom}}</a> {{/if}} </p>
   <div id='content'>{{$det.content}}</div>
+</div>
 </div>
 
 <div id='mright'>

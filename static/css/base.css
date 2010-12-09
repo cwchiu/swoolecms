@@ -27,9 +27,12 @@ li{
 	list-style: disc inside url("../images/li.gif");		
 }
 .position{
-color:#7c3628;
-font-size: 12px;
+	color:#7c3628;
+	font-size: 12px;
 	line-height: 160%;
+}
+.main{
+	
 }
 .wit_12 {
     color: #ffffff;

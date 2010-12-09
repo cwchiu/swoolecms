@@ -24,7 +24,7 @@ class app_index extends GeneralView
 		else
 		{
 			$page = $_GET['p'];
-			$model = createModel('CPage');
+			$model = createModel('Cpage');
 			$det = $model->get($page,'pagename');
 			$this->swoole->tpl->assign('det',$det);
 			$this->swoole->tpl->display('index_page.html');

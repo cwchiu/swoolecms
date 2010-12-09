@@ -1,13 +1,13 @@
 @charset "utf-8";
 .bg1{
-	border-bottom:2px #ccc solid;
+	border-bottom:1px #ccc solid;
 	background-color: #e3e9ff;
 }
 #header{	
 	height:80px;	
 }
 #footer{
-	border-top:2px #ccc solid;
+	border-top:1px #ccc solid;
 	height:60px;
 	text-align:center;
 	padding-top:5px;
@@ -27,8 +27,14 @@
 #mleft{
 	width:720px;
 	float:left;
-	border-right:2px #ccc solid;
+	border-right:1px #ccc solid;
+	background: none repeat scroll 0 0 #EFF4FA;
 	padding:5px;
+}
+#content{
+	font:14px "微软雅黑,Arial, Helvetica, sans-serif";
+	line-height:28px;
+	color:#000;	
 }
 #mleft ul{	
 }
