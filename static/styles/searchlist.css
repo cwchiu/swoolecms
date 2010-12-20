@@ -1,0 +1,52 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.layout{ clear:both;  width:1030px; margin:0px auto;}
+
+.left{ width:840px; float:left;}
+.leftbar{ float:left; width:160px; padding:8px; background: #F6F6F6; text-align:left; line-height:30px; border:1px solid #d2d2d2;}
+.leftbar .title{ height:24px;font-size:12px;font-weight:bold; color:#555; border-bottom:1px solid #d2d2d2; margin-bottom:5px; padding-bottom:5px}
+.leftbar a{ color: #0069ca;};
+.leftbar ul{ margin-bottom:10px}
+.leftbar li{ border-bottom:1px dashed #d2d2d2}
+.left .line{ border-top:1px solid #d8d8d8; border-bottom:1px solid #fff; font:0; height:0px; margin-bottom:10px }
+
+.searchlist{padding:0px 15px; width:630px; float:left;}
+
+.filter{ border:1px solid #F4DB99; background: url(../images/filtericon.gif) no-repeat 12px 12px #FCF4CD; padding:10px; float:left; margin-bottom:10px; width:610px;}
+.filter h2{ line-height:22px; font-weight:bold; text-align:left; font-size:14px; padding-left:20px;}
+.filtebg{ background:#fff; width:590px; padding:10px;}
+.filter ul {  float:left; line-height:26px; clear:both; width:100% }
+.filter li{ float:left; width:70px; text-align:left; }
+.filter li.title{ font-weight:bold}
+
+.sorting{ height:30px; line-height:30px; text-align:left; border:1px solid #D2D2D2; margin-bottom:10px; background: url(../images/sortingbg.gif) repeat-x; padding:0px 10px; clear:both }
+.sorting span{ float:right; text-align:right;}
+.sorting a{ margin-left:30px; float:right; display:block; background: url(../images/sortingarrow.gif) #fff no-repeat left 2px; padding-left:15px; padding-right:5px;height:18px; line-height:20px; border:1px solid #D2D2D2; margin-top:5px}
+.sorting .a2{ margin-left:30px; float:right; display:block; background: url(../images/sortingarrow2.gif) #fff no-repeat left 2px; padding-left:15px; padding-right:5px;height:18px; line-height:20px; border:1px solid #D2D2D2; margin-top:5px}
+
+.listarea{ margin-bottom:10px; border-bottom:1px solid #e8e8e8; clear:both; padding-bottom:10px}
+.schoolslogo,.list,.prs{ float:left;}
+.schoolslogo{ width:80px; margin-right:10px; border:1px solid #ccc}
+
+.list{width:400px;margin-right:15px; float:left; overflow:hidden;}
+.list h2{ font-size:14px; text-align:left; font-weight:bold; line-height:24px;}
+.list p{ clear:both; text-align:left; line-height:16px; margin-top:3px; display:block; float:left; clear:both; width:400px;}
+.list p span{ display:block; float:left; margin-right:25px;}
+.prs{ color:#ff6600; margin-top:5px; }
+.prs span{ font:airal; display:block; margin:3px; margin-bottom:5px;}
+.nu{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:bold
+}
+
+.pages{ margin:10px 0; text-align:right; clear:both;}
+.pages a{  margin-right:5px; }
+
+
+.right{ float:right; width:190px; text-align:left}
+.right .textad { margin-bottom:20px; }
+.right .textad .title{ font-size:14px;  line-height:22px; font-weight:bold; overflow:hidden; }
+.right .textad .content{ color:#5A5A5C; padding:3px 0;}
+.right  .adhelp{ margin-bottom:12px;}

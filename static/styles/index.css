@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+.searchboxarea{ width:550px; clear:both; margin:50px auto 30px;}
+.searchboxarea .logo{ margin-bottom:30px;}
+.searchboxarea ul{ float:left;}
+.searchboxarea li{ float:left; font-size:14px; font-weight:bold; color:#0069ca; line-height:28px; display:block; padding-right:30px; cursor: pointer}
+.searchboxarea .onc{ color:#000;}
+.searchboxarea .searchbox{ clear:both; border:2px solid #C7D9E9; width:551px; text-align:left; height:36px;}
+.searchboxarea .sbox{ border:1px solid #2E6BA5; width:544px; display:block; float:left; height:34px; padding-left:5px}
+.searchboxarea input{ border:0 none; font-family:'Verdana';}
+.searchboxarea input:after {content:'';} 
+.searchboxarea .ie{ width:0;overflow:hidden;display: block;float:left; font-size:0; }
+.searchboxarea .textarea{ line-height:normal; font-size:14px;width:450px; margin-top:8px; margin-right:9px; float:left}
+.searchboxarea .searchbutton{cursor:pointer; float:left; }
+.list{ clear:both; margin:20px 0; width:540px;  margin:0px auto; text-align:left;}
+.list li{ float:left; width:100px; line-height:20px;}
+.list .more{ width:40px;}
+

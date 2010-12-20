@@ -1,22 +1,9 @@
 <?php
 class page extends Controller
 {
-    private $model;
-
     function __construct($swoole)
     {
         parent::__construct($swoole);
-    }
-    function sitepage()
-    {
-        $pagename = substr($_GET['p'],0,16);
-        $page = $this->model->SiteChannel->getPage($pagename);
-        $this->swoole->tpl->assign('page',$page);
-        $news = $this->swoole->model->SiteChannel->get($page['fid'])->get();
-        $pagelist = $this->model->SiteChannel->getnews($news['id']);
-        $this->swoole->tpl->assign('pagelist',$pagelist);
-        $this->swoole->tpl->assign('news',$news);
-        $this->swoole->tpl->display('page_channel.html');
     }
     function flist()
     {
@@ -95,11 +82,28 @@ class page extends Controller
 
     function index()
     {
-        if(isset($_GET['p'])) $this->cms_page();
-        elseif(isset($_GET['f']) and $_GET['cid']=='index') $this->cms_list();
-        elseif(isset($_GET['f'])) $this->cms_child();
-        elseif(isset($_GET['d'])) $this->cms_detail();
-        else $this->cms_index();
+        if(empty($_GET['p']) or $_GET['p']=='index')
+        {
+            $gets['select'] = 'id,title,substring(content,1,1000) as des,addtime';
+            $gets['limit'] = 10;
+            $gets['fid'] = 9;
+            $model = createModel('News');
+            $list = $model->gets($gets);
+            foreach($list as &$l)
+            {
+                $l['des'] = mb_substr(strip_tags($l['des']),0,120);
+            }
+            $this->swoole->tpl->assign('list',$list);
+            $this->swoole->tpl->display('index.html');
+        }
+        else
+        {
+            $page = $_GET['p'];
+            $model = createModel('Cpage');
+            $det = $model->get($page,'pagename');
+            $this->swoole->tpl->assign('det',$det);
+            $this->swoole->tpl->display('index_page.html');
+        }
     }
     /**
      * 个人用户登录
@@ -140,15 +144,10 @@ class page extends Controller
     {
         if($_POST)
         {
-            header('Cache-Control: no-cache, must-revalidate');
-            $code = $_POST['code'];             //从POST获取邀请码
-            $prid = $_POST['prid'];
-            $param['invitecode'] = $code;
-            $param['prid'] = $prid;
-            $codes = $this->swoole->model->AdminInvite->gets($param);
-            if(empty($codes))
-            {                  //检查获取的邀请码是否有效
-                Swoole_js::js_goto('您没有接受到邀请！','/');
+            session();
+            if(!isset($_POST['authcode']) or strtoupper($_POST['authcode'])!==$_SESSION['authcode'])
+            {
+                Swoole_js::js_back('验证码错误！');
                 exit;
             }
             if($_POST['password']!==$_POST['repassword'])
@@ -156,63 +155,41 @@ class page extends Controller
                 Swoole_js::js_back('两次输入的密码不一致！');
                 exit;
             }
+            if(empty($_POST['nickname']))
+            {
+                Swoole_js::js_back('名称不能为空！');
+                exit;
+            }
             if(empty($_POST['realname']))
             {
-                Swoole_js::js_back('真实姓名不能为空！');
+                Swoole_js::js_back('名称不能为空！');
                 exit;
             }
-            if($this->model->UserInfo->exists($_POST['email']))
+            $userInfo = createModel('UserInfo');
+            $login['email'] = trim($_POST['email']);
+
+            if($userInfo->exists($login['email']))
             {
-                Swoole_js::js_back('已存在此用户，同一个用户不能注册2次！');
+                Swoole_js::js_back('已存在此用户，同一个Email不能注册2次！');
                 exit;
             }
 
-            $login['username'] = strtolower(trim($_POST['email']));
-            $login['password'] = Auth::mkpasswd($login['username'],$_POST['password']);
-            $login['realname'] = trim($_POST['realname']);
-            $login['prid'] = $prid;
-            $login['sex'] = $_POST['sex'];
+            $login['password'] = Auth::mkpasswd($login['email'],$_POST['password']);
+            $login['username'] = $login['email'];
             $login['reg_ip'] = Swoole_client::getIp();
             $login['mobile'] = $_POST['mobile'];
-            $this->model->UserInfo->put($login);
-            //修改该应聘者状态
-            $p_resume['test_status'] = 2;
-            $this->swoole->model->PersonResume->set($prid,$p_resume,'id');
-            session();
-            $auth = new Auth($this->swoole->db,'user_login');
-            $auth->login($login['username'],$login['password'],0);
-            $_SESSION['user']['realname'] = $login['realname'];
-
-            $params['issend'] = 3;
-            $this->swoole->model->AdminInvite->set($codes[0]['id'],$params,'id');
-            Swoole_js::location('/person/start_test/');
+            $login['realname'] = $_POST['nickname'];
+            $login['realname'] = $_POST['realname'];
+            $login['lastlogin'] = date('Y-m-d h:i:s');
+            $uid = $userInfo->put($login);
+            $_SESSION['isLogin'] = true;
+            $_SESSION['user_id'] = $uid;
+            $_SESSION['user'] = $login;
+            Swoole_js::js_goto('注册成功！','/person/index/');
         }
         else
         {
-            session_cache_limiter('private');
-            $code = isset($_GET['code'])?$_GET['code']:'';             //从url获取邀请码
-            $prid = isset($_GET['prid'])?$_GET['prid']:0;
-            if(!empty($code)){                  //检查获取的邀请码是否有效
-                $param['invitecode'] = $code;
-                $param['prid'] = $prid;
-                $codes = $this->swoole->model->AdminInvite->gets($param);  //获取数据库已发送未注册的邀请码
-                if(empty($codes)){
-                    Swoole_js::js_goto('不合法的邀请码！','/');
-                    exit;
-                }
-                if($codes[0]['issend'] == 3){
-                    Swoole_js::js_goto('该邀请码已经失效！','/');
-                    exit;
-                }
-                $userinfo = $this->swoole->model->PersonResume->get($prid)->get();
-                $this->swoole->tpl->assign('userinfo',$userinfo);
-                $this->swoole->tpl->assign('code',$code);
-                $this->swoole->tpl->assign('prid',$prid);
-                $this->swoole->tpl->display();
-            }else{
-                Swoole_js::js_goto('您没有接受到邀请！','/');
-                exit;
-            }
+            $this->swoole->tpl->display();
         }
     }
 

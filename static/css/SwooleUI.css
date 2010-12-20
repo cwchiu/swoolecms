@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+.swoole_button{width:64px;height:22px; border:none; background:url(http://img1.21xiehou.com/static/images/myxh_phoabg.png) no-repeat 0 -30px; cursor:pointer; margin-left:5px;margin-right:5px;}
+
+.Dialog {
+	position: absolute;
+	border:#c1d9ff solid 5px;
+	position: absolute;
+	font-size: 11px;
+	text-align: center;
+	background-color: #c0d8fe;
+	padding: 1px;
+	line-height: 22px;
+	z-index: 102;
+}
+.Dialog_bodybg{position: absolute;left:0px;top:0px;
+	filter: Alpha(Opacity = 30);
+	opacity: 0.3;
+	background-color: #000000;
+	z-index: 101;}
+.Dialog_head{ height:26px; padding-left:10px; background:#e0edfe; cursor:move;}
+.Dialog_title { float:left; width:auto; color:#000; font-weight:bold; line-height:26px;}
+.Dialog_close { float:right; width:40px; padding-left:15px; font-size:12px; color:#000; line-height:26px; background:url(http://img1.21xiehou.com/static/images/myxh_dialog.gif) no-repeat 5px 9px;cursor:pointer;}
+.Dialog_close { background/*\**/:url(/static/enterimg/close.gif) no-repeat 5px 7px\9;}
+.Dialog_msg { background: #ebf3fe; font-size:14px;border-top:1px solid #cddefa;}
+.Dialog_cont { padding:20px 0 15px 0;}
+.Dialog_bottom { height:28px; padding-top:6px; text-align:center; color:#f0e2d8; background:#e0edfe;}
+
+.calendar_td {
+	cursor: hand;
+	border-right: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+	color: #215DC6;
+	font-family: Verdana;
+	font-size: 12px;
+	padding:3px;
+}
+
+.calendar_div {
+	position: absolute;
+	z-index: 1;
+	visibility: hidden;
+	filter: progid :   DXImageTransform.Microsoft.Shadow (   direction =  
+		135, color =   #999999, strength =   3 );
+}
+
+.calendar_close {
+	border-bottom: 1px solid #0066FF;
+	background-color: #C7D8FA;
+	font-weight: bold;
+	font-size: 12px;
+	padding-top: 2px;
+	color: #4477FF;
+	cursor: hand;
+}

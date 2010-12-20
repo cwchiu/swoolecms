@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.realname}}的用户中心_阿宝网</title>
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/styles/person.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+{{include file='header.html}}
+<div class="ilayout">
+<div class="imenubar">
+ {{include file='person_left.html'}}
+</div>
+<div class="icontent">
+<!--欢迎页面-->
+<div class="welcome">欢迎 {{$smarty.session.user.realname}}</div>
+<!--欢迎页面-->
+<!--邮件-->
+<div class="mailbox">
+<div class="title">我的邮箱</div>
+<div class="mailtextcon" >
+<div class="mailcontext">
+<h1>
+{{if $ftype=='ent'}}<span class="connect">拨打免费电话联系：<span class="tel">400-82192</span></span>{{/if}}
+发件人：
+{{if $ftype=='ent'}}<a href="/page/ent/?id={{$fuser.id}}">{{$fuser.enterprisename}}<span>[>>点击进入<<]</span></a>
+{{else}}<a href="/page/user/?uid={{$fuser.id}}">{{$fuser.realname}}</a>{{/if}}
+
+
+</h1>
+<h2>信件标题：{{$title}}</h2>
+<p>{{$mail.content}} </p>
+<!--邮件正文不支持超级连接，纯文本-->
+</div>
+</div>
+<div class="mailcontent dis"></div>
+</div>
+<!--邮件-->
+<!--编辑个人资料-->
+</div>
+</div>
+<div class="footer"></div>
+</body>
+</html>

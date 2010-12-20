@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+	#banner
+	{
+		width:480px;
+		margin:0px;
+		height:180px;
+		overflow:hidden;
+		z-index:-1;
+	}
+	#btn
+	{	display: inline;
+		width:110px;
+		hegiht:18px;
+		float:left;
+		margin:-30px 0px 0px 335px;
+		position:absolute;
+		z-index:1;
+	}
+	#btn a
+	{
+		color:#36f;
+		font:700 11px "Arial";
+		background:url(../images/ibbtn.gif) no-repeat;
+		float:left;
+		width:18px;
+		height:18px;
+		line-height:18px;
+		text-align:center;
+		text-decoration:none;
+		margin-left:5px;
+	}
+	#btn a.activeSlide
+	{	
+		color:#fff;
+		background:url(../images/ibhbtn.gif) no-repeat;
+	}
+	#btn a:hover
+	{	
+		color:#fff;
+		background:url(../images/ibhbtn.gif) no-repeat;
+	}
+

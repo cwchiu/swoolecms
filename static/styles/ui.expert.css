@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+.star{ margin-bottom:20px;}
+.star .starpic{ float:left; width:425px; display:inline}
+.star .rightbar{ float:right; width:263px; display:inline; padding:5px; border:1px solid #F90;}
+.star .rightbar .title{ font-weight:bold; line-height:20px; border-bottom:2px solid #DDD; margin-bottom:5px; padding:3px 0px 6px; color:#f60}
+.star .rightbar li{ line-height:26px; height:26px; padding-left:26px;}
+.star .rightbar .a{ background: url(/static/images/pcde_406.png) no-repeat 2px 5px}
+.star .rightbar .b{ background: url(/static/images/pcde_499.png) no-repeat 2px 5px}
+.star .rightbar .c{ background: url(/static/images/pcde_421.png) no-repeat 2px 5px}
+.star .rightbar .d{ background: url(/static/images/pcde_484.png) no-repeat 2px 5px}
+.star .starbooking{ width:220px; margin-left:10px; float:left; padding:5px; display:inline}
+
+.starbooking .title{ font-size:14px; font-weight:bold;}
+.starbooking .info{ padding:10px 0px; line-height:18px}
+.starbooking .btn{ padding-top:15px; text-align:center; border-top:1px dashed #CCC;}
+
+.expert{float:left;
+padding:15px 0 15px 10px;
+width:310px;}
+.expert .pic
+{ background:none repeat scroll 0 0 #FFFFFF;
+border:1px solid #DFDFDF;
+padding:2px;
+float:left;}
+.expert .info
+{ float:left;
+padding-left:6px;
+width:213px;
+overflow:hidden;
+height:120px}
+.expert .title{ font-size:14px; font-weight:bold; margin-bottom:2px;}
+.expert p{ line-height:18px; display:block; height:70px}
+.expert .current{ padding-top:2px}
+.expert .attention{ background: url(/static/images/e.i.001.gif) no-repeat 2px 7px; display:block; float:left; padding-left:16px; padding-top:5px}
+.expert .attention b{ font-family:arial; color:#f60}
+.expert .btn{ text-align:center; float:right; clear:both}
+.expert .btn1{ text-align:center; float:right; }
+.m{ background: #EDF3FA; border-top:1px #47A4D6 solid; height:32px; line-height:32px; padding-left:5px; margin-bottom:10px}
+.m h2{ font-size:14px; font-weight:bold;}

@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* CSS Document */
+.dp_telinfo{ margin-bottom:10px;}
+.dp_telinfo span{ display:block; line-height:20px; padding:5px;}
+.dp_telinfo span.tel{ font-size:26px; font-weight:bold; color:#f60}

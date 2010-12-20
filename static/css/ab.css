@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* search */
+#suggest {
+	border:1px solid #817F82;
+	position:absolute;
+	background-color:#FFFFFF;
+	width: 420px;
+	margin-left:5px;
+}
+.ml td{
+	height:28px;
+	font-size:14px;
+	padding-left:5px;
+}
+
+/* mail */
+.mainreg{ font-size:14px; text-align:left; width:680px; margin:10px auto}
+.mainreg h1{ font-size:14px; font-weight:bold;}
+.mainreg p{ line-height:19px; margin:5px 0; font-size:12px}
+.mainreg li{ line-height:32px; clear:both; height:30px}
+.mainreg li.ex{ background:#FCF4CD}
+.mainreg li label{ width:80px; text-align:right; display:block; float:left}
+.mainreg li input{ float: left; margin-top:5px; border:1px solid #d2d2d2; padding:2px}
+.areamap{ width:900px; margin:5px auto; text-align:left; padding-left:20px;}
+.regbutton{ padding-left:5px}
+.agreements{ background:#F6F6F6; border:1px solid #d2d2d2; padding:10px; margin:10px  auto; width:658px;}
+.agreements h3{ line-height:20px; font-weight:bold; text-align:left; font-size:14px}
+.agreements .agreecontent{ width:652px; height:160px; padding:3px;background:#fff; border:1px solid #d2d2d2; text-align:left; overflow:auto}
+.agreements .agreecontent p{ line-height:19px; margin:5px 0px; text-indent:2em;}
+.mainreg .phbutton{ margin-left:5px; width:90px; cursor:pointer}
+.red {
+	color: #F00;
+}
+
+.ilayout{ width:900px; text-align:left; margin:10px auto}
+.ilayout .imenubar{ float:left; width:180px; margin-right:15px; background:#D2DFF0; padding:10px; font-size:14px}
+.ilayout .imenubar .memberbox{ font-size:12px; text-align:center; padding:10px 0px 20px; margin-bottom:20px; border-bottom:1px dashed #000;}
+.ilayout .imenubar .memberbox img{ border:1px solid #d2d2d2;}
+.ilayout .imenubar .memberbox p{ line-height:40px; font-weight:bold;}
+.ilayout .imenubar .memberbox button{ padding:2px;}
+.ilayout .imenubar ul{ line-height:26px;}
+.ilayout .imenubar ul h2{ line-height:32px; font-size:14px; font-weight:bold}
+.ilayout .icontent{ float:left; width:685px;}
+/* 欢迎页面 */
+.ilayout .icontent .welcome{ height:40px; line-height:40px; font-size:14px; font-weight:bold; background: #FFC; border:1px dashed #f60; border-left:none; border-right:none; padding:5px}
+/* 欢迎页面 */
+/* 邮件 */
+.icontent .mailbox{ margin:10px auto;}
+.icontent .title{ font-size:14px; font-weight:bold; line-height:26px; margin:10px 0px;}
+.icontent .mailbox .mailboxtab{ height:22px; line-height:22px;}
+.icontent .mailbox .mailboxtab li{ margin-bottom:-1px; float:left; margin-right:10px; margin-left:10px; width:80px; height:33px; line-height:33px; text-align:center; background:#fff; border:1px solid #ddd; border-bottom:none; cursor:pointer }
+.icontent .mailbox .mailboxtab li.hov{ background:#f2f2f2; height:32px; }
+.icontent .mailbox .mailcontent{  background:#fff; border-top:none; background:url(/static/images/detailline.gif) repeat-x top; clear:both; padding:10px; height:600px;}
+.icontent .mailbox .undis{ display:none}
+.icontent .mailbox .mailcontent ul{ line-height:36px;}
+.icontent .mailbox .mailcontent li{ border-bottom:1px dashed #ddd; clear:both; float:left }
+.icontent .mailbox .mailcontent li span{ float:left; display:block}
+.icontent .mailbox .mailcontent li span.mailcontentTitle{ width:520px; padding-right:20px}
+.icontent .mailbox .mailcontent li span.date{ width:100px;}
+.icontent .mailbox .mailcontent li span.delete{ width:20px;}
+.icontent .mailbox .mailcontent .pages{ margin:10px 0; text-align:right; clear:both;}
+.icontent .mailbox .mailcontent .pages a{  margin-right:5px; }
+.icontent .mailbox .mailcontent .mailfiled{ margin:10px 0px;}
+.icontent .mailbox .mailcontent .mailfiled h2{ line-height:22px; font-weight:bold}
+.icontent .mailbox .mailcontent .mailfiled h2 span{ font-weight:normal}
+.icontent .mailbox .mailcontent .mailtext{ height:300px; line-height:22px; width:500px}
+/* 邮件 */
+/* 编辑会员资料 */
+.icontent .memberpicEdit{ clear:both;}
+.icontent .memberpicEdit .memeberDetail{ float:left; margin-right:10px; width:168px; border:4px solid #d2d2d2}
+.icontent .memberpicEdit .memeberreload{ float:left; width:450px; padding-top:45px;}
+.icontent .memberpicEdit .memeberreload p{ line-height:20px; margin-top:5px}
+.icontent .memberpicEdit .memberfield{ margin:10px 0px;}
+/* 编辑会员资料 */
+
+/* 登录 */
+.loginlayout{ width:900px; margin:0px auto}
+.left{ float:left; margin-right:10px;}
+.right{ float:right}
+.right .login{ clear:both; margin-top:10px;}
+.right .login li{list-style:none;}
+.right .logindiv{width:210px;}
+.right .login #tab2{width:300px;height:34px; }
+.right .login #tab2 ul{margin:0;padding:0;}
+.right .login #tab2 li{float:left;padding:0 30px;height:33px;line-height:34px;text-align:center;border:1px #d2d2d2 solid;cursor:pointer; margin-right:5px;border-bottom:none;background:url(/static/images/detailline.gif) repeat-x #f2f2f2 left 33px }
+.right .login #tab2 li.now{color:#5299c4;background:#fff;font-weight:bold; border-bottom:none; height:34px }
+.right .login .tablist{width:300px; text-align:left;padding:10px;font-size:14px;line-height:24px;border:1px #d2d2d2 solid;border-top:0;display:none;background: url(/static/images/detailline.gif) repeat-x top; height:180px; }
+.right .login #tablist2{ text-align:left}
+.right .login .block{display:block; }
+.right .login .tablist p{ line-height:20px; text-indent:2em}
+
+.right .login .field {
+padding-top:12px;
+}
+.right .login .field input{ height:22px;}
+.right .login .field label {
+display:inline-block;
+padding-right:10px;
+text-align:right;
+width:66px;
+}
+.login .submit{ margin-top:20px; margin-left:10px}
+.login .submit button {
+background:url("/static/images/stuff.png") no-repeat scroll 0 -100px transparent;
+border:0 none;
+cursor:pointer;
+float:left;
+height:26px;
+margin-right:6px;
+overflow:hidden;
+text-indent:-99999px;
+vertical-align:middle;
+width:86px;
+}
+.login .reg{ clear:both; margin-top:25px; font-size:14px; text-align:center; border-top:1px dashed #999; padding-top:10px}
+
+.layout{ width:900px}
+.left,.right{ float:left;}
+.left{  width:680px; margin-right:30px; overflow:hidden}
+.layout{ text-align:left; margin:0px auto}
+
+.releaselist{ padding:15px 0; border-bottom:1px solid #e2e3e2; clear:both;}
+.releaselist .biddingnum{ height:60px; margin-right:20px; float:left; width:60px;
+background:url(/static/images/CMT_iPhone_002.png) no-repeat 10px 0; padding:10px; text-align:center}
+.releaselist .biddingnum span{ display:block; padding-top:4px;}
+.releaselist .biddingnum .num{ color:#f60; font-size:18px; font-family:arial; font-weight:bold; margin-top:-4px}
+.releaselist .releaselistcon{ height:100%; float:left; width:420px;}
+.releaselist .releaselistcon .title{ font-size:14px; font-weight:bold; margin-bottom:10px;}
+.releaselist .releaselistcon .title span{ padding-left:10px; font-size:12px; font-weight:normal}
+.releaselist .releaselistcon .refield{ float:left; margin-right:20px;}
+.releaselist .releaselistcon .refield span{ font-weight:bold;}
+.releaselist .releaselistcon .refieldcon{ clear:both; float:left; line-height:20px; margin-top:5px}
+.releaselist .releaselistcon .refieldcon span{ font-weight:bold}
+
+.releaselist  .reuser{ float:left; width:160px; height:100%; text-align:center}
+.releaselist  .reuser span{ display:block; margin-bottom:10px }
+.releaselist  .reuser .bidbtn{ cursor:pointer}
+
+.ad{ overflow:hidden}
+.reason{ margin-bottom:10px; line-height:24px; margin-top:20px}
+.reason .title{ font-size:14px; font-weight:bold; }
+.notebar a{ color:#2b2b2b}
+
+.pages{ margin:10px 0; text-align:right; clear:both;}
+.pages a{  margin-right:5px; }
+.right{ float:right; width:190px; text-align:left;}
+.right .textad { margin-bottom:10px; }
+.right .textad .title{ font-size:14px;  line-height:22px; font-weight:bold }
+.right .textad .content{ color:#2b2b2b}
+.right  .adhelp{ margin-bottom:12px;}

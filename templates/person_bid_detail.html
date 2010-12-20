@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>标题2</title>
+
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+<style  type="text/css">
+
+.c_box{ width:810px; margin:0 auto;}
+.box_cc{font:12px/1.8em Verdana,Arial,Helvetica,sans-serif; margin-top:20px;}
+
+</style>
+
+</head>
+<body>
+
+<div class="bidding">
+  <div id="post_7964_li">
+    
+    
+    
+  <ul class="line_list">
+    
+  <li>
+    
+  <table width="100%">
+    
+  <tbody><tr>
+    
+  <td width="70" valign="top">
+    
+  <!--<div class="avatar48">
+    
+  <a href="space-312518.html"><img onerror="this.onerror=null;this.src='http://www.66xue.com/uc/images/noavatar_small.gif'" src="http://www.66xue.com/uc/data/avatar/000/31/25/18_avatar_small.jpg"></a>  </div>--></td>
+  
+<td>
+  
+  <div class="title">
+  {{if !$smarty.session.isPerson}}
+  <a class="a_share" id="a_collect_" href="/person/postbid/?bid={{$bid.id}}">我要竞标</a>
+   {{/if}}
+  <div class="r_option">  </div>
+  
+<h1> {{$bid.country}}留学项目 </h1>
+  
+<p><a href="space-312518.html">{{$bid.uname}} </a>
+  
+  <span class="gray">{{$bid.addtime}}</span>  <span class="subject">已有{{$bid.bid_count}}个中介竞标</span></p>
+<p>国家：{{$bid.country}}<br />
+专业：{{$bid.major}}<br />
+年级：{{$bid.projects}}<br />
+预算：{{$bid.budget}}<br />
+性别：{{$bid.sex}}<br />
+所在地区：{{$bid.province}}<br />
+有效期：{{$bid.expired_date}}之前<br />
+</p>
+</div>
+  
+
+  
+<div id="detail_0" class="detail">
+  
+  <div class="box_cc">{{$bid.intro}}</div>
+</div></td>
+  
+</tr>
+  </tbody></table>
+  
+<div id="click_div">  </div>
+  
+
+  
+<table width="100%">			
+  
+  <tbody><tr>
+    
+  <td align="right">  </td>
+  
+</tr>
+  </tbody></table>
+</li>
+</ul>
+</div>
+  
+
+  
+<div class="page"></div>
+  
+
+  
+
+  
+<div class="topic_list">
+  
+  <table cellspacing="0" cellpadding="0">
+    
+  <thead>
+    
+  <tr>
+    
+  <td class="subject">公司名称</td>
+  
+<td class="mtag">内容</td>
+  <td class="mtag">时间</td>
+</tr>
+  </thead>
+    
+  <tbody>
+    
+    
+    {{foreach item=v from=$list}} 
+  <tr>
+  <td class="subject">
+  <a href="/index.php?app=store&amp;id=5" target="_blank"><span class="servicesimg"><img src="/{{$v.logo}}" />{{$v.enterprisename}}</span></a></td>
+  <td>{{$v.content}}</td>
+  <td>{{$v.addtime}}</td>
+  </tr>
+    {{/foreach}}
+    
+  </tbody>
+  </table>
+{{$pager.render}}  </div>
+  
+<div class="clear"></div>
+</div>
+</body>
+
+</html>
+

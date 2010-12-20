@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+a{ color:#0069ca;}
+a:hover{ color:#0069ca; text-decoration:underline}
+.die6{ background:url(../images/dp_jj_background.gif) no-repeat;}
+.die6 .bacg{  padding:30px 50px}
+.dp_telinfo{ margin-bottom:10px;}
+.dp_telinfo span{ display:block; line-height:20px; padding:5px;}
+.dp_telinfo span.tel{ font-size:26px; font-weight:bold; color:#f60}
+.dp_name{ margin-bottom:10px;}
+.dp_name a{ color:#0069ca}
+.major .list li.dp_pro_lists{ clear:both; width:750px; margin-bottom:10px; height:100px;}
+.group_major .list li.dp_pro_lists{ clear:both; width:750px; margin-bottom:10px; height:100px;}
+.dp_pro_lists .dp_pic{ float:left; width:90px; height:90px; margin-right:10px; border:1px solid #000; padding:1px}
+.dp_pro_lists .dp_cont{ float:left; width:450px;}
+.dp_pro_lists .dp_cont .title{ text-align:left; font-size:14px; margin-bottom:10px;}
+.dp_pro_lists .dp_cont .title span{ font-size:12px;}
+.dp_pro_lists .dp_cont .cont{ line-height:16px; }
+.dp_pro_lists .dp_price{ float:right;}
+.dp_pro_lists .dp_price span{ display:block; margin-bottom:5px;}
+.dp_pro_lists .dp_price span.pri{ font-size:16px; font-weight:800; color:#ff6600; font-style:italic}
+.dp_index_review{ border-top:2px solid #ff6600; clear:both}

@@ -50,7 +50,44 @@
   {{if $det.is_ori==1}}<img src="/static/images/zz.gif" alt="转载" width="22" height="25" align="top" /> {{else}}
   <img src="/static/images/ori.gif" alt="原创" width="22" height="25" align="top" /> {{/if}}{{$det.title}}</span></h2>
   <p>发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'swoole.com'}}　　编辑：{{$det.uname|default:'管理员'}}
-     {{if $det.copyfrom}}<br />转载自：<a href="{{$det.copyfrom}}">{{$det.copyfrom}}</a> {{/if}} </p>
+     {{if $det.copyfrom}}<br />转载自：<a href="{{$det.copyfrom}}">{{$det.copyfrom}}</a> {{/if}}</p>
+     <style>
+	 #ckepop a {
+	cursor: pointer
+	}	
+	#ckepop a:link {
+		color: #00C;
+		text-decoration: none;
+	}	
+	#ckepop a:visited {
+		color: #00C;
+		text-decoration: none;
+	}	
+	#ckepop a:hover {
+		color: #FFFFFF;
+		text-decoration: none;
+		background: #003399;
+	}	
+	#ckepop a:active {
+		color: #FFFFFF;
+		text-decoration: none;
+		background: #FF9933;
+	}
+	.jiathis_txt{
+		float: left;
+		font-size: 12px;
+		line-height: 18px !important;
+		text-decoration: none;
+		color:#00c;
+	}
+	 </style>
+     <div id="ckepop">
+        <a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+        <a class="jiathis_button_tools_1"></a>
+        <a class="jiathis_button_tools_2"></a>
+        <a class="jiathis_button_tools_3"></a>
+        <a class="jiathis_button_tools_4"></a>
+    </div><br />
   <div id='content'>{{$det.content}}</div>
 </div>
 </div>
@@ -73,6 +110,9 @@
 </ul>
 </div>
 </div>
+<!-- JiaThis Button BEGIN -->
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 {{include file='footer.html'}}
 </body>
 </html>

@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+.ilayout{ width:900px; text-align:left; margin:10px auto}
+.ilayout .imenubar{ float:left; width:180px; margin-right:15px; background: #E1F0F7; padding:10px; font-size:14px}
+.ilayout .imenubar .memberbox{ font-size:12px; text-align:center; padding:10px 0px 20px; margin-bottom:20px; border-bottom:1px dashed #000;}
+.ilayout .imenubar .memberbox img{ border:1px solid #d2d2d2;}
+.ilayout .imenubar .memberbox p{ line-height:40px; font-weight:bold;}
+.ilayout .imenubar .memberbox button{ padding:2px;}
+.ilayout .imenubar ul{ line-height:26px;}
+.ilayout .imenubar ul h2{ line-height:32px; font-size:14px; font-weight:bold}
+.ilayout .icontent{ float:left; width:685px;}
+/* 欢迎页面 */
+.ilayout .icontent .welcome{ height:40px; line-height:40px; font-size:14px; font-weight:bold; background: #FFC; border:1px dashed #f60; border-left:none; border-right:none; padding:5px}
+/* 欢迎页面 */
+/* 邮件 */
+.icontent .mailbox{ margin:10px auto;}
+.icontent .title{ font-size:14px; font-weight:bold; line-height:26px; margin:10px 0px;}
+.icontent .mailbox .mailboxtab{ height:22px; line-height:22px;}
+.icontent .mailbox .mailboxtab li{ margin-bottom:-1px; float:left; margin-right:10px; margin-left:10px; width:80px; height:33px; line-height:33px; text-align:center; background:#fff; border:1px solid #ddd; border-bottom:none; cursor:pointer }
+.icontent .mailbox .mailboxtab li.hov{ background:#f2f2f2; height:32px; }
+.icontent .mailbox .mailcontent{  background:#fff; border-top:none; background:url(images/detailline.gif) repeat-x top; clear:both; padding:10px; height:600px;}
+.icontent .mailbox .undis{ display:none}
+.icontent .mailbox .mailcontent ul{ line-height:36px;}
+.icontent .mailbox .mailcontent li{ border-bottom:1px dashed #ddd; clear:both; float:left }
+.icontent .mailbox .mailcontent li span{ float:left; display:block}
+.icontent .mailbox .mailcontent li span.mailcontentTitle{ width:520px; padding-right:20px}
+.icontent .mailbox .mailcontent li span.date{ width:100px;}
+.icontent .mailbox .mailcontent li span.delete{ width:20px;}
+.icontent .mailbox .mailcontent .pages{ margin:10px 0; text-align:right; clear:both;}
+.icontent .mailbox .mailcontent .pages a{  margin-right:5px; }
+.icontent .mailbox .mailcontent .mailfiled{ margin:10px 0px;}
+.icontent .mailbox .mailcontent .mailfiled h2{ line-height:22px; font-weight:bold}
+.icontent .mailbox .mailcontent .mailfiled h2 span{ font-weight:normal}
+.icontent .mailbox .mailcontent .mailtext{ height:300px; line-height:22px; width:500px}
+/* 邮件 */
+
+/* 邮件正文 */
+.mailtextcon{ clear:both; border:1px solid #d8d8d8; background:none repeat scroll 0 0 #F6F6F6; padding:10px;}
+.mailtextcon .mailcontext{ background:#fff; padding:20px; border:1px solid #d2d2d2;}
+.mailtextcon .mailcontext h1{ height:32px; line-height:32px; font-size:14px; font-weight:bold}
+.mailtextcon .mailcontext h1 a{ color:#ff69ca; text-decoration:underline}
+.mailtextcon .mailcontext h1 span{ font-size:12px; font-weight:normal }
+.mailtextcon .mailcontext h1 .connect{ font-family:arial; float:right; text-align:right; font-size:12px; margin-top:-5px}
+.mailtextcon .mailcontext h1 .tel{ color:#f60; font-size:18px; font-style:italic; font-size:26px; font-weight:bold}
+.mailtextcon .mailcontext h2{ clear:both; height:32px; line-height:32px; font-weight:bold; display:block; background:#f2f2f2; margin-bottom:10px; border-top:1px dashed #d2d2d2}
+.mailtextcon .mailcontext p{ text-indent:2em; line-height:20px; margin-bottom:5px;}
+/* 邮件正文 */
+
+/* 编辑会员资料 */
+.icontent .memberpicEdit{ clear:both;}
+.icontent .memberpicEdit .memeberDetail{ float:left; margin-right:10px; width:168px; border:4px solid #d2d2d2}
+.icontent .memberpicEdit .memeberreload{ float:left; width:450px; padding-top:45px;}
+.icontent .memberpicEdit .memeberreload p{ line-height:20px; margin-top:5px}
+.icontent .memberpicEdit .memberfield{ margin:10px 0px;}
+/* 编辑会员资料 */
+
+/* 发布招标 */
+.release{ clear:both;}
+.release .relfield{margin:10px 0px; clear:both; margin-top:10px; float:left}
+.release .relcategory{ float:left; display:block; width:100px; text-align:right;}
+.release .relgraduation .rera{ cursor:pointer;
+float:left;
+height:13px;
+margin:3px 6px 0 0;
+width:13px}
+.release .relgraduation label {
+cursor:pointer;
+float:left;
+margin-right:24px;
+padding-top:3px;
+white-space:nowrap;
+ }
+
+.release .relload,.release .resel, .release .note{ float:left}
+.release .alert{ float:left; color:#f30}
+.release .reltext{ height:130px; line-height:22px; width:500px; padding:3px}
+.release .relbtn{ padding:2px;}
+.agreements{ background:#F6F6F6; border:1px solid #d2d2d2; padding:10px; margin:10px  auto; width:658px;}
+.agreements h3{ line-height:20px; font-weight:bold; text-align:left; font-size:14px}
+.agreements .agreecontent{ width:652px; height:160px; padding:3px;background:#fff; border:1px solid #d2d2d2; text-align:left; overflow:auto}
+.agreements .agreecontent p{ line-height:19px; margin:5px 0px; text-indent:2em;}
+/* 发布招标 */ 
+/* 我的招标 */ 
+.myrelease{ clear:both}
+.myrelease .title span{ font-size:12px; font-weight:normal;}
+.myrelease h1{ font-size:14px; font-weight:bold; color:#f60; margin-bottom:5px}
+.myrelease .mrfield{ border-bottom:1px solid #E7E7E7; line-height:18px; margin-bottom:2px; padding:3px 0px}
+.myrelease .mrfield span{ font-weight:bold}
+.myrelease .mrfield .mredit{ padding:2px}
+.myrelease .mrbutton{ padding:5px 0px}
+

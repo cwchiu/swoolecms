@@ -1,0 +1,22 @@
+<div class="memberbox">
+<div class="memberpic">
+  <img src="{{$smarty.session.user.avatar|default:'/static/images/default.gif'}}" />
+  </div>
+  <p>id:{{$smarty.session.user_id}}</p>
+</div>
+<ul>
+<li><h2>空间管理</h2>
+</li>
+<li><a href="/person/index/">我的空间首页</a></li>
+<li><a href="/person/profile/">编辑个人资料</a></li>
+</ul>
+<ul>
+<li>
+  <h2>空间功能</h2></li>
+<li><a href="/person/bidding/">发布招标</a></li>
+<li><a href="/person/mybid/">我的招标</a></li>
+<li><a href="/person/mails/?act=recv">我的邮箱</a></li>
+<li><a href="/person/logmanage/">我的日志</a></li>
+<li><a href="/person/logcat/">分类管理</a></li>
+<li><a href="/page/logout/">退出登录</a></li>
+</ul>

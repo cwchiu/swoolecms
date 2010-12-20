@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.realname}}的用户中心_阿宝网</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="bidding">
+{{include file='block/bid_menu.html'}}
+<div class="tab_container">
+<div id="tab1" class="tab_content">
+{{if !$argv.my}}
+<div class="h_status">
+<h3>招标项目：</h3><br />
+留学国家：<a href="{{url ignore=country}}">全部</a> <span class="pipe">|</span>
+{{foreach item=v from=$countrys key=k}}
+<a {{if $smarty.get.country==$k}}class="active"{{/if}} href="{{url key=country value=$k ignore=mvc}}">{{$v}}</a>
+<span class="pipe">|</span>
+{{/foreach}}<br />
+
+留学专业：
+<a href="{{url ignore=major}}">全部</a> <span class="pipe">|</span>
+{{foreach item=v from=$majors key=k}}
+<a {{if $smarty.get.major==$k}}class="active"{{/if}} href="{{url key=major value=$k ignore=mvc}}">{{$v}}</a>
+<span class="pipe">|</span>
+{{/foreach}}<br />
+
+留学年级：
+<a href="{{url ignore=projects}}">全部</a> <span class="pipe">|</span>
+{{foreach item=v from=$projects key=k}}
+<a {{if $smarty.get.projects==$k}}class="active"{{/if}} href="{{url key=projects value=$k ignore=mvc}}">{{$v}}</a>
+<span class="pipe">|</span>
+{{/foreach}}
+
+</div>
+{{/if}}
+<div class="topic_list">
+<table cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<td>招标项目</td>
+{{if !$argv.my}}
+<td>发布者</td>
+{{/if}}
+<td>预期费用</td>
+<td>年级</td>
+<td>期望专业</td>
+<td>时间</td>
+<td>竞标</td>
+</tr>
+</thead>
+<tbody>
+{{foreach from=$list item=v}}						
+<tr>
+<td class="subject">
+ <a href="/person/bid_detail/?id={{$v.id}}">{{$v.country}}留学项目</a>{{if $v.expired}}已过期{{/if}}</td>
+{{if !$argv.my}}<td><a href="http://i.21abroad.com/space.php?uid={{$v.uid}}" target="_blank">{{$v.uname}}</a></td>
+{{/if}}
+<td>{{$v.budget}}</td>
+<td>{{$v.projects}}</td>
+<td><a href="#"><span class="mailcontentTitle">{{$v.major}}</span></a></td>
+<td class="author"><a title="施梦" href="#"><span class="date">{{$v.addtime|mbcut:10}}</span></a></td>
+<td class="lastpost"><span class="num">{{$v.bid_count}}</span><a href="/person/bid_detail/?id={{$v.id}}">家中介竞标</a></td>
+</tr>
+{{/foreach}}
+</table>
+{{$pager.render}}
+</div>
+</div>
+</div>
+</div>
+<div class="footer"></div>
+</body>
+</html>

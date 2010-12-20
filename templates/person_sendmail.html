@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.realname}}的用户中心_阿宝网</title>
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/styles/person.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+{{include file='header.html}}
+<script language="javascript">
+function check(of)
+{
+	if(of.tid.value=='' || of.tid.value=="输入企业ID或者个人ID")
+	{
+		alert('ID不能为空');
+		return false;
+	}
+	if(of.title.value=='')
+	{
+		alert('标题不能为空');
+		return false;
+	}
+	if(of.content.value=='')
+	{
+		alert('内容不能为空');
+		return false;
+	}
+	return true;
+}
+</script>
+<div class="header"></div>
+<div class="ilayout">
+<div class="imenubar">
+ {{include file='person_left.html'}}
+</div>
+<div class="icontent">
+<!--欢迎页面-->
+<div class="welcome">欢迎 {{$smarty.session.user.realname}}</div>
+<!--欢迎页面-->
+<!--邮件-->
+<div class="mailbox">
+  <div class="mailtitle"></div>
+<div class="mailcontent dis">
+<form id="form1" name="form1" method="post" action="" onsubmit="return check(this)">
+  <div class="mailfiled">
+    <h2>对方地址</h2>
+	{{if !empty($smarty.get.to)}}<input name="mtype" type="hidden" value="4" /> {{else}}
+      <label>
+        <select name="mtype" id="mtype">
+          <option value="2">企业</option>
+          <option value="4">个人</option>
+        </select>
+      </label>
+	  {{/if}}
+	{{if !empty($smarty.get.to)}}
+	<input name="tid" type="hidden" id="tid" value="{{$smarty.get.to}}" />{{$smarty.get.to}}
+	{{else}} 
+    <input name="tid" type="text" id="tid" value="输入企业ID或者个人ID" onfocus="this.value='';this.onfocus=null" width="200" height="24" /> 
+    {{/if}}@21abroad</div>
+  <div class="mailfiled">
+    <h2>标题 <span>50字以内</span></h2>
+    <input name="title" type="text" id="title" size="70" width="400" height="24" />
+    </div>
+  <div class="mailfiled">
+    <h2>正文<span>300字以内</span></h2>
+    <textarea name="content" class="mailtext" id="content"></textarea>
+    </div>
+  <div class="mailfiled"><button type="submit">发送小纸条</button></div>
+  </form>
+</div>
+</div>
+<!--邮件-->
+<!--编辑个人资料-->
+<!--编辑个人资料-->
+</div>
+</div>
+<div class="footer"></div>
+</body>
+</html>

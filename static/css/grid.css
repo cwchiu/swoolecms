@@ -12,6 +12,9 @@
 	text-align:center;
 	padding-top:5px;
 }
+#header ul{
+	clear:both;
+}
 #header ul li{	
 	/*width:80px;*/
 	list-style:none;

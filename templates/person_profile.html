@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑个人资料_阿宝网</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.ilayout{ width:900px; text-align:left; margin:10px auto}
+.ilayout .imenubar{ background:none repeat scroll 0 0 #F5F5EB;
+border:1px solid #DEDECA;
+float:left;
+font-size:14px;
+margin-right:15px;
+padding:10px;
+width:178px;}
+.ilayout .imenubar .memberbox{ font-size:12px; text-align:center; padding:10px 0px 20px; margin-bottom:20px; border-bottom:1px dashed #000;}
+.ilayout .imenubar .memberbox img{ border:1px solid #d2d2d2;}
+.ilayout .imenubar .memberbox p{ line-height:40px; font-weight:bold;}
+.ilayout .imenubar .memberbox button{ padding:2px;}
+.ilayout .imenubar ul{ line-height:26px;}
+.ilayout .imenubar ul h2{ line-height:32px; font-size:14px; font-weight:bold}
+.ilayout .icontent{ float:left; width:685px;}
+/* 欢迎页面 */
+.ilayout .icontent .welcome{ height:40px; line-height:40px; font-size:14px; font-weight:bold; background: #FFC; border:1px dashed #f60; border-left:none; border-right:none; padding:5px}
+/* 欢迎页面 */
+/* 邮件 */
+.icontent .mailbox{ margin:10px auto;}
+.icontent .title{ font-size:14px; font-weight:bold; line-height:26px; margin:10px 0px;}
+.icontent .mailbox .mailboxtab{ height:22px; line-height:22px;}
+.icontent .mailbox .mailboxtab li{ margin-bottom:-1px; float:left; margin-right:10px; margin-left:10px; width:80px; height:33px; line-height:33px; text-align:center; background:#fff; border:1px solid #ddd; border-bottom:none; cursor:pointer }
+.icontent .mailbox .mailboxtab li.hov{ background:#f2f2f2; height:32px; }
+.icontent .mailbox .mailcontent{  background:#fff; border-top:none; background:url(/static/images/detailline.gif) repeat-x top; clear:both; padding:10px; height:600px;}
+.icontent .mailbox .undis{ display:none}
+.icontent .mailbox .mailcontent ul{ line-height:36px;}
+.icontent .mailbox .mailcontent li{ border-bottom:1px dashed #ddd; clear:both; float:left }
+.icontent .mailbox .mailcontent li span{ float:left; display:block}
+.icontent .mailbox .mailcontent li span.mailcontentTitle{ width:520px; padding-right:20px}
+.icontent .mailbox .mailcontent li span.date{ width:100px;}
+.icontent .mailbox .mailcontent li span.delete{ width:20px;}
+.icontent .mailbox .mailcontent .pages{ margin:10px 0; text-align:right; clear:both;}
+.icontent .mailbox .mailcontent .pages a{  margin-right:5px; }
+.icontent .mailbox .mailcontent .mailfiled{ margin:10px 0px;}
+.icontent .mailbox .mailcontent .mailfiled h2{ line-height:22px; font-weight:bold}
+.icontent .mailbox .mailcontent .mailfiled h2 span{ font-weight:normal}
+.icontent .mailbox .mailcontent .mailtext{ height:300px; line-height:22px; width:500px}
+/* 邮件 */
+/* 编辑会员资料 */
+.icontent .memberpicEdit{ clear:both;}
+.icontent .memberpicEdit .memeberDetail{ float:left; margin-right:10px; width:168px; border:4px solid #d2d2d2}
+.icontent .memberpicEdit .memeberreload{ float:left; width:450px; padding-top:45px;}
+.icontent .memberpicEdit .memeberreload p{ line-height:20px; margin-top:5px}
+.icontent .memberpicEdit .memberfield{ margin:10px 0px;}
+/* 编辑会员资料 */
+</style>
+</head>
+
+<body>
+{{include file='header.html}}
+<div class="ilayout">
+<div class="imenubar">
+{{include file='person_left.html'}}
+</div>
+<div class="icontent">
+<!--欢迎页面-->
+<div class="welcome">欢迎 {{$smarty.session.user.realname}}</div>
+<!--欢迎页面-->
+<!--邮件-->
+<!--邮件-->
+<!--编辑个人资料-->
+<div class="memberpicEdit">
+<form method="post" enctype="multipart/form-data" id="profile">
+<div class="title">编辑个人资料</div>
+<div class="memeberDetail" style="width:auto"><img src="{{$user.avatar|default:'/static/images/default.gif'}}" alt="头像" /></div>
+<div class="memeberreload">
+  <label>
+    上传头像
+      :
+      <input type="file" name="avatar" id="avatar" />
+</label>
+  <p>支持JPG,JPEG、GIF、BMP和PNG 文件格式，最大2M.头像高度超过宽度1.2倍的部分会被切除。</p>
+</div>
+<div class="clear"></div>
+<div class="memberfield">姓名 
+  <input name="realname" type="text" id="realname" value="{{$user.realname}}"  height="30" /></div>
+<div class="memberfield">手机号码 
+  <input name="mobile" type="text" id="mobile" value="{{$user.mobile}}"  height="30" /></div>
+  
+  <div class="memberfield">毕业于
+    {{$forms.education}}
+  </div>
+  
+  {{if $user.certificate}}<div class="memberfield">目前证书：<img src="{{$user.certificate}}" alt="证书" width="200" /></div>{{/if}}
+  <div class="memberfield">重新上传：<input type="file" name="certificate" id="certificate" />
+  我们承诺将不会公布您的隐私记录。如果没有证书，将不能使用发布招标功能。</div>
+<button class="saveinfo"  type="submit">确认并保存信息</button>
+</form>
+</div>
+<!--编辑个人资料-->
+</div>
+</div>
+{{include file='footer.html}}
+</body>
+</html>

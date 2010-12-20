@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+.header{ height:60px; width:1030px; text-align:left; margin:20px auto 10px;  }
+.header .logo{ float:left; margin-right:10px;}
+
+/*头部搜索框开始*/
+.searchboxarea{ width:550px; float:left}
+.searchboxarea .logo{ margin-bottom:30px;}
+.searchboxarea ul{ float:left;}
+.searchboxarea li{ float:left; font-size:14px; font-weight:bold; color:#0069ca; line-height:20px; display:block; padding-right:30px; cursor: pointer}
+.searchboxarea .onc{ color:#000;}
+.searchboxarea .searchbox{ float:left;border:2px solid #C7D9E9; width:455px; text-align:left; height:28px; clear:both}
+.searchboxarea .sbox{ border:1px solid #2E6BA5; width:448px; display:block; float:left; height:26px; padding-left:5px}
+.searchboxarea input{ border:0 none; font-family:'Verdana';}
+.searchboxarea input:after {content:'';} 
+.searchboxarea .ie{ width:0;overflow:hidden;display: block;float:left; font-size:0; }
+.searchboxarea .textarea{ line-height:normal; font-size:12px;width:375px; margin-top:4px; margin-right:9px; float:left}
+.searchboxarea .searchbutton{cursor:pointer; float:left; }
+/*头部搜索框结束*/
+.header .help{ float:right;}
+
+.areamap{ line-height:26px; text-align:left; background:url(../images/areamapicon.gif)  no-repeat  #f2f2f2  5px center; padding-left:22px; padding-top:5px; margin-bottom:10px; border-top:3px solid #009900;  }

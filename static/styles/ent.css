@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS Document */
+
+.header,.enav,.layout{ width:900px; margin:0px auto; text-align:left;}
+.header{ height:100px;}
+.header .intermediaryname{ padding:20px 0px 0px 20px; font-family:Verdana, Geneva, sans-serif; font-size:22px; font-weight:bold}
+.enav{ height:26px; background:#03F; color:#FFF; line-height:26px; font-weight:bold; }
+.enav ul{ padding-left:20px}
+.enav a{ color:#fff}
+.enav li{ float:left; margin-right:22px; font-size:14px;}
+.left,.right{ float:left}
+.left{ width:620px; margin-right:20px; padding:10px;}
+.left .title{ height:26px; line-height:26px; background:#e2e2e2; border-top:1px dashed #03F; font-size:14px; font-weight:bold; margin-bottom:10px;}
+.left .introduce p{ line-height:22px; text-indent:2em}
+
+.left .sepro{ clear:both; }
+.left .seprolist{ width:290px; padding:10px; float:left}
+.left .seprolist .seproimg{ float:left; width:60px; height:60px; margin-right:5px}
+.left .seprolist .seprocon{ float:left; width:175px;}
+.left .seprolist .seproconinfo{ margin-top:3px;}
+
+.left .active{ clear:both;}
+.left .active ul{ line-height:26px; border-bottom:1px solid #e2e2e2;}
+.left .active span{ float:right; text-align:right;}
+
+.left .team{ clear:both; }
+.left .teamlist{ width:290px; padding:10px; float:left}
+.left .teamlist .teamimg{ float:left; width:60px; height:60px; margin-right:5px}
+.left .teamlist .teamcon{ float:left; width:200px;}
+.left .teamlist .teamconinfo{ margin-top:3px;}
+
+.left .ocase{ clear:both;}
+.left .ocase ul{ line-height:26px; border-bottom:1px solid #e2e2e2;}
+.left .ocase span{ float:right; text-align:right;}
+
+.left .qualificationlist{ clear:both}
+.left .qualificationlist li{ float:left; margin-right:10px; width:180px;}
+
+.left .allcontent{ clear:both; line-height:22px;}
+.left .allcontent .articletitle{ font-size:14px; font-weight:bold; line-height:32px; }
+.left .allcontent p{ margin-bottom:10px; text-indent:2em}
+
+.left .scorecontent{ clear:both}
+.left .scoretab li{ float:left; width:80px; height:26px; line-height:26px; border:1px solid #e2e2e2; border-bottom:none; background:#d2d2d2; margin-bottom:-1px; text-align:center; margin-left:10px; cursor:pointer}
+.left .scoretab .hov{ background:#fff;}
+.left .scorecontentlist{ clear:both; padding-top:10px; line-height:22px; background:url(/static/images/detailline.gif) repeat-x;  }
+.left .scorecontentlist li{ padding:10px 0; border-bottom:1px dashed #e2e2e2;}
+.left .scorecontentlist li .userinfo{ padding:10px 0 0;}
+.left .scorecontentlist li .userinfo span{ float:right; text-align:right}
+.left .scorecontentlist li p{overflow:hidden;}
+.left .scorecontentlist .undis{ display:none}
+
+/*分页*/
+.left .pages{ margin:10px 0; text-align:right; clear:both;}
+.left .pages a{  margin-right:5px; }
+/*分页*/
+/*中介信息*/
+/*中介信息*/
+.right{ width:220px; padding:10px; overflow:hidden}
+.right .intermediaryinfo{ line-height:22px;  border-bottom:1px dashed #e2e2e2; padding-bottom:10px; }
+.right .intermediaryinfo span{ font-size:16px; font-weight:bold; color:#f60}
+.right .qualification{ background:url(/static/images/qhs_001.gif) no-repeat 0px 2px; height:20px; padding-left:24px;}
+/*中介信息*/
+/*得分*/
+.right .score{ line-height:22px; padding:10px 0; }
+.right .scoreinfo span{ font-family:arial; color:#093; font-weight:bold; font-size:14px}
+.right .scoreinfolist span{ font-family:arial; font-weight:bold;}
+/*得分*/
+
+/*编辑*/
+.seproinfoedit{ clear:both; padding-top:10px;}
+.seproinfoedit .seproinfoeditfield{ padding:10px 0;}
+.seproinfoedit .edittext{ width:500px; height:500px; padding:2px; line-height:22px}

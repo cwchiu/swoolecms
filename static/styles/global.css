@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0}
+li{list-style-type:none;}
+table{ margin:0 auto;}
+img{vertical-align:top;border:none;}
+ol,ul {list-style:none;}   
+caption,th {text-align:left;}  
+h1,h2,h3,h4,h5,h6 {font-size:12px; font-weight:normal;}   
+q:before,q:after {content:'';}   
+abbr,acronym {border:0;}
+address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}   
+
+.clear{ clear:both; font-size:0; height:0; line-height:0; visibility:hidden}
+
+.topmenu{ line-height:34px; padding:3px; background:url(../images/topmenu.gif) repeat-x; text-align:left;  }
+.topmenu span{ float:right; text-align:right;}
+.topmenu a{ padding:0px 5px;}
+.topmenu a:hover{ color:#369}
+.footer{ margin:120px auto 60px; line-height:20px; clear:both; margin-top:30px;}
+
+.right .rmdx_b{ margin-bottom:8px;}
+.right .rmdx_b h2{ height:26; background:#F2F2F2; border-bottom:1px solid #BAC5D1; font:800 14px/26px Arial, "宋体";padding-left:20px;}
+.right .rmdx_b li{ height:24px; font:12px/24px Arial, "宋体"; border-bottom:1px #CCC dashed; float:left; width:45%; padding-left:15px;}
+.right .rmdx_b li a:link,.right .rmdx_b li a:visited{ color:#666;}
+.right .rmdx_b li a:hover{ color:#F60;}
+
+.right .rmgj_b{ margin-bottom:8px;}
+.right .rmgj_b h2{ height:26; background:#F2F2F2; border-bottom:1px solid #BAC5D1; font:800 14px/26px Arial, "宋体";padding-left:20px;}
+.right .rmgj_b li{ height:24px; font:12px/24px Arial, "宋体"; border-bottom:1px #CCC dashed; float:left; width:21%; padding-left:15px;}
+.right .rmgj_b li a:link,.right .rmgj_b li a:visited{ color:#666;}
+.right .rmgj_b li a:hover{ color:#F60;}
+
+.right .rmzy_b{ margin-bottom:8px;}
+.right .rmzy_b h2{ height:26; background:#F2F2F2; border-bottom:1px solid #BAC5D1; font:800 14px/26px Arial, "宋体";padding-left:20px;}
+
+.right .rmzy_b li{ height:24px; font:12px/24px Arial, "宋体"; border-bottom:1px #CCC dashed; float:left; width:29%; padding-left:15px;}
+.right .rmzy_b li a:link,.right .rmzy_b li a:visited{ color:#666;}
+.right .rmzy_b li a:hover{ color:#F60;}

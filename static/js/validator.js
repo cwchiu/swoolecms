@@ -34,6 +34,7 @@ function isTel(str) {
 }
 /**
  * 获取单选框的值
+ * 
  * @param radioName
  * @return
  */
@@ -108,10 +109,14 @@ function isEnglish(strValue) {
 	return patt.test(strValue);
 }
 function isNickname(strValue) {
-	var reg = /^[a-z-_\u4e00-\u9fa5]*$/gi;
+	var reg = /^[a-z-_\u4e00-\u9fa5]+$/i;
 	return reg.test(trim(strValue));
 }
-function ispassword(strValue) {
+function isRealname(strValue){
+	var reg = /^[\u4e00-\u9fa5]+$/i;
+	return reg.test(trim(strValue));
+}
+function isPassword(strValue) {
 	var reg = strValue.length;
 	if(reg >= 6 && reg <= 12 ){
 	   return true;
@@ -119,13 +124,13 @@ function ispassword(strValue) {
 		return false;
 	}
 }
-function isarea(strValue) {
+function isArea(strValue) {
 	var reg = /^0\d{2,3}$/;
 	var patt = new RegExp(reg);
 	return patt.test(strValue);
 }
 
-function isnumber(strValue){
+function isNumber(strValue){
 	var reg = /^\d+$/;
 	return reg.test(trim(strValue));
 }
@@ -138,7 +143,7 @@ function split_param(attr){
 	return attr.split('|');
 }
 
-//自定义过滤器
+// 自定义过滤器
 var custom_filter = new Array;
 
 function check_input(input){
@@ -153,7 +158,7 @@ function check_input(input){
 		return false;
 	}
 	
-	//检测字符串最大长度
+	// 检测字符串最大长度
 	if (input.getAttribute('maxlen')) {
 		qs = split_param(input.getAttribute('maxlen'));
 		if(input.value.length > qs[0]){
@@ -162,7 +167,7 @@ function check_input(input){
 		}
 	}
 	
-	//检测字符串最小长度
+	// 检测字符串最小长度
 	if (input.getAttribute('minlen')) {
 		qs = split_param(input.getAttribute('minlen'));
 		if(input.value.length < qs[0]){
@@ -204,49 +209,22 @@ function check_input(input){
 
 	// 检查值的类型 -ctype
 	if (input.getAttribute('ctype')) {
-		var attr = null;
-		var qs = null;
 		attr = input.getAttribute('ctype');
 		qs = attr.split('|');
-		qs[0] = qs[0].toLowerCase();		
-		if (qs[0] == 'email' && !isEmail(input.value)) {
+		var func = 'is'+ qs[0].substring(0,1).toUpperCase()+qs[0].substring(1).toLowerCase();
+		
+		if (!eval(func+'(input.value)')) {
 			error_handle(input,qs[1]);
 			return false;
-		} else if (qs[0] == 'Tel' && !isTel(input.value)) {
-			error_handle(input,qs[1]);
-			return false;
-		} else if (qs[0] == 'nickname' && !isNickname(input.value)) {
-			error_handle(input,qs[1]);
-			return false;
-		} else if (qs[0] == 'password' && !ispassword(input.value)) {
-			error_handle(input,qs[1]);
-			return false;
-		} else if (qs[0] == 'area' && !isarea(input.value)){
-			error_handle(input,qs[1]);
-		    return false;
-		} else if(qs[0] == 'number' && !isnumber(input.value)){
-			error_handle(input,qs[1]);
-		    return false;
-		} else if(qs[0] == 'eng' && !isEnglish(input.value)){
-			error_handle(input,qs[1]);
-		    return false;
-		}else if(qs[0] == 'mobile' && !isMobile(input.value)){
-			error_handle(input,qs[1]);
-		    return false;
-		}
-		else if(qs[0] == 'isEnglish' && !isEnglish(input.value)){
-			error_handle(input,qs[1]);
-		    return false;
 		}
 	}
 	
 	// 检查异步请求的情况Ajax
 	if (input.getAttribute('ajax')) {
-		call = input.getAttribute('ajax');
-		if (call(input)==false) {
-			error_handle(input,qs[1]);
-			return false;
-		}
+		attr = input.getAttribute('ajax');
+		qs = attr.split('|');
+		var ajax_call = qs[0];
+		eval(ajax_call+"(input,qs[1])");
 	}
 	
 	for(var j=0;j<custom_filter.length;j++){
@@ -257,6 +235,7 @@ function check_input(input){
 			}
 		}
 	}
+	return true;
 }
 function checkform(event, oform) {
 	event = event ? event : window.event;
@@ -272,6 +251,7 @@ function checkform(event, oform) {
 }
 /**
  * 增加自定义过滤条件
+ * 
  * @return
  */
 function add_filter(name,msg,callback){
@@ -279,6 +259,7 @@ function add_filter(name,msg,callback){
 }
 /**
  * 验证表单
+ * 
  * @param id
  * @return
  */
@@ -302,6 +283,7 @@ function validator_each(id){
 }
 /**
  * 强制验证表单，用于非提交的处理，执行此函数时，即检查表单合格性
+ * 
  * @param id
  * @return
  */
