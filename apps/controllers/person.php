@@ -16,9 +16,9 @@ class person extends Controller
 	{
 		if($_POST)
 		{
-			if(empty($_POST['realname']))
+			if(empty($_POST['nickname']))
 			{
-				Swoole_js::js_back('姓名不能为空！');
+				Swoole_js::js_back('昵称不能为空！');
 				exit;
 			}
 			if(empty($_POST['mobile']))
@@ -35,111 +35,38 @@ class person extends Controller
 			}
 			if(!empty($_FILES['certificate']['name'])) $set['certificate'] = file_upload('certificate','/static/uploads/certificate');
 
-			$set['realname'] = $_POST['realname'];
+			$set['nickname'] = $_POST['nickname'];
+			$set['company'] = $_POST['company'];
+			$set['blog'] = $_POST['blog'];
 			$set['mobile'] = $_POST['mobile'];
-			$set['education'] = $_POST['education'];
+			$set['sex'] = (int)$_POST['sex'];
+			$set['education'] = (int)$_POST['education'];
+			$set['skill'] = implode(',',$_POST['skill']);
+            $set['php_level'] = (int)$_POST['php_level'];
 
 			$u = createModel('UserInfo');
 			$u->set($this->uid,$set);
-
 			$_SESSION['user']['realname'] = $set['realname'];
 			$_SESSION['user']['mobile'] = $set['mobile'];
 			Swoole_js::js_back('修改成功！');
 		}
 		else
 		{
-			$_u = createModel('UserInfo');
+		    require WEBPATH.'/dict/forms.php';
+		    $_u = createModel('UserInfo');
 			$u = $_u->get($this->uid)->get();
+
+		    $_skill = createModel('UserSkill')->getMap();
+			$_forms['sex'] = Form::radio('sex',$forms['sex'],$u['sex']);
+			$_forms['education'] = Form::select('education',$forms['education'],$u['education']);
+			$_forms['skill'] = Form::checkbox('skill',$_skill,$u['skill']);
+            $_forms['level'] = Form::radio('php_level',$forms['level'],$u['php_level']);
+
 			$this->swoole->tpl->assign('user',$u);
+			$this->swoole->tpl->assign('forms',$_forms);
 			$this->swoole->tpl->display();
+			//$this->view->showTrace();
 		}
-	}
-	function bidding()
-	{
-		//Error::dbd();
-		$_area = createModel('MArea');
-		if($_POST)
-		{
-			if(empty($_POST['school']))
-			{
-				Swoole_js::js_back('期望学校不能为空！');
-				exit;
-			}
-			if(empty($_POST['major']))
-			{
-				Swoole_js::js_back('期望专业不能为空！');
-				exit;
-			}
-			$_m = createModel('UserBidding');
-			$carea = $_area->get($_POST['area_id']);
-			$_POST['area'] = $carea['name'];
-
-			$_POST['country_id'] = $carea['fid'];
-			$farea = $_area->get($carea['fid']);
-			$_POST['country'] = $farea['name'];
-			$_POST['sid'] = date('Y-m').'-'.rand(100001,999999);
-			$_POST['uid'] = $this->uid;
-			$_POST['uname'] = $_SESSION['user']['realname'];
-			$_m->put($_POST);
-			Swoole_js::js_goto('修改成功！','/person/index/');
-		}
-		else
-		{
-			//$u = createModel('UserInfo');
-			require WEBPATH.'/dict/bid.php';
-			$_area->select = 'id,name,fid';
-			$area = $_area->all()->fetchall();
-			$new = array();
-			foreach($area as $m)
-			{
-				if($m['fid']!=0) $new[$m['fid']]['child'][] = $m;
-				else
-				{
-					$new[$m['id']]['id'] = $m['id'];
-					$new[$m['id']]['name'] = $m['name'];
-				}
-			}
-			$this->swoole->tpl->assign('budget',Form::select('budget',$bid['budget'],null,null,array('empty'=>'请填写期望费用')));
-			$this->swoole->tpl->assign('area',$new);
-			$u = $_SESSION['user'];
-			$this->swoole->tpl->assign('user',$u);
-			$this->swoole->tpl->display();
-		}
-	}
-	function mybid()
-	{
-		$_m = createModel('UserBidding');
-		$gets['uid'] = $this->uid;
-		$gets['stat'] = isset($_GET['stat'])?(int)$_GET['stat']:0;
-		$gets['pagesize'] = 12;
-		$gets['page'] = isset($_GET['page'])?(int)$_GET['page']:1;
-		$list = $_m->gets($gets,$pager);
-		$pager = array('total'=>$pager->total,'render'=>$pager->render());
-		$this->swoole->tpl->assign('pager',$pager);
-		$this->swoole->tpl->assign('list',$list);
-		$this->swoole->tpl->display();
-	}
-	function bid_list()
-	{
-		//Error::dbd();
-		if(empty($_GET['id'])) die();
-		$id = (int)$_GET['id'];
-
-		$_ent = createModel('EntBid');
-		$_em = createModel('EntInfo');
-		$_pm = createModel('UserBidding');
-
-		$gets['leftjoin'] = array($_em->table,$_ent->table.'.eid='.$_em->table.'.id');
-		$gets['select'] = 'eid,logo,enterprisename,enter_intro';
-		$gets['bid'] = $id;
-		$gets['order'] = $_em->table.'.id desc';
-		$gets['pagesize'] = 12;
-		$gets['page'] = isset($_GET['page'])?(int)$_GET['page']:1;
-		$list = $_ent->gets($gets,$pager);
-		$pager = array('total'=>$pager->total,'render'=>$pager->render());
-		$this->swoole->tpl->assign('pager',$pager);
-		$this->swoole->tpl->assign('list',$list);
-		$this->swoole->tpl->display();
 	}
 	function index()
 	{
@@ -187,23 +114,30 @@ class person extends Controller
 		$id = (int)$_GET['mid'];
 		$_m = createModel('UserMail');
 		$ms = $_m->get($id);
-		if($ms->tid==$this->uid)
+		//发信人
+	    if($ms->fid==$this->uid)
 		{
-			$ms->delete();
-			Swoole_js::js_goto('删除成功','/person/index/');
+		    if($ms->mstatus==5) $ms->delete();
+		    else
+		    {
+		        $ms->mstatus=4;
+		        $ms->save();
+		    }
+		    Swoole_js::js_back('删除成功');
 		}
-		elseif($ms->fid==$this->uid)
+		//收信人
+		elseif($ms->tid==$this->uid)
 		{
-			$ms->mstatus = 4;
-			$ms->save();
-			Swoole_js::js_goto('删除成功','/person/index/');
+		    if($ms->mstatus==4) $ms->delete();
+		    else
+		    {
+		        $ms->mstatus=5;
+		        $ms->save();
+		    }
+		    Swoole_js::js_back('删除成功');
 		}
-		else
-		{
-			die('Access deny!');
-		}
+		else exit('Error!');
 	}
-
 	function logs()
 	{
 		$_m = createModel('UserLogs');
@@ -319,19 +253,16 @@ class person extends Controller
 	{
 		//Error::dbd();
 		$_m = createModel('UserMail');
-		if($_GET['act']=='send')
+		if(isset($_GET['act']) and $_GET['act']=='send')
 		{
-			$gets['fid'] = $this->uid;
-			$gets['where'][] = 'mtype in(2,4)';
-
+		    $gets['fid'] = $this->uid;
+		    $gets['where'][] = 'mstatus!=4';
 		}
 		else
 		{
-			$gets['tid'] = $this->uid;
-			$gets['where'][] = 'mtype in(1,4)';
+		     $gets['tid'] = $this->uid;
+		     $gets['where'][] = 'mstatus!=5';
 		}
-
-		$gets['where'][] = 'mstatus!=4';
 		$gets['pagesize'] = 12;
 		$gets['page'] = isset($_GET['page'])?(int)$_GET['page']:1;
 		$list = $_m->gets($gets,$pager);
@@ -343,16 +274,24 @@ class person extends Controller
 
 	function sendmail()
 	{
-		if($_POST)
+	    if($_POST)
 		{
-			if(empty($_POST['tid'])) die();
-			$_POST['fid'] = $this->uid;
+			if(empty($_POST['tid']) or empty($_POST['title']) or empty($_POST['content'])) die('错误的请求');
+			$post['fid'] = $this->uid;
+			$post['title'] = mb_substr($_POST['title'],0,48);
+			$post['content'] = mb_substr($_POST['content'],0,300);
+			$post['tid'] = $_POST['tid'];
 			$_m = createModel('UserMail');
-			$_m->put($_POST);
+			$_m->put($post);
 			Swoole_js::js_goto('发送成功','/person/mails/?act=send');
 		}
 		else
 		{
+    		if($_GET['to'])
+    		{
+                $u = createModel('UserInfo')->get((int)$_GET['to'])->get();
+                $this->swoole->tpl->assign('to',$u);
+    		}
 			$this->swoole->tpl->display();
 		}
 	}

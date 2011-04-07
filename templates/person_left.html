@@ -2,7 +2,7 @@
 <div class="memberpic">
   <img src="{{$smarty.session.user.avatar|default:'/static/images/default.gif'}}" />
   </div>
-  <p>id:{{$smarty.session.user_id}}</p>
+  <p>id:{{$smarty.session.user_id}} {{if empty($smarty.session.user.avatar)}}<a href="/person/profile/">上传头像</a>{{/if}}</p>
 </div>
 <ul>
 <li><h2>空间管理</h2>
@@ -12,10 +12,9 @@
 </ul>
 <ul>
 <li>
-  <h2>空间功能</h2></li>
-<li><a href="/person/bidding/">发布招标</a></li>
-<li><a href="/person/mybid/">我的招标</a></li>
+<h2>空间功能</h2></li>
 <li><a href="/person/mails/?act=recv">我的邮箱</a></li>
+<li><a href="/person/comment/">我的评论</a></li>
 <li><a href="/person/logmanage/">我的日志</a></li>
 <li><a href="/person/logcat/">分类管理</a></li>
 <li><a href="/page/logout/">退出登录</a></li>

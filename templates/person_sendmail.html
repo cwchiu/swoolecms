@@ -2,9 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{$smarty.session.user.realname}}的用户中心_阿宝网</title>
+<title>{{$smarty.session.user.realname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
-<link href="/static/styles/person.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -36,31 +38,25 @@ function check(of)
  {{include file='person_left.html'}}
 </div>
 <div class="icontent">
-<!--欢迎页面-->
-<div class="welcome">欢迎 {{$smarty.session.user.realname}}</div>
-<!--欢迎页面-->
 <!--邮件-->
 <div class="mailbox">
-  <div class="mailtitle"></div>
+<div class="mailboxtab">
+<ul>
+<li class="hov"><a href="/person/mails/?act=recv">收件箱</a></li>
+<li class="hov"><a href="/person/mails/?act=send">发件箱</a></li>
+<li><a href="/person/sendmail/">写小纸条</a></li>
+</ul>
+</div>
 <div class="mailcontent dis">
 <form id="form1" name="form1" method="post" action="" onsubmit="return check(this)">
   <div class="mailfiled">
-    <h2>对方地址</h2>
-	{{if !empty($smarty.get.to)}}<input name="mtype" type="hidden" value="4" /> {{else}}
-      <label>
-        <select name="mtype" id="mtype">
-          <option value="2">企业</option>
-          <option value="4">个人</option>
-        </select>
-      </label>
-	  {{/if}}
-	{{if !empty($smarty.get.to)}}
-	<input name="tid" type="hidden" id="tid" value="{{$smarty.get.to}}" />{{$smarty.get.to}}
+    收件人:{{if !empty($to)}}
+	<input name="tid" type="hidden" id="tid" value="{{$to.id}}" />{{$to.nickname}}
 	{{else}} 
-    <input name="tid" type="text" id="tid" value="输入企业ID或者个人ID" onfocus="this.value='';this.onfocus=null" width="200" height="24" /> 
-    {{/if}}@21abroad</div>
+    <input name="tid" type="text" id="tid" value="输入用户ID" onfocus="this.value='';this.onfocus=null" width="200" height="24" /> 
+    {{/if}}@swoole.com</div>
   <div class="mailfiled">
-    <h2>标题 <span>50字以内</span></h2>
+    <h2>标题 <span>48字以内</span></h2>
     <input name="title" type="text" id="title" size="70" width="400" height="24" />
     </div>
   <div class="mailfiled">

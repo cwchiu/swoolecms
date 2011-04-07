@@ -120,6 +120,11 @@ class page extends Controller
         }
         if(isset($_POST['username']) and $_POST['username']!='')
         {
+            if(!isset($_POST['authcode']) or strtoupper($_POST['authcode'])!==$_SESSION['authcode'])
+            {
+                Swoole_js::js_back('验证码错误！');
+                exit;
+            }
             $_POST['username'] = strtolower(trim($_POST['username']));
             $_POST['password'] = trim($_POST['password']);
 
@@ -132,13 +137,19 @@ class page extends Controller
             }
             else
             {
-                Swoole_js::js_goto('用户名或密码错误！','/page/person_login/');
+                Swoole_js::js_goto('用户名或密码错误！','/page/login/');
                 exit;
             }
         }
         else {
-            $this->swoole->tpl->display('page_person_login.html');
+            $this->swoole->tpl->display();
         }
+    }
+    function logout()
+    {
+        session();
+        Auth::logout();
+        header('Location:/page/login/');
     }
     function register()
     {
@@ -157,12 +168,12 @@ class page extends Controller
             }
             if(empty($_POST['nickname']))
             {
-                Swoole_js::js_back('名称不能为空！');
+                Swoole_js::js_back('昵称不能为空！');
                 exit;
             }
-            if(empty($_POST['realname']))
+            if(empty($_POST['sex']))
             {
-                Swoole_js::js_back('名称不能为空！');
+                Swoole_js::js_back('性别不能为空！');
                 exit;
             }
             $userInfo = createModel('UserInfo');
@@ -178,8 +189,10 @@ class page extends Controller
             $login['username'] = $login['email'];
             $login['reg_ip'] = Swoole_client::getIp();
             $login['mobile'] = $_POST['mobile'];
-            $login['realname'] = $_POST['nickname'];
-            $login['realname'] = $_POST['realname'];
+            $login['nickname'] = $_POST['nickname'];
+			$login['sex'] = (int)$_POST['sex'];
+			$login['skill'] = implode(',',$_POST['skill']);
+            $login['php_level'] = (int)$_POST['php_level'];
             $login['lastlogin'] = date('Y-m-d h:i:s');
             $uid = $userInfo->put($login);
             $_SESSION['isLogin'] = true;
@@ -189,6 +202,12 @@ class page extends Controller
         }
         else
         {
+            require WEBPATH.'/dict/forms.php';
+            $_skill = createModel('UserSkill')->getMap();
+			$_forms['sex'] = Form::radio('sex',$forms['sex']);
+			$_forms['skill'] = Form::checkbox('skill',$_skill);
+            $_forms['level'] = Form::radio('php_level',$forms['level'],'');
+            $this->swoole->tpl->assign('forms',$_forms);
             $this->swoole->tpl->display();
         }
     }
@@ -217,6 +236,12 @@ class page extends Controller
         {
             $this->swoole->tpl->display();
         }
+    }
+
+    function test()
+    {
+        echo "hello world!";
+        $this->view->showTrace();
     }
 
     function guestbook()

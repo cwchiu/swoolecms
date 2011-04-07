@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{$smarty.session.user.realname}}的用户中心_阿宝网</title>
+<title>{{$smarty.session.user.realname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
 {{include file=header.html}}
@@ -14,12 +15,8 @@
 {{include file=person_left.html}}
 </div>
 <div class="icontent">
-<!--欢迎页面-->
-<div class="welcome">欢迎 {{$smarty.session.user.realname}} 来到阿宝网</div>
-<!--欢迎页面-->
 <!--邮件-->
 <div class="mailbox">
-<div class="title">我的邮箱</div>
 <div class="mailtitle"></div>
 <div class="mailboxtab">
 <ul>
@@ -35,7 +32,7 @@
 <li>
 <span class="mailcontentTitle"><a href="/person/readmail/?mid={{$v.id}}">{{$v.title}}</a></span>
 <span class="date">{{$v.addtime|mbcut:10}}</span>
-<span class="delete"><a href="/person/delmail/?mid={{$v.id}}" title="删除" onclick="return confirm('您确定要删除此内容？');">X</a></span>
+<span class="delete"><a href="/person/delmail/?mid={{$v.id}}" title="删除" onclick="return confirm('您确定要删除此内容？');">删除</a></span>
 </li>
 {{/foreach}}
 </ul>
@@ -48,6 +45,6 @@
 <!--编辑个人资料-->
 </div>
 </div>
-<div class="footer"></div>
+{{include file='footer.html'}}
 </body>
 </html>

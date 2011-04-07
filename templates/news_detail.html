@@ -8,13 +8,15 @@
 <meta name="Copyright" content="Swoole.com" />
 <meta name="description" content="{{$det.title}}" />
 <meta name="keywords" content="{{$det.title}}" />
-<script src="/js.php?g=sh"></script>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/main.js"></script>
 <script type="text/javascript" src="/static/js/facebox.js"></script>
+<script src="/js.php?g=sh" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="/static/css/facebox.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
 <script type="text/javascript">
+	window.onload = checklogin;
 	SyntaxHighlighter.config.clipboardSwf = '/static/scripts/clipboard.swf';
 	SyntaxHighlighter.all();
 	$.facebox.settings.closeImage = '/static/images/closelabel.png';
@@ -89,6 +91,47 @@
         <a class="jiathis_button_tools_4"></a>
     </div><br />
   <div id='content'>{{$det.content}}</div>
+  <div id='comment'>
+  <ol class="comment-list">		
+  {{foreach item=v from=$comments}}		
+	<li id="comment-803591" class="comment even thread-even depth-1">
+		<div class="comment-author vcard">
+			<img class="avatar photo" src="{{$v.avatar}}" alt="">
+            <cite class="fn">{{$v.uname}}</cite> <span class="says">says:</span>
+         </div>            
+		<div class="comment-meta commentmetadata">
+        	{{$v.addtime}}	
+	    </div>
+		<div class="comment-content">						
+			<p>{{$v.content}}</p>
+		</div>
+		<div class="reply">
+	</div>	
+	</li>
+    {{/foreach}}
+    </ol>
+  <form id="comment_form" name="comment_form" method="post" action="">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="45" valign="top">内容</td>
+        <td><textarea name="comment_content" cols="54" rows="5" id="comment_content"></textarea></td>
+      </tr>
+      <tr>
+        <td width="45">验证码</td>
+        <td><input name="authcode" type="text" id="authcode" size="10" />
+          <img src="/swoole_plugin/media/gd.php" name="authcode_img" class="" id="authcode_img" />
+          <input name="app" type="hidden" id="app" value="{{$app}}" />
+          <input name="aid" type="hidden" id="aid" value="{{$det.id}}" /></td>
+      </tr>
+      <tr>
+        <td width="45">&nbsp;</td>
+        <td><label>
+          <input type="button" name="button" id="button" value="发表评论" onclick="post_comment()" />
+        </label></td>
+      </tr>
+    </table>
+   </form>
+  </div>
 </div>
 </div>
 

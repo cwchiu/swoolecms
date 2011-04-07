@@ -20,7 +20,8 @@ define('HTML_URL_BASE','/html');
 define('HTML_FILE_EXT','.html');
 
 define("TABLE_PREFIX",'st');
-define("SITENAME",'hengtai');
+define("SITENAME",'Swoole_PHP开发社区');
+
 //define("TPL_DIR",WEBPATH.'/site/'.SITENAME.'/templates');
 //模板目录
 
@@ -28,6 +29,7 @@ define("SITENAME",'hengtai');
 define('UPLOAD_DIR','/static/uploads');
 
 //缓存系统
+define('FILECACHE_DIR',WEBPATH.'/cache/filecache');
 #define('CACHE_URL','memcache://127.0.0.1:11211');
 define('CACHE_URL','file://localhost#site_cache');
 //define('SESSION_CACHE','memcache://192.168.11.26:11211');
@@ -38,13 +40,11 @@ define('CACHE_URL','file://localhost#site_cache');
 define('DESKEY','jcxh@21xiehou.com');
 
 require('libs/lib_config.php');
-$php->autoload('db','tpl','cache');
+$php->autoload('db','cache','tpl');
 $php->loadConfig();
-$php->config->cms['html_static'] = true;
-$php->config->cms['pagesize'] = 10;
+//$php->config->cms['html_static'] = true;
+//$php->config->cms['pagesize'] = 10;
 //动态配置系统
-$php->tpl->assign('_site_','/site/'.SITENAME);
+//$php->tpl->assign('_site_','/site/'.SITENAME);
 //指定国际编码的方式
 mb_internal_encoding('utf-8');
-
-?>

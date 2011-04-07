@@ -1,16 +1,16 @@
 @charset "utf-8";
-.bg1{
-	border-bottom:1px #ccc solid;
-	background-color: #e3e9ff;
-}
 #header{	
-	height:80px;	
+	height:80px;
+	background-color: #e3e9ff;
+	border-bottom:1px #ccc solid;
 }
 #footer{
-	border-top:1px #ccc solid;
+	border-top:1px #ccc solid;	
 	height:60px;
 	text-align:center;
-	padding-top:5px;
+	line-height:24px;	
+	background-color: #e3e9ff;
+	padding-top:12px;
 }
 #header ul{
 	clear:both;
@@ -28,7 +28,7 @@
 }
 
 #mleft{
-	width:720px;
+	width:700px;
 	float:left;
 	border-right:1px #ccc solid;
 	background: none repeat scroll 0 0 #EFF4FA;
@@ -37,7 +37,8 @@
 #content{
 	font:14px "微软雅黑,Arial, Helvetica, sans-serif";
 	line-height:28px;
-	color:#000;	
+	color:#000;
+	margin-top:5px;
 }
 #mleft ul{	
 }
@@ -46,7 +47,7 @@
 	list-style: disc inside url("../images/li.gif");	
 }
 #mright{
-	width:220px;
+	width:240px;
 	float:left;
 	padding-left:5px;
 }

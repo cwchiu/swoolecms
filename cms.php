@@ -23,10 +23,12 @@ if(!empty($_GET['id']))
     $ccate = getCategory($det['fid']);
     $php->tpl->assign("ccate",$ccate);
 
+    $comments = createModel('UserComment')->getByAid($app,$det['id']);
+
     //是否使用特殊模板
     if($ccate['tpl_detail']) $tplname = $ccate['tpl_detail'];
     if($cate['tpl_detail']) $tplname = $cate['tpl_detail'];
-
+    $php->tpl->assign('comments',$comments);
     $php->tpl->assign('det',$det);
     $php->tpl->display($tplname);
 }
@@ -72,4 +74,3 @@ elseif(!empty($_GET['cid']))
 	$php->tpl->assign('cid',$cate_id);
     $php->tpl->display($tplname);
 }
-?>
