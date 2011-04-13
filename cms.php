@@ -1,6 +1,8 @@
 <?php
 require 'config.php';
 require 'admin/func.php';
+require LIBPATH.'/system/Filter.php';
+Filter::request();
 //Error::dbd();
 
 if(empty($_GET['app'])) exit;
@@ -10,11 +12,12 @@ $model = createModel($app);
 
 if(!empty($_GET['id']))
 {
+    $aid = (int)$_GET['id'];
     //模板名称
     $tplname = strtolower($app).'_detail.html';
 
     //获取详细内容
-    $det = $model->get($_GET['id'])->get();
+    $det = $model->get($aid)->get();
 
     //获取小分类信息
     $cate = getCategory($det['cid']);
@@ -24,7 +27,6 @@ if(!empty($_GET['id']))
     $php->tpl->assign("ccate",$ccate);
 
     $comments = createModel('UserComment')->getByAid($app,$det['id']);
-
     //是否使用特殊模板
     if($ccate['tpl_detail']) $tplname = $ccate['tpl_detail'];
     if($cate['tpl_detail']) $tplname = $cate['tpl_detail'];
@@ -62,7 +64,7 @@ elseif(!empty($_GET['cid']))
 
     $pager = null;
     $gets['order'] = 'addtime desc';
-    $gets['page'] = empty($_GET['page'])?1:$_GET['page'];
+    $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
     $gets['pagesize'] = empty($model->pagesize)?$php->config->cms['pagesize']:$model->pagesize;
     $gets['select'] = "id,title,addtime";
     $list = $model->gets($gets,$pager);

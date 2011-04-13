@@ -103,7 +103,9 @@ li {
 	background-color: #8b1b1a;
 	border: 1px solid #330000;
 }
-
+.red{
+	color:#F00;
+}
 .red_12 {
 	font-size: 12px;
 	line-height: 160%;
@@ -116,6 +118,7 @@ li {
 
 .date {
 	color: #666;
+	font-size:10px;
 }
 
 .pager {
@@ -179,33 +182,8 @@ li {
 	font-weight: bold;
 }
 
-/*a {
-	cursor: pointer
-}
-
-a:link {
-	color: #00C;
-	text-decoration: none;
-}
-
-a:visited {
-	color: #00C;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #FFFFFF;
-	text-decoration: none;
-	background: #003399;
-}
-
-a:active {
-	color: #FFFFFF;
-	text-decoration: none;
-	background: #FF9933;
-}*/
 a {color:#0069ca;text-decoration:none;}
-a:hover {color:##FF6633;text-decoration:underline;}
+a:hover {color:#FF6633;text-decoration:underline;}
 a:active {color:#0069ca;}
 
 .hui_12 {
@@ -610,15 +588,13 @@ ld {
 	margin: 10px 5px 10px 0;
 	padding: 0;
 	}
-
-.comment-list li .avatar { 
+.avatar { 
 	background: #FFFFFF !important;
 	float: left;
 	border: 1px solid #DDDDDD;
 	margin: 0 10px 0 5px;
 	padding: 4px;
-	}
-
+}
 .comment-list cite, .comment-list cite a, .ping-list cite, .ping-list cite a {
 	font-weight: bold;
 	font-style: normal;

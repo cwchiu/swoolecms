@@ -36,6 +36,9 @@ define('CACHE_URL','file://localhost#site_cache');
 //define('KDB_CACHE','memcache://192.168.11.26:11211');
 //define('KDB_ROOT','cms,user');
 
+//Login登录用户配置
+define('LOGIN_TABLE','user_login');
+
 //DES加密解密的KEY
 define('DESKEY','jcxh@21xiehou.com');
 

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$ask.title}}_PHP有问必答_PHP开发社区 Swoole开发框架官方网站</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/css/ask.css" rel="stylesheet" type="text/css">
+<meta name="Copyright" content="Swoole.com" />
+<meta name="description" content="Swoole是一个PHP高级开发框架" />
+<meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
+<script language="javascript" src="/static/js/SwooleUI.js"></script>
+<script language="javascript" src="/static/js/validator.js"></script>
+<script language="javascript">
+addEvent(window,'load',function(){
+	validator('form1');
+});
+</script>
+</head>
+
+<body>
+{{include file='header.html'}}
+{{include file=block/checklogin.html}}
+<div id="main">
+<div class="subnav"><span class="fl place"><a href="/">Swoole首页</a> &gt; <a href="/ask/index/">PHP有问必答</a></span></div>
+    <div class="fl col1 mt10">
+      <div class="bor1 viewbox">
+        <h2 class="no_solve">{{$ask.title}}</h2>
+        <div class="ml10 send_info"><span>悬赏分：{{$ask.gold}}</span>|<span>		离问题结束还有{{$expire.day}} 天 {{$expire.hour}} 小时
+</span></div>
+        <div class="content_box">
+          <div class="content_show">
+            <p>{{$content.content|nl2br}}</p> <p>&nbsp;</p> <div>
+            </div>
+          </div>
+        </div>        
+      </div> 
+	
+  {{foreach item=v from=$replys}}		
+	<div class="bor1 mt10 pd10 {{if $v.best==1}}best_answer{{else}}reply_box{{/if}}">
+    <table border="0" width="100%">
+      <tr>
+        <td valign="top" width="100" {{if $v.best==1}} style=" padding-top:40px;"{{/if}}>
+        <img class="avatar photo" src="{{$v.avatar}}"><br />
+        {{$v.nickname}}<br />
+         <span class="date">{{$v.addtime|howLongAgo}}</span>
+        </td>
+        <td valign="top" style="text-indent:2em; font-size:14px">
+        {{$v.content|nl2br}}<br />        
+        {{if $ask.uid==$smarty.session.user_id && $ask.uid!=$v.uid && $ask.mstatus!=2}}
+        <button class="btn fr" onclick="ask_best({{$v.id}})" style="margin-left:8px;" type="button">采纳答案</button>
+        {{elseif $if_vote}}
+        <input type="button" class="btn fr" onclick='ask_vote({{$v.id}},this)' value="投{{if $v.sex==1}}她{{elseif $v.sex==2}}他{{else}}TA{{/if}}一票">
+        {{/if}}
+        </td>
+      </tr>
+    </table>
+    </div>
+    {{/foreach}}
+    {{$pager}}<div class="clear"></div>    
+       <div class="bor1 mt10 pd10 reply">
+      	<form action="/ask/reply/" method="post" name="form1" id="form1" target="op">
+         <h3><span class="fl">我来回答这个问题</span></h3>
+         <div class="mt10 reply_edit">
+           <textarea name="reply" style="width:603px;" rows="8" empty="内容不能为空！"></textarea>
+           <div>
+          </div></div>
+         <div class="reply_edit_btn"><span class="fl mt10">回答即可得<strong class="red">5</strong>分，回答被采纳则获得悬赏分以及奖励<strong class="red">20</strong>分。
+           <input name="aid" type="hidden" id="aid" value="{{$ask.id}}" />
+         </span>
+          <button class="btn fr" type="submit">提交回答</button></div>
+        </form>
+      </div>
+</div>
+    <div class="fr col2 mt10">
+          <div class="bor1 pd10 userinfo bg2">
+        <a class="fl" href="/page/user/?uid={{$user.id}}"><img src="{{$user.avatar}}"></a>
+        <p class="u_name">
+                <a href="/page/user/?uid={{$user.id}}">{{$user.nickname}}</a>
+        <!--<span class="grade">列兵</span>--></p>
+     <!--   <p>类型：<img width="65" height="17" src="/static/images/u_type.jpg"></p>
+        <p>注册时间: 0</p>-->
+      </div>
+   <!--   <div class="mt10 bor1 new_problems pd10">
+    <p>&nbsp;</p>
+    <h3 class="mt10">&nbsp;</h3>
+	</div>-->
+    </div>
+  </div>
+ <iframe id="op" name="op" style="display:none"></iframe>
+{{include file='footer.html'}}
+</body>
+</html>

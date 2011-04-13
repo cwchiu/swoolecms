@@ -29,8 +29,8 @@ function isEmail(strValue) {
 function isPhone(strValue){
 	return (/^\d{3}-?\d{8}|\d{4}-?\d{7}$/).test(trim(strValue));	
 }
-function isTel(str) {	
-	return (/^1[3|4|5|8][0-9]\d{4,8}$/).test(trim(strValue));
+function isTel(strValue) {	
+	return (/^((0\d{2,3})-)(\d{7,8})(-(\d{1,4}))?$/).test(trim(strValue));
 }
 /**
  * 获取单选框的值
@@ -109,7 +109,7 @@ function isEnglish(strValue) {
 	return patt.test(strValue);
 }
 function isNickname(strValue) {
-	var reg = /^[a-z-_\u4e00-\u9fa5]+$/i;
+	var reg = /^[a-z\-_\u4e00-\u9fa5]*$/gi;
 	return reg.test(trim(strValue));
 }
 function isRealname(strValue){
@@ -221,10 +221,11 @@ function check_input(input){
 	
 	// 检查异步请求的情况Ajax
 	if (input.getAttribute('ajax')) {
-		attr = input.getAttribute('ajax');
-		qs = attr.split('|');
-		var ajax_call = qs[0];
-		eval(ajax_call+"(input,qs[1])");
+		call = input.getAttribute('ajax');
+		if (call(input)==false) {
+			error_handle(input,qs[1]);
+			return false;
+		}
 	}
 	
 	for(var j=0;j<custom_filter.length;j++){

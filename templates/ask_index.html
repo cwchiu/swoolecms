@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>有问必答_PHP开发社区 Swoole开发框架官方网站</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/css/ask.css" rel="stylesheet" type="text/css">
+<meta name="Copyright" content="Swoole.com" />
+<meta name="description" content="Swoole是一个PHP高级开发框架" />
+<meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
+</head>
+
+<body>
+{{include file='header.html'}}
+{{include file=block/checklogin.html}}
+<div id='main'>
+<div id='mleft'>
+<div class="center">
+<dl>
+<dt>
+<span class="fl tit2 ico2">待解决问题</span></dt>
+<dd class="bor1 pd10">
+  <ul class='ask_new'>
+  {{foreach item=v from=$list.f1}}
+    <li><span class="fl ico3">{{$v.gold}}</span><a href="/ask/detail/?aid={{$v.id}}">{{$v.title}}</a>回答({{$v.qcount}})</li> 
+  {{/foreach}}
+  </ul>
+</dd>
+</dl>
+<dl>
+<dt>
+<span class="fl tit2 ico4">高分悬赏问题</span></dt>
+<dd class="bor1 pd10">
+  <ul class='ask_new'>
+  {{foreach item=v from=$list.f2}}
+    <li><span class="fl ico3">{{$v.gold}}</span><a href="/ask/detail/?aid={{$v.id}}">{{$v.title}}</a>回答({{$v.qcount}})</li> 
+  {{/foreach}}
+  </ul>
+</dd>
+</dl>
+<dl>
+<dt>
+<span class="fl tit2 ico4">最新解决问题</span></dt>
+<dd class="bor1 pd10">
+  <ul class='ask_new'>
+  {{foreach item=v from=$list.f3}}
+    <li><span class="fl ico3">{{$v.gold}}</span><a href="/ask/detail/?aid={{$v.id}}">{{$v.title}}</a>回答({{$v.qcount}})</li> 
+  {{/foreach}}
+  </ul>
+</dd>
+</dl>
+</div>   
+</div>
+<div id='mright'>
+    <div class="new-q-holder">
+        <div class="new-q-inner">
+            <p class="new-q-tip">关于PHP的问题，有问必答</p>
+            <p><a href="{{if $smarty.session.user_id}}/person/question/{{else}}/page/login/?refer=/person/question/{{/if}}" looyu_bound="1">我要提问</a></p>
+        </div>
+    </div>
+</div>
+</div>
+{{include file='footer.html'}}
+</body>
+</html>

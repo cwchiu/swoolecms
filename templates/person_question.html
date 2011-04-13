@@ -14,11 +14,6 @@
 <script language="javascript">
 function check(of)
 {
-	if(of.tid.value=='' || of.tid.value=="输入企业ID或者个人ID")
-	{
-		alert('ID不能为空');
-		return false;
-	}
 	if(of.title.value=='')
 	{
 		alert('标题不能为空');
@@ -29,48 +24,45 @@ function check(of)
 		alert('内容不能为空');
 		return false;
 	}
+	if(parseInt(of.gold.value)>{{$user.gold}})
+	{
+		alert('金币不足');
+		return false;
+	}
 	return true;
 }
 </script>
+<div class="header"></div>
 <div class="ilayout">
 <div class="imenubar">
 {{include file='person_left.html'}}
 </div>
 <div class="icontent">
-<!--欢迎页面-->
-<div class="welcome">欢迎 {{$smarty.session.user.realname}}</div>
-<!--欢迎页面-->
 <!--邮件-->
 <div class="mailbox">
-<div class="title">我的邮箱</div>
-<div class="mailtextcon" >
-<div class="mailcontext">
-<h1>
-发件人：<a href="/page/user/?uid={{$fuser.id}}">{{$fuser.realname}}</a>
-</h1>
-<h2>信件标题：{{$mail.title}}</h2>
-<p>{{$mail.content}} </p>
-<!--邮件正文不支持超级连接，纯文本-->
-</div>
+<div class="title">我要提问</div>
 <div class="mailcontent dis">
-<div class="title">回复发件人</div>
-<form id="form1" name="form1" method="post" action="/person/sendmail/" onsubmit="return check(this)">
+<form id="form1" name="form1" method="post" action="" onsubmit="return check(this)">
 <div class="mailfiled">
-    <h2>标题 <span>48字以内</span></h2>
-    <input name="title" type="text" id="title" size="70" width="400" height="24" />
-    <input name="tid" type="hidden" id="tid" value="{{$mail.fid}}" />
-  </div>
-  <div class="mailfiled">
-    <h2>正文<span>300字以内</span></h2>
-    <textarea name="content" rows="5" class="mailtext" id="content" style="height:120px;"></textarea>
-    </div>
-  <div class="mailfiled"><button type="submit">发送邮件</button></div>
+  <h2>问题标题</h2>
+  {{$forms.category}}
+  <input name="title" type="text" id="title" size="70" width="400" height="24" />
+(48字以内)</div>
+    <div class="mailfiled">
+    <h2>问题详细内容</h2>
+    <textarea name="content" class="mailtext" id="content"></textarea>
+    </div>   
+    <div class="mailfiled">
+    <h2>悬赏金币</h2>
+    {{$forms.gold}}
+    您目前的金币 <img src="/static/images/gold.png" alt="金币" width="16" height="16" align="absbottom" /><span class="red">{{$user.gold}}</span></div>
+  <div class="mailfiled"></div>
+  <div class="mailfiled"><button type="submit">提交问题</button></div>
   </form>
 </div>
 </div>
-<div class="mailcontent dis"></div>
-</div>
 <!--邮件-->
+<!--编辑个人资料-->
 <!--编辑个人资料-->
 </div>
 </div>
