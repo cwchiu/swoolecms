@@ -1,8 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 *{ margin:0; padding:0}
-li{list-style-type:none;}
-table{ margin:0 auto;}
+li{list-style-type:none; height:28px; line-height:28px;}
+li img{margin-top:5px;}
+table{margin:0 auto;}
 img{vertical-align:top;border:none;}
 ol,ul {list-style:none;}   
 caption,th {text-align:left;}  

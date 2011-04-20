@@ -37,6 +37,7 @@ function ask_best()
     $user = createModel('UserInfo')->get($reply['uid']);
     $user->gold += 20; //采纳为最佳答案+20分
     $user->gold += $ask->gold; //另外加悬赏分数
+    $user->save();
 
     //设置为已有最佳答案
     $ask->mstatus = 2;

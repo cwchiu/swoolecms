@@ -1,6 +1,7 @@
 <?php
 class page extends Controller
 {
+    public $pagesize = 10;
     function __construct($swoole)
     {
         parent::__construct($swoole);
@@ -190,8 +191,8 @@ class page extends Controller
             $login['reg_ip'] = Swoole_client::getIp();
             $login['mobile'] = $_POST['mobile'];
             $login['nickname'] = $_POST['nickname'];
-			$login['sex'] = (int)$_POST['sex'];
-			$login['skill'] = implode(',',$_POST['skill']);
+            $login['sex'] = (int)$_POST['sex'];
+            $login['skill'] = implode(',',$_POST['skill']);
             $login['php_level'] = (int)$_POST['php_level'];
             $login['lastlogin'] = date('Y-m-d h:i:s');
             $uid = $userInfo->put($login);
@@ -204,8 +205,8 @@ class page extends Controller
         {
             require WEBPATH.'/dict/forms.php';
             $_skill = createModel('UserSkill')->getMap();
-			$_forms['sex'] = Form::radio('sex',$forms['sex']);
-			$_forms['skill'] = Form::checkbox('skill',$_skill);
+            $_forms['sex'] = Form::radio('sex',$forms['sex']);
+            $_forms['skill'] = Form::checkbox('skill',$_skill);
             $_forms['level'] = Form::radio('php_level',$forms['level'],'');
             $this->swoole->tpl->assign('forms',$_forms);
             $this->swoole->tpl->display();
@@ -242,6 +243,47 @@ class page extends Controller
     {
         echo "hello world!";
         $this->view->showTrace();
+    }
+
+    private function fulltext($q,$page)
+    {
+        $cl = new SphinxClient ();
+        $cl->SetServer('localhost',9312);
+        $cl->SetArrayResult(true);
+
+        $cl->SetLimits(($page-1)*$this->pagesize,$this->pagesize);
+        $res = $cl->Query($q,"news");
+        $model = createModel('News');
+
+        foreach($res['matches'] as $m) $ids[] = $m['id'];
+        if(empty($ids)) $res['list'] = array();
+        else
+        {
+            $gets['in'] = array('id',implode(',',$ids));
+            $gets['limit'] = $this->pagesize;
+            $gets['order'] = '';
+            $gets['select'] = "id,title,addtime";
+            $list = $model->gets($gets);
+            $res['list'] = $list;
+        }
+        return $res;
+    }
+
+    function search()
+    {
+	    $keyword = mb_substr(trim($_GET['k']),0,32);
+        if(empty($keyword))
+        {
+            Swoole_js::js_back('关键词不能为空！');
+            exit;
+        }
+        $page = empty($_GET['page'])?1:(int)$_GET['page'];
+	    $res = $this->fulltext($keyword,$page);
+        $pager = new Pager(array('page'=>$page,'perpage'=>$this->pagesize,'total'=>$res['total']));
+        $this->swoole->tpl->assign('pager',array('total'=>$pager->total,'render'=>$pager->render()));
+        $this->swoole->tpl->assign('forms',$_forms);
+        $this->swoole->tpl->assign("list",$res['list']);
+        $this->swoole->tpl->display();
     }
 
     function guestbook()

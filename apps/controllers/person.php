@@ -2,6 +2,47 @@
 require WEBPATH.'/apps/controllers/UserBase.php';
 class person extends UserBase
 {
+    function notes()
+    {
+        $model = createModel('UserNote');
+        if($_POST)
+        {
+            $nid = (int)$_POST['id'];
+            $in['title'] = trim($_POST['title']);
+            $in['content'] = trim($_POST['content']);
+            $in['uid'] = $this->uid;
+            if($nid===0)
+            {
+                $in['addtime'] = date('Y-m-d H:i:s');
+                $nid = $model->put($in);
+            }
+            else
+            {
+                $model->set($nid,$in);
+            }
+            $in['id'] = $nid;
+            $this->swoole->tpl->assign('note',$in);
+        }
+        elseif(isset($_GET['id']))
+        {
+            $nid = (int)$_GET['id'];
+            $note = $model->get($nid)->get();
+            if($note['uid']!=$this->uid) exit;
+            $this->swoole->tpl->assign('note',$note);
+        }
+
+        $gets['select'] = 'id,title,addtime';
+        $gets['uid'] = $this->uid;
+        $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
+        $gets['pagesize'] =15;
+        $pager = '';
+        $list = $model->gets($gets,$pager);
+        $this->swoole->tpl->assign('list',$list);
+        $pager->span_open = array();
+        $pager = array('total'=>$pager->total,'render'=>$pager->render());
+        $this->swoole->tpl->assign('pager',$pager);
+        $this->swoole->tpl->display();
+    }
     function question()
     {
         if($_POST)

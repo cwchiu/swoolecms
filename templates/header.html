@@ -16,13 +16,22 @@
     </ul>
   <ul>
   <li><a href="/">网站首页</a></li>
-  <li><a href="/ask/index/" style="color:#F00; font-weight:bold">有问必答</a>&nbsp;  
-  <img src="/admin/static/images/page_feed.png" width="16" height="16" align="absmiddle" /></li>
+  <li><a href="/ask/index/" style="color:#F00; font-weight:bold">有问必答</a> <img src="/admin/static/images/page_feed.png" width="16" height="16" align="absmiddle" /></li>
   {{foreach item=v from=$cate}}
   <li><a href="/news/list_{{$v.id}}.html">{{$v.name}}</a></li>
   {{/foreach}}
   <li><a href="/about.html">关于我们</a></li>
-</ul>
+  <li id='search_box' style="float:right">
+    <form id="search" name="search" method="get" action="/page/search/">
+      <label>
+        <input type="text" name="k" id="k" />
+      </label>
+      <label>
+        <input type="submit" value="全文检索" />
+      </label>
+    </form>
+  </li>
+  </ul>
 </td>
   </tr>
 </table>

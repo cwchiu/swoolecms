@@ -19,6 +19,12 @@ if(!empty($_GET['id']))
     //获取详细内容
     $det = $model->get($aid)->get();
 
+    //关键词
+    if(!empty($_GET['q']))
+    {
+        $det['content'] = preg_replace("/({$_GET['q']})/i","<font color=red>\\1</font>",$det['content']);
+    }
+
     //获取小分类信息
     $cate = getCategory($det['cid']);
     $php->tpl->assign("cate",$cate);
@@ -73,6 +79,6 @@ elseif(!empty($_GET['cid']))
     $pager = array('total'=>$pager->total,'render'=>$pager->render());
     $php->tpl->assign('pager',$pager);
     $php->tpl->assign("list",$list);
-	$php->tpl->assign('cid',$cate_id);
+    $php->tpl->assign('cid',$cate_id);
     $php->tpl->display($tplname);
 }

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{$smarty.session.user.realname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
 <link href="/static/css/base.css" rel="stylesheet" type="text/css">
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@ function check(of)
 </div>
 <div class="icontent">
 <!--欢迎页面-->
-<div class="welcome">欢迎 {{$smarty.session.user.realname}}</div>
+<div class="welcome">欢迎 {{$smarty.session.user.nickname}}</div>
 <!--欢迎页面-->
 <!--邮件-->
 <div class="mailbox">

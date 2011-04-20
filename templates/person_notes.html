@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+<SCRIPT  language="JavaScript" src="/static/js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" src="/static/js/SwooleUI.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" src="/static/js/validator.js" type=text/javascript></SCRIPT>
+<script language="javascript">
+window.onload = function(){
+	validator('form1');
+ 
+  var a=document.getElementById("pleft");   
+  var b=document.getElementById("pright");   
+  if(a.clientHeight<b.clientHeight)   
+  {   
+	 a.style.height=b.clientHeight+"px";   
+  }   
+  else
+  {   
+ 	b.style.height=a.clientHeight+"px";   
+  }
+}
+function new_note(){
+	$('#title').val('');
+	$('#content').val('');
+	$('#id').val(0);
+}
+function check_change(){
+	if($('#note_sub').attr('disabled'))
+		$('#note_sub').attr('disabled',false);
+}
+</script>
+<style>
+.pager {
+	float: left;
+	font-size: 12px;
+	margin:0;
+	padding:0;
+	width: 240px;
+}
+</style>
+</head>
+<body>
+{{include file=header.html}}
+<div class="ilayout">
+<div class="imenubar" id="pleft" style="width:260px;height:auto">
+<ul>
+<li><img src="/static/images/add.png" width="16" height="16" /> <a href="javascript:new_note()">新增记事</a></li>
+{{foreach item=v from=$list}}
+{{if $note.id==$v.id}}
+<li class="note">
+<img src="/static/images/page_2.png" width="16" height="16" /> {{$v.title|mbcut:14:' ...'}}</li>
+<li><span class="date" style="clear:both">最后修改：{{$v.addtime|mbcut:16}} </span></li>
+{{else}}
+<li class="note">
+<img src="/static/images/page_2.png" width="16" height="16" />
+<a href="/person/notes/?id={{$v.id}}">{{$v.title|mbcut:14:' ...'}}</a></li>
+{{/if}}
+{{/foreach}}
+</ul>
+<hr size="1" width="96%" style="margin-bottom:10px;" color="#aaa" />
+{{$pager.render}}
+</div>
+<div class="icontent" style="width:580px" id="pright">
+<!--邮件-->
+<div class="mailbox">
+  <div class="mailcontent dis">
+    <!--使用undis隐藏-->
+      <form id="form1" name="form1" method="post" action="">
+        <p>
+      <input name="title" type="text" id="title" style="width:630px;height:24px;" class="input3" value="{{$note.title}}" empty="请填写记事标题" />
+          <br />
+      <label>
+     <textarea name="content" id="content" cols="45" rows="15" style="width:630px;" class="input3" empty="请填写内容！" onkeyup="check_change()" >{{$note.content}}</textarea>
+          </label>
+        </p>
+        <p>
+        <input type="hidden" name="id" id="id" value="{{$note.id}}" />
+          <label>
+            <button type="submit" class="btn1" style="margin-top:5px;" id='note_sub' disabled="disabled"><img src="/static/images/disk.png" width="16" height="16" /> 保  存</button>
+          </label>
+        </p>
+      </form>
+<div class="clear"></div>
+</div>
+</div>
+<!--邮件-->
+<!--编辑个人资料-->
+<!--编辑个人资料-->
+</div>
+</div>
+{{include file='footer.html'}}
+</body>
+</html>

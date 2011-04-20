@@ -1,6 +1,5 @@
 <?php
-require WEBPATH.'/apps/controllers/UserBase.php';
-class ask extends UserBase
+class ask extends Controller
 {
     function index()
     {
@@ -25,6 +24,7 @@ class ask extends UserBase
 
     function detail()
     {
+        session();
         if(empty($_GET['aid'])) exit;
         $_user = createModel('UserInfo');
         $_reply = createModel('AskReply');
@@ -47,10 +47,12 @@ class ask extends UserBase
         $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
         $replys = $_reply->gets($gets,$pager);
 
-        $vote = $this->swoole->db->query("select count(*) as c from ask_vote where aid=$aid and uid={$this->uid} limit 1")->fetch();
-
-        if($vote['c']>0) $if_vote=false;
-        else $if_vote=true;
+        $if_vote=true;
+        if($_SESSION['isLogin'])
+        {
+            $vote = $this->swoole->db->query("select count(*) as c from ask_vote where aid=$aid and uid={$this->uid} limit 1")->fetch();
+            if($vote['c']>0) $if_vote=false;
+        }
         $this->swoole->tpl->assign('if_vote',$if_vote);
         $this->swoole->tpl->assign('expire',$timeout);
         $this->swoole->tpl->assign('user',$user);
@@ -62,6 +64,12 @@ class ask extends UserBase
     }
     function reply()
     {
+        session();
+        if(!$_SESSION['isLogin'])
+        {
+            Swoole_js::echojs("if(confirm('您还没有登录，是否调整到登录页面(请首先复制您的回答内容)？')) window.parent.location.href='/page/login/?'");
+            exit;
+        }
         $this->swoole->autoload('user');
         if(!empty($_POST['reply']))
         {

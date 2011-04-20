@@ -22,8 +22,7 @@ function post_comment() {
 	$.post('/ajax.php?method=comment', post, function(data) {
 		if (data == 'nologin') {
 			if (confirm('您还未登录！是否跳转到登录页面？'))
-				;
-			window.location.href = '/page/login/';
+				window.location.href = '/page/login/';
 		} else if (data == 'noauth') {
 			alert('验证码错误');
 		} else {
