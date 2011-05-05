@@ -38,3 +38,11 @@ address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}
 .right .rmzy_b li{ height:24px; font:12px/24px Arial, "宋体"; border-bottom:1px #CCC dashed; float:left; width:29%; padding-left:15px;}
 .right .rmzy_b li a:link,.right .rmzy_b li a:visited{ color:#666;}
 .right .rmzy_b li a:hover{ color:#F60;}
+
+#ul_m li{float:left; width:60px; clear:none; border:none;}
+.microblog{
+	font-size:14px;
+	line-height:24px;
+	padding:5px;
+	width:610px;
+}

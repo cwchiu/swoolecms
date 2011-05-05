@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/autoresize.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('textarea#microblog').autoResize({
+    onResize : function() {
+        $(this).css({opacity:0.8});
+    },
+    animateCallback : function() {
+        $(this).css({opacity:1});
+    },
+    animateDuration : 300,
+    extraSpace : 30,
+	limit: 200});
+})
+</script>
+</head>
+
+<body>
+{{include file='header.html}}
+<div class="ilayout">
+<div class="imenubar">
+ {{include file='person_left.html'}}
+</div>
+<div class="icontent">
+<!--欢迎页面-->
+<!--欢迎页面-->
+<div class="mailbox">
+<div class="title">我的微博客</div>
+<div class="mailcontent">
+<form id="form1" name="form1" method="post" action="/mblog/post/">
+  <textarea name="microblog" cols="" rows="3" id="microblog" class="microblog"></textarea>
+  <div style="margin-top:6px;">
+  <ul id="ul_m">
+<li><img src="/static/images/star_1.png" width="16" height="16" /> 星标</li>
+<li><img src="/static/images/picture.png" width="16" height="16" /> 图片</li>
+<li><img src="/static/images/music_beam.png" width="16" height="16" /> 音乐</li>
+<li><img src="/static/images/film.png" width="16" height="16" /> 视频</li>
+</ul>
+&nbsp;&nbsp;
+<label style="float:right; margin-right:103px;">
+  <button type="submit" class="btn1"><img src="/static/images/ipod_cast.png" width="16" height="16" />发布微博客</button>
+  </label>
+</div>
+<div>
+
+</div>
+</form>
+</div>
+</div>
+<!--邮件-->
+<div class="mailbox">
+<div class="mailtitle"></div>
+<div class="microblog"><!--使用undis隐藏-->
+  <ul>
+{{foreach from=$list item=v}}
+<li>
+<div class="userPic">
+<img class="avatar photo" src="{{$v.avatar}}">
+</div>
+<div class="userCont">
+{{$v.nickname}}：{{$v.content}}
+</div>
+</li>
+{{/foreach}}
+</ul>
+<div class="clear"></div>
+<div class="pages">{{$pager.render}}</div>
+</div>
+</div>
+<!--邮件-->
+<!--编辑个人资料-->
+<!--编辑个人资料-->
+</div>
+</div>
+{{include file=footer.html}}
+</body>
+</html>

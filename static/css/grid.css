@@ -6,13 +6,13 @@
 }
 #footer{
 	border-top:1px #ccc solid;	
-	height:60px;
 	color:#585858;
 	font-size:12px;
 	text-align:center;
 	line-height:24px;	
 	background-color: #e3e9ff;
 	padding-top:12px;
+	padding-bottom:8px;
 }
 #header ul{
 	clear:both;
@@ -56,4 +56,30 @@
 #pos{
 	height:30px;
 	border-bottom:1px #CCC solid;
+}
+#mblog_list ul li{
+	list-style:none;
+	line-height:24px;
+}
+#mblog_list span{
+	color:#889DB6;
+	font-size:12px;
+	margin-top:2px;
+}
+.microblog ul li{
+	border-bottom: 1px dashed #D8D8D8;
+    float: left;
+    padding: 12px 0 10px;
+    width: 100%;
+	height:auto;
+}
+.userPic {
+    float: left;
+    padding: 0 0 4px 12px;
+    width: auto;
+}
+.userCont{
+	font-size: 14px;
+    overflow: hidden;
+    word-wrap: break-word;
 }

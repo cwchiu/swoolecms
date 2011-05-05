@@ -221,11 +221,8 @@ function check_input(input){
 	
 	// 检查异步请求的情况Ajax
 	if (input.getAttribute('ajax')) {
-		call = input.getAttribute('ajax');
-		if (call(input)==false) {
-			error_handle(input,qs[1]);
-			return false;
-		}
+		attr = input.getAttribute('ajax');
+		eval(attr+'(input);');
 	}
 	
 	for(var j=0;j<custom_filter.length;j++){

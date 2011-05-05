@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+{{include file='header.html}} 
+<div class="ilayout">
+<div class="imenubar">
+{{include file='person_left.html'}}
+</div>
+<div class="icontent">
+<!--欢迎页面-->
+<div class="welcome"><span class="log">日志管理</span> <a href="/myblog/write/">写日志</a> </div>
+<!--欢迎页面-->
+<!--邮件-->
+<!--邮件-->
+<!--编辑个人资料-->
+<div class="memberlogs">
+<form method="post"  id="logs">
+<div class="log"></div>
+
+
+<div class="logs">
+<table width="100%"  cellpadding="0" cellspacing="0" style="padding:2px;">
+	<tr bgcolor="#CCCCCC" class="tr2">
+		<th height="32" align="center"><strong>ID</strong></td>
+        <th height="32" align="left"><strong>标题</strong></td>		
+		<th height="32" align="center"><strong>添加时间</strong></td>
+		<th height="32" align="center"><strong>操作</strong></td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3">
+		<td height="24" align="center">
+	    {{$list[ol].id}}</td>
+        <td height="24" align="left">{{$list[ol].title|mbcut:10:"...":true}}</td>		
+		<td height="24" align="center">{{$list[ol].time}}</td>
+		<td height="24" align="center">
+		<a href="/person/logs/?id={{$list[ol].id}}"><img src="/admin/static/images/edit.gif" alt="修改" border="0" /></a>			
+		<a href="?del={{$list[ol].id}}"><img src="/admin/static/images/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;		</td>
+	</tr>
+	{{/section}}
+	<tr class="tr3" >
+	  <td align="center" colspan="4">{{$pager.render}}</td>
+	</tr>
+</table>
+
+{{foreach  item=m from=$id}} 
+      <label>
+       {{$m.title|truncate:50}}<a href="/person/logs/?id={{$m.id}}">修改</a><a href="/person/logmanage/?del={{$m.id}}">删除</a> <br/>
+       </label>
+      {{/foreach}}
+
+</div>
+
+
+</form>
+</div>
+<!--编辑个人资料-->
+</div>
+</div>
+{{include file='footer.html}}
+</body>
+</html>

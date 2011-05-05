@@ -50,7 +50,7 @@ class ask extends Controller
         $if_vote=true;
         if($_SESSION['isLogin'])
         {
-            $vote = $this->swoole->db->query("select count(*) as c from ask_vote where aid=$aid and uid={$this->uid} limit 1")->fetch();
+            $vote = $this->swoole->db->query("select count(*) as c from ask_vote where aid=$aid and uid={$_SESSION['user_id']} limit 1")->fetch();
             if($vote['c']>0) $if_vote=false;
         }
         $this->swoole->tpl->assign('if_vote',$if_vote);

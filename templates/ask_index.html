@@ -55,8 +55,9 @@
 <div id='mright'>
     <div class="new-q-holder">
         <div class="new-q-inner">
-            <p class="new-q-tip">关于PHP的问题，有问必答</p>
-            <p><a href="{{if $smarty.session.user_id}}/person/question/{{else}}/page/login/?refer=/person/question/{{/if}}">我要提问</a></p>
+            <p class="new-q-holder">关于PHP的问题，有问必答
+            <a href="{{if $smarty.session.user_id}}/person/question/{{else}}/page/login/?refer=/person/question/{{/if}}">我要提问</a>
+            </p>
         </div>
     </div>
 </div>

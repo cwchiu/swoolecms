@@ -49,19 +49,22 @@ function check_change(){
 {{include file=header.html}}
 <div class="ilayout">
 <div class="imenubar" id="pleft" style="width:260px;height:auto">
+<p style="line-height:24px;">我的记事本，是一个私人记事工具，只有您本人能看到内容。 </p>
+<p style="line-height:24px;">&gt;&gt;&gt;<a href="/person/index/">返回个人中心</a></p>
+<hr size="1" width="96%" style="margin-bottom:10px;" color="#aaa" />
 <ul>
-<li><img src="/static/images/add.png" width="16" height="16" /> <a href="javascript:new_note()">新增记事</a></li>
-{{foreach item=v from=$list}}
-{{if $note.id==$v.id}}
-<li class="note">
-<img src="/static/images/page_2.png" width="16" height="16" /> {{$v.title|mbcut:14:' ...'}}</li>
-<li><span class="date" style="clear:both">最后修改：{{$v.addtime|mbcut:16}} </span></li>
-{{else}}
-<li class="note">
-<img src="/static/images/page_2.png" width="16" height="16" />
-<a href="/person/notes/?id={{$v.id}}">{{$v.title|mbcut:14:' ...'}}</a></li>
-{{/if}}
-{{/foreach}}
+  <li><img src="/static/images/add.png" width="16" height="16" /> <a href="javascript:new_note()">新增记事</a></li>
+  {{foreach item=v from=$list}}
+  {{if $note.id==$v.id}}
+  <li class="note">
+  <img src="/static/images/page_2.png" width="16" height="16" /> {{$v.title|mbcut:14:' ...'}}</li>
+  <li><span class="date" style="clear:both">最后修改：{{$v.addtime|mbcut:16}} </span></li>
+  {{else}}
+  <li class="note">
+  <img src="/static/images/page_2.png" width="16" height="16" />
+  <a href="/person/notes/?id={{$v.id}}">{{$v.title|mbcut:14:' ...'}}</a></li>
+  {{/if}}
+  {{/foreach}}
 </ul>
 <hr size="1" width="96%" style="margin-bottom:10px;" color="#aaa" />
 {{$pager.render}}

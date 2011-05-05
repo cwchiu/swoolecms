@@ -85,6 +85,19 @@ class page extends Controller
     {
         if(empty($_GET['p']) or $_GET['p']=='index')
         {
+            $_mblog = createModel('MicroBlog');
+            $_user = createModel('UserInfo');
+            $gets1['select'] = $_mblog->table.'.id as id,uid,sex,substring(content,1,170) as content,nickname,avatar,UNIX_TIMESTAMP(addtime) as addtime,reply_count';
+            $gets1['order'] = $_mblog->table.'.id desc';
+            $gets1['leftjoin'] = array($_user->table,$_user->table.'.id='.$_mblog->table.'.uid');
+            $gets1['limit'] = 10;
+            $mblogs = $_mblog->gets($gets1);
+            foreach($mblogs as &$m)
+            {
+                $m['addtime'] = date('n月j日 H:i',$m['addtime']);
+            }
+            $this->swoole->tpl->assign('mblogs',$mblogs);
+
             $gets['select'] = 'id,title,substring(content,1,1000) as des,addtime';
             $gets['limit'] = 10;
             $gets['fid'] = 9;
@@ -335,5 +348,38 @@ class page extends Controller
             $php->tpl->assign("list",$list);
             $php->tpl->display('guestbook.html');
         }
+    }
+    function user()
+    {
+        if(!isset($_GET['uid'])) exit;
+        $uid = (int)$_GET['uid'];
+
+        $_user = createModel('UserInfo');
+        $_mblog = createModel('MicroBlog');
+        $user = $_user->getInfo($uid);
+        $user['skill_info'] = implode('、',$user['skill']);
+        if(empty($user))
+        {
+            Swoole_js::js_back('用户不存在');
+            exit;
+        }
+
+        $gets1['select'] = $_mblog->table.'.id as id,uid,sex,content,nickname,avatar,UNIX_TIMESTAMP(addtime) as addtime,reply_count';
+        $gets1['order'] = $_mblog->table.'.id desc';
+        $gets1['leftjoin'] = array($_user->table,$_user->table.'.id='.$_mblog->table.'.uid');
+        $gets1['uid'] = $user['id'];
+        $gets1['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
+        $gets1['pagesize'] =15;
+        $mblogs = $_mblog->gets($gets1,$pager);
+        foreach($mblogs as &$m)
+        {
+            $m['addtime'] = date('n月j日 H:i',$m['addtime']);
+        }
+        $this->swoole->tpl->assign('mblogs',$mblogs);
+        $pager->span_open = array();
+        $pager = array('total'=>$pager->total,'render'=>$pager->render());
+        $this->swoole->tpl->assign('pager',$pager);
+        $this->swoole->tpl->assign('user',$user);
+        $this->swoole->tpl->display();
     }
 }

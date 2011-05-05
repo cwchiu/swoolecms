@@ -17,6 +17,7 @@
   <ul>
   <li><a href="/">网站首页</a></li>
   <li><a href="/ask/index/" style="color:#F00; font-weight:bold">有问必答</a> <img src="/admin/static/images/page_feed.png" width="16" height="16" align="absmiddle" /></li>
+  <li><a href="/mblog/index/">微博客</a></li>
   {{foreach item=v from=$cate}}
   <li><a href="/news/list_{{$v.id}}.html">{{$v.name}}</a></li>
   {{/foreach}}
@@ -24,10 +25,10 @@
   <li id='search_box' style="float:right">
     <form id="search" name="search" method="get" action="/page/search/">
       <label>
-        <input type="text" name="k" id="k" />
+        <input type="text" name="k" id="k" class="input3" />
       </label>
       <label>
-        <input type="submit" value="全文检索" />
+        <button type="submit" class="btn1"><img src="/static/images/magnifier.png" width="16" height="16" /> 全文检索</button>
       </label>
     </form>
   </li>
