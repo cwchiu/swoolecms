@@ -243,7 +243,7 @@ function Ok() {
 				+ advanced + '">' + HTMLEncode(sCode) + '</pre>';
 	} else {
 		oContainerPre.setAttribute("title", "code");
-		oContainerPre.setAttribute("class", "brush: " + ddLang + advanced);		
+		oContainerPre.setAttribute("class", "brush: " + ddLang + advanced);
 		oContainerPre.innerHTML = HTMLEncode(sCode);
 	}
 	return true;
@@ -253,7 +253,8 @@ function Ok() {
 // Helper functions
 // ----------------------
 function HTMLEncode(text) {
-	if (!text) return '';
+	if (!text)
+		return '';
 	text = text.replace(/&/g, '&amp;');
 	text = text.replace(/</g, '&lt;');
 	text = text.replace(/>/g, '&gt;');

@@ -9,11 +9,16 @@ function comment()
     session();
     if(!$_SESSION['isLogin']) return 'nologin';
     if(!isset($_POST['authcode']) or strtoupper($_POST['authcode'])!==$_SESSION['authcode']) return 'noauth';
-    $post['aid'] = $_POST['aid'];
+    $post['aid'] = (int)$_POST['aid'];
     $post['app'] = $_POST['app'];
     $post['content'] = $_POST['content'];
     $post['uid'] = $_SESSION['user_id'];
     $post['uname'] = $_SESSION['user']['nickname'];
+    if($_POST['app']=='mblog')
+    {
+        $_m = createModel('MicroBlog');
+        $_m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
+    }
     createModel('UserComment')->put($post);
     return 'ok';
 }

@@ -98,6 +98,17 @@ class person extends UserBase
     {
 
     }
+    function post_mblog()
+    {
+        if(!empty($_POST['microblog']))
+        {
+            $model = createModel('MicroBlog');
+            $in['content'] = trim($_POST['microblog']);
+            $in['uid'] = $this->uid;
+            $model->put($in);
+            Swoole_js::js_goto('发布成功','/mblog/index/');
+        }
+    }
     function mblog()
     {
         $model = createModel('MicroBlog');

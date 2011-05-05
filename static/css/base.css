@@ -536,6 +536,7 @@ a:active {color:#0069ca;}
 
 input,textarea{
 	border: 1px solid #cccccc;
+	font-size:14px;
 }
 .input3{
 	border: 1px solid #cccccc;

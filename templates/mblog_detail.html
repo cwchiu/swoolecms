@@ -50,22 +50,50 @@ $(function(){
 <div class="icontent">
 <!--欢迎页面-->
 <!--欢迎页面-->
-<div class="microblog" id='mblog_list'>
-  <ul>
-    {{foreach from=$mblogs item=v}}
-    <li>
-      <div class="userCont">
-        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content|mbcut:150:' ...'}}</div>
-      <div>
-        <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有{{$v.reply_count}}条评论</a></span>
-        </div>
-      </li>
-    {{/foreach}}
-    </ul>
-  <div class="clear"></div>
-  <div class="pages">{{$pager.render}}</div>
+<div class="microblog" id='mblog_list' style="border-bottom:1px dotted #CCC; margin-top:12px;">
+<strong class="blu_12b" style="font-size:14px">{{$user.nickname}}</strong>(<span class="date">{{$mblog.addtime}}</span>)：<br />
+<div style="text-indent:2em">{{$mblog.content}}</div>
+<div class="clear"></div>
+<div class="pages">{{$pager.render}}</div>
 </div>
-
+<div id='comment' style="margin-top:12px;">
+<table width="620" border="0" align="left" cellpadding="0" cellspacing="0" style="margin-top:12px;">	
+{{foreach item=v from=$comments}}		
+  <tr style="padding:5px;">
+    <td width="90"><img class="avatar photo" src="{{$v.avatar}}" alt=""></td>
+    <td valign="top"><cite class="fn">{{$v.uname}}</cite> <span class="says">says:</span>
+    <div class="comment-meta commentmetadata">
+        	{{$v.addtime}}	
+	    </div>					
+			<p>{{$v.content}}</p>
+    </td>
+  </tr>
+  <tr><td colspan="2" height="10"></td></tr>
+  <tr><td colspan="2" height="10" style="border-top:1px dotted #CCC;"></td></tr>
+{{/foreach}}
+</table>
+<form id="comment_form" name="comment_form" method="post" action="" style="margin-top:12px; padding-top:12px;width:618px;">
+<table border="0" align="left" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td width="45" valign="top">内容</td>
+    <td><textarea name="comment_content" cols="54" rows="5" id="comment_content"></textarea></td>
+  </tr>
+  <tr>
+    <td width="45">验证码</td>
+    <td><input name="authcode" type="text" id="authcode" size="10" />
+      <img src="/swoole_plugin/media/gd.php" name="authcode_img" class="" id="authcode_img" />
+      <input name="app" type="hidden" id="app" value="mblog" />
+      <input name="aid" type="hidden" id="aid" value="{{$mblog.id}}" /></td>
+  </tr>
+  <tr>
+    <td width="45">&nbsp;</td>
+    <td><label>
+      <input type="button" name="button" id="button" value="发表评论" onclick="post_comment()" />
+    </label></td>
+  </tr>
+</table>
+</form>
+</div>
 <!--邮件-->
 <!--邮件-->
 <!--编辑个人资料-->

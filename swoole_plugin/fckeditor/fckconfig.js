@@ -118,7 +118,7 @@ FCKConfig.ToolbarSets["Default"] = [
 */
 
 FCKConfig.ToolbarSets["Default"] = [
-	['Source','SyntaxHighLight2','DocProps','-','Save','NewPage','Preview','-','Templates'],
+	['SyntaxHighLight2','DocProps','-','Save','NewPage','Preview','-','Templates'],
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
 	'/',

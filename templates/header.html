@@ -12,7 +12,7 @@
     {{else}}
     <li><a href="/page/register/">注册</a></li>
     <li><a href="/page/login/">登录</a></li>
-    {{/if}}
+    {{/if}}    
     </ul>
   <ul>
   <li><a href="/">网站首页</a></li>
@@ -21,7 +21,6 @@
   {{foreach item=v from=$cate}}
   <li><a href="/news/list_{{$v.id}}.html">{{$v.name}}</a></li>
   {{/foreach}}
-  <li><a href="/about.html">关于我们</a></li>
   <li id='search_box' style="float:right">
     <form id="search" name="search" method="get" action="/page/search/">
       <label>

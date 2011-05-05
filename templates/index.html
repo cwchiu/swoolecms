@@ -26,7 +26,7 @@
         <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}        </div>
         <div>
         <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有{{$v.reply_count}}条评论</a> | <a href="/mblog/detail/?id={{$v.id}}">评论</a>
-        <a href="/person/friend/?add={{$v.uid}}">加为好友</a> <a href="javascript:sendmail({{$v.uid}})">发信给{{if $sex==1}}她{{else}}他{{/if}} </a></span>
+        <a href="/person/friend/?add={{$v.uid}}">加为好友</a> <a href="/person/sendmail/?to={{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span>
         </div>
         </li>
     {{/foreach}}
@@ -49,8 +49,10 @@
 
 <div id='mright'>
 <!--{{magic func=list cid=38 num=10}}-->
-<h3 style="margin-left:5px;"><a href="http://swoole.googlecode.com/files/Swoole-0.99.zip"><img src="../static/images/world.png" width="16" height="16" /> 最新版本Swoole-0.99.zip</a></h3>
-<h3 style="margin-left:5px;"><a href="http://swoole.googlecode.com/files/Swoole-0.99.zip"><img src="../static/images/world.png" width="16" height="16" /></a> <a href="http://swoole.googlecode.com/files/Swoole文档.CHM">开发者手册 Swoole.chm</a></h3>
+<h3 style="margin-left:5px;"><a href="http://swoole.googlecode.com/files/Swoole-0.99.zip"><img src="/static/images/world.png" width="16" height="16" /> 最新版本Swoole-0.99.zip</a></h3>
+<h3 style="margin-left:5px;"><a href="http://swoole.googlecode.com/files/Swoole-0.99.zip"><img src="/static/images/world.png" width="16" height="16" /></a> <a href="http://swoole.googlecode.com/files/Swoole文档.CHM">开发者手册 Swoole.chm</a></h3>
+<h3 style="margin-left:5px;"><a href="http://swoole.googlecode.com/files/Swoole-0.99.zip"><img src="/static/images/world.png" width="16" height="16" /></a> <a href="/about.html">关于Swoole及社区</a></h3>
+
 <h3 style="margin-left:5px;">PHP编程常见问题</h3>
 <ul>
 {{foreach from=$list38 item=v}}

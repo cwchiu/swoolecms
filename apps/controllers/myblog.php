@@ -14,57 +14,56 @@ class myblog extends UserBase
                 Swoole_js::js_back('标题不能为空！');
                 exit;
             }
+            Filter::safe($_POST['content']);
+            $_POST['content'] = Filter::remove_xss($_POST['content']);
+            Filter::addslash($_POST['content']);
+
+            $blog['title'] = $_POST['title'];
+            $blog['content'] = $_POST['content'];
+            $blog['c_id'] = $_POST['c_id'];
+
             if(!empty($_POST['id']))
             {
                 //如果得到id，说明提交的是修改的操作
-                $id = $_POST['id'];
-                //debug($_POST['c_id']);
-                $_POST['uid'] = $this->uid;
-                $_m->set($id,$_POST);
+                $id = (int)$_POST['id'];
+                $det = $_m->get($id)->get();
+                if($det['uid']!=$this->uid) exit('access deny!not your blog!');
+                $_m->set($id,$blog);
                 Swoole_js::js_back('修改成功',-2);
             }
             else
             {
-                $_POST['uid'] = $this->uid;
-                //debug($_POST['c_id']);
-                $_m->put($_POST);
+                $blog['uid'] = $this->uid;
+                $_m->put($blog);
                 Swoole_js::js_back('添加成功');
             }
         }
         else
         {
             $this->swoole->plugin->load('fckeditor');
-            $cat = $_l->gets(array('uid'=>$this->uid));
+            $cat = $_l->getMap(array('uid'=>$this->uid),'name');
+            if(empty($cat)) $cat = array();
+
             if(!empty($_GET['id']))
             {
                 $id = $_GET['id'];
                 $det = $_m->get($id)->get();
-                foreach($cat as &$c)
-                {
-                    $date[$c['id']] = $c['name'];
-                }
-                $form = Form::radio('c_id',$date,$det['c_id']);
-
+                Filter::deslash($det['content']);
+                $form = Form::select('c_id',$cat,$det['c_id']);
                 $this->swoole->tpl->assign('det',$det);
-                Filter::safe($det['content']);
-                $editor = editor("content",$det['content'],480);
+                $editor = editor("content",$det['content'],480,false,false,array('empty'=>'请选择日志分类'));
             }
             else
             {
-
-                foreach($cat as &$c)
-                {
-                    $date[$c['id']] = $c['name'];
-                }
-                $form = Form::radio('c_id',$date);
-                $editor = editor("content",'',480);
+                $form = Form::select('c_id',$cat,'',false,array('empty'=>'请选择日志分类'));
+                $editor = editor("content",'',480,false);
             }
             $this->swoole->tpl->assign('form',$form);
             $this->swoole->tpl->assign('editor',$editor);
             $this->swoole->tpl->display();
         }
     }
-    function logcat()
+    function category()
     {
         $_l= createModel('UserLogCat');
         if(isset($_GET['del']))
@@ -75,12 +74,24 @@ class myblog extends UserBase
             Swoole_js::js_back('删除成功！');
             exit;
         }
-        if(isset($_POST['name']))
+        if(!empty($_POST['name']))
         {
+            $_POST['name'] = trim($_POST['name']);
             $data['uid'] = $this->uid;
             $data['name'] = $_POST['name'];
-            $_l->put($data);
-            Swoole_js::js_back('添加成功！');
+            if($_l->exists($data))
+            {
+                if($_POST['ajax']) echo 'exists';
+                else Swoole_js::js_back('添加失败，已存在！');
+            }
+            else
+            {
+               $id = $_l->put($data);
+                if($_POST['ajax']) echo $id;
+                else Swoole_js::js_back('添加成功！');
+            }
+
+
             exit;
         }
         $gets['uid'] = $this->uid;

@@ -191,6 +191,7 @@ if ( FCKBrowserInfo.IsGecko )
 		var eInnerElement = oCell.firstChild ;
 		if ( eInnerElement )
 		{
+			eInnerElement.width = '99%';
 			eInnerElement.style.height = 0 ;
 			eInnerElement.style.height = oCell.scrollHeight - 2 ;
 		}

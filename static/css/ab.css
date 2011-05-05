@@ -43,11 +43,17 @@
 .ilayout .icontent .welcome{ height:40px; line-height:40px; font-size:14px; font-weight:bold; background: #FFC; border:1px dashed #f60; border-left:none; border-right:none; padding:5px}
 /* 欢迎页面 */
 /* 邮件 */
+
 .icontent .mailbox{ margin:10px auto;}
 .icontent .title{ font-size:14px; font-weight:bold; line-height:26px; margin:10px 0px;}
 .icontent .mailbox .mailboxtab{ height:22px; line-height:22px; border-bottom:1px #ccc solid; height:33px;}
 .icontent .mailbox .mailboxtab li{ margin-bottom:-1px; float:left; margin-right:10px; margin-left:10px; width:80px; height:33px; line-height:33px; text-align:center; background:#fff; border:1px solid #ddd; border-bottom:none; cursor:pointer }
-.icontent .mailbox .mailboxtab li.hov{ background:#f2f2f2; height:32px; }
+.icontent .mailbox .mailboxtab li a:link, .icontent .mailbox .mailboxtab li a:visited, .icontent .mailbox .mailboxtab li a:active {
+    color: #484853;
+    padding: 5px;
+    text-decoration: none;
+}
+.icontent .mailbox .mailboxtab li.hov{ background:#E5EEF7; height:32px; }
 .icontent .mailbox .mailcontent{  background:#fff; border-top:none; background:url(/static/images/detailline.gif) repeat-x top; clear:both; padding:10px;}
 .icontent .mailbox .undis{ display:none}
 .icontent .mailbox .mailcontent ul{ line-height:36px;}
@@ -164,3 +170,67 @@ background:url(/static/images/CMT_iPhone_002.png) no-repeat 10px 0; padding:10px
 .right .textad .title{ font-size:14px;  line-height:22px; font-weight:bold }
 .right .textad .content{ color:#2b2b2b}
 .right  .adhelp{ margin-bottom:12px;}
+
+.table1{
+	border: 1px solid #C1DAD7;
+	border-collapse:0;
+}
+
+.table1 th {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA url(../images/bg_header.jpg) no-repeat;
+	border:0;
+}
+.table1 img{
+	margin-top:4px;
+}
+.table1 .nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+.table1 td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+.table1 .alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+.table1 .spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff url(../images/bullet1.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+.table1 .specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa url(../images/bullet2.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+.user_op{
+    float: right;
+    font-size: 12px;
+}
+.user_op a:link, .user_op a:active, .user_op a:visited {
+    color: #999999;
+    display: block;
+    font-size: 12px;
+}
+.user_op a {
+    display: block;
+    text-decoration: underline;
+}

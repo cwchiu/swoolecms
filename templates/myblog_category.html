@@ -3,12 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/base.css" rel="stylesheet" type="text/css">
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
-<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
-<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
 {{include file='header.html}} 
 <div class="ilayout">
@@ -16,36 +15,44 @@
 {{include file='person_left.html'}}
 </div>
 <div class="icontent">
-{{include file=block/myblog_head.html}}
 <!--欢迎页面-->
+{{include file=block/myblog_head.html}}
 <!--欢迎页面-->
 <!--邮件-->
 <!--邮件-->
 <!--编辑个人资料-->
 <div class="memberlogs">
-<form method="post"  id="logs">
-<div class="log"></div>
 
 <div class="logs">
-<table width="100%"  cellpadding="0" cellspacing="0" class="table1">
-	<tr bgcolor="#CCCCCC">
+<table width="100%" cellpadding="0" cellspacing="0" class="table1">
+	<tr bgcolor="#CCCCCC" class="tr2">
 		<th height="32" align="center"><strong>ID</strong></td>
-        <th height="32" align="left"><strong>标题</strong></td>		
-		<th height="32" align="center"><strong>添加时间</strong></td>
+		<th height="32" align="center"><strong>标题</strong></td>
 		<th height="32" align="center"><strong>操作</strong></td>
 	</tr>
 	{{section name=ol loop=$list}}
-	<tr>
-		<td height="24" align="center">{{$list[ol].id}}</td>
-        <td height="24" align="left">{{$list[ol].title|mbcut:20:"...":true}}</td>		
-		<td height="24" align="center">{{$list[ol].time}}</td>
-		<td height="24" align="center"><a href="/myblog/write/?id={{$list[ol].id}}"><img src="/static/images/application_edit.png" width="16" height="16" /></a>
-        &nbsp;&nbsp;<a href="?del={{$list[ol].id}}" onclick="return confirm('您确定要删除此内容？');"><img src="/static/images/cross.png" width="16" height="16" /></a>&nbsp;</td>
+	<tr class="tr3">
+		<td height="24">
+	    {{$list[ol].id}}</td>
+		<td height="24">{{$list[ol].name}}</td>
+		<td height="24">
+		<a href="/person/logcat/?id={{$list[ol].id}}"><img src="/admin/static/images/edit.gif" alt="修改" border="0" /></a>			
+		<a href="?del={{$list[ol].id}}"><img src="/admin/static/images/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;		</td>
 	</tr>
 	{{/section}}
-	<tr>
-	  <td align="center" colspan="4">{{$pager.render}}</td>
+	<tr class="tr3" >
+	  <td height="24" colspan="3" align="center">{{$pager.render}}</td>
 	</tr>
+	<form method="post"  id="logs">
+	<tr class="tr3" >
+	  <td height="24" colspan="3" align="left">增加分类：
+	    <label>
+	    <input name="name" type="text" id="name" />
+	    </label>	    <label>
+	    <input type="submit" name="Submit" value="提交" />
+	    </label></td>
+	  </tr>
+	  </form>
 </table>
 
 {{foreach  item=m from=$id}} 
@@ -55,9 +62,6 @@
       {{/foreach}}
 
 </div>
-
-
-</form>
 </div>
 <!--编辑个人资料-->
 </div>

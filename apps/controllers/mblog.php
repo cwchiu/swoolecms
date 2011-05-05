@@ -26,20 +26,17 @@ class mblog extends Controller
         $id = (int)$_GET['id'];
 
         $model = createModel('MicroBlog');
-        $mblog = $model->get($id);
+        $_u = createModel('UserInfo');
+        $_c = createModel('UserComment');
 
+        $comments = $_c->getByAid('mblog',$id);
+        $mblog = $model->get($id)->get();
+        $user = $_u->getInfo($mblog['uid']);
+        $mblog['addtime'] = date('n月j日 H:i',$mblog['addtime']);
+
+        $this->swoole->tpl->assign('mblog',$mblog);
+        $this->swoole->tpl->assign('comments',$comments);
+        $this->swoole->tpl->assign('user',$user);
         $this->swoole->tpl->display();
-    }
-
-    function post()
-    {
-        if(!empty($_POST['microblog']))
-        {
-            $model = createModel('MicroBlog');
-            $in['content'] = trim($_POST['microblog']);
-            $in['uid'] = $this->uid;
-            $model->put($in);
-            Swoole_js::js_goto('发布成功','/mblog/index/');
-        }
     }
 }
