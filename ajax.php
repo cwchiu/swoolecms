@@ -4,7 +4,7 @@ require LIBPATH.'/system/Filter.php';
 Filter::request();
 $php->runAjax();
 
-function comment()
+function ajax_comment()
 {
     session();
     if(!$_SESSION['isLogin']) return 'nologin';
@@ -14,16 +14,21 @@ function comment()
     $post['content'] = $_POST['content'];
     $post['uid'] = $_SESSION['user_id'];
     $post['uname'] = $_SESSION['user']['nickname'];
-    if($_POST['app']=='mblog')
+    if($post['app']==='mblog')
     {
-        $_m = createModel('MicroBlog');
-        $_m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
+        $m = createModel('MicroBlog');
+        $m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
+    }
+    elseif($post['app']==='blog')
+    {
+        $m = createModel('UserLogs');
+        $m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
     }
     createModel('UserComment')->put($post);
     return 'ok';
 }
 
-function ask_best()
+function ajax_ask_best()
 {
     session();
     if(!$_SESSION['isLogin']) return 'nologin';
@@ -50,7 +55,7 @@ function ask_best()
     return 'ok';
 }
 
-function ask_vote()
+function ajax_ask_vote()
 {
     global $php;
     session();
@@ -66,7 +71,7 @@ function ask_vote()
     return 'ok';
 }
 
-function checklogin()
+function ajax_checklogin()
 {
     session();
     if($_SESSION['isLogin']) return $_SESSION['user']['nickname'];

@@ -356,6 +356,7 @@ class page extends Controller
 
         $_user = createModel('UserInfo');
         $_mblog = createModel('MicroBlog');
+        $_cate = createModel('UserLogCat');
         $user = $_user->getInfo($uid);
         $user['skill_info'] = implode('、',$user['skill']);
         if(empty($user))
@@ -371,6 +372,13 @@ class page extends Controller
         $gets1['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
         $gets1['pagesize'] =15;
         $mblogs = $_mblog->gets($gets1,$pager);
+
+        $gets2['select'] = 'name,id,num';
+        $gets2['uid'] = $uid;
+        $gets2['order'] = 'id';
+        $gets2['limit'] = 15;
+        $blog_cates = $_cate->gets($gets2);
+
         foreach($mblogs as &$m)
         {
             $m['addtime'] = date('n月j日 H:i',$m['addtime']);
@@ -379,6 +387,7 @@ class page extends Controller
         $pager->span_open = array();
         $pager = array('total'=>$pager->total,'render'=>$pager->render());
         $this->swoole->tpl->assign('pager',$pager);
+        $this->swoole->tpl->assign('blog_cates',$blog_cates);
         $this->swoole->tpl->assign('user',$user);
         $this->swoole->tpl->display();
     }

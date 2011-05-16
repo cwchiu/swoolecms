@@ -1,0 +1,20 @@
+<div class="imenubar">
+<div class="memberbox">
+<div class="memberpic">
+<img src="{{$user.avatar|default:'/static/images/default.gif'}}" />
+<p style="margin-top:12px;"><button type="button" style="width:120px; height:32px;" onclick="location.href='/person/sendmail/?to={{$user.id}}'">写信给他</button></p>
+</div>
+</div>
+<p>{{$user.nickname}}<br />
+  {{$user.php_level}}<br />
+  {{if !empty($user.company)}}就职于{{$user.company}}<br />{{/if}}
+  {{if !empty($user.skill)}}所掌握的技能：{{$user.skill_info}}<br />{{/if}}
+  {{if !empty($user.blog)}}博客地址：<br />
+  <a href="{{$user.blog}}">{{$user.blog}}</a>{{/if}}
+</p>
+    <ul class="dot_ul" style="margin-top:20px; border-top:1px dashed #000; padding-top:10px">
+     {{foreach item=v from=$blog_cates}}
+     <li><a href="/blog/category/?cid={{$v.id}}">{{$v.name}} ({{$v.num}})</a></li>
+      {{/foreach}}
+    </ul>
+</div>

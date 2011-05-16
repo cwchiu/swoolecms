@@ -106,7 +106,7 @@ class person extends UserBase
             $in['content'] = trim($_POST['microblog']);
             $in['uid'] = $this->uid;
             $model->put($in);
-            Swoole_js::js_goto('发布成功','/mblog/index/');
+            Swoole_js::js_goto('发布成功','/person/mblog/');
         }
     }
     function mblog()
@@ -149,7 +149,12 @@ class person extends UserBase
             import_func("file");
             if(!empty($_FILES['avatar']['name']))
             {
-                $set['avatar'] = file_upload('avatar','/static/uploads/avatar');
+                $set['avatar'] = file_upload('avatar','/static/uploads/avatar','jpg,png,gif');
+                if(!$set['avatar'])
+                {
+                    Swoole_js::js_back('上传失败！');
+                    exit;
+                }
                 Image::thumbnail(WEBPATH.$set['avatar'],WEBPATH.$set['avatar'],120,90);
                 $_SESSION['user']['avatar'] = $set['avatar'];
             }

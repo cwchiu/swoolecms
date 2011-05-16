@@ -10,7 +10,7 @@ class UserComment extends Model
 	    $gets['select'] = 'content,uid,uname,avatar,addtime';
 	    $gets['aid'] = $aid;
 	    $gets['app'] = $app;
-	    $gets['order'] = 'addtime';
+	    $gets['order'] = 'addtime desc';
 	    $gets['limit'] = 50;
 	    return $this->gets($gets);
 	}

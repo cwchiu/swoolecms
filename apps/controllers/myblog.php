@@ -20,7 +20,7 @@ class myblog extends UserBase
 
             $blog['title'] = $_POST['title'];
             $blog['content'] = $_POST['content'];
-            $blog['c_id'] = $_POST['c_id'];
+            $blog['c_id'] = (int)$_POST['c_id'];
 
             if(!empty($_POST['id']))
             {
@@ -35,6 +35,7 @@ class myblog extends UserBase
             {
                 $blog['uid'] = $this->uid;
                 $_m->put($blog);
+                $_l->set($blog['c_id'],array('num'=>'`num`+1'));
                 Swoole_js::js_back('添加成功');
             }
         }

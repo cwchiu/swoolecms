@@ -15,18 +15,6 @@
 window.onload = function(){
 	checklogin();
 };
-$(function(){
-	$('textarea#microblog').autoResize({
-    onResize : function() {
-        $(this).css({opacity:0.8});
-    },
-    animateCallback : function() {
-        $(this).css({opacity:1});
-    },
-    animateDuration : 300,
-    extraSpace : 30,
-	limit: 200});
-})
 </script>
 </head>
 
@@ -38,8 +26,8 @@ $(function(){
 <!--欢迎页面-->
 <!--欢迎页面-->
 <div class="microblog" id='mblog_list' style="border-bottom:1px dotted #CCC; margin-top:12px;">
-<strong class="blu_12b" style="font-size:14px">{{$user.nickname}}</strong>(<span class="date">{{$mblog.addtime}}</span>)：<br />
-<div style="text-indent:2em">{{$mblog.content}}</div>
+<div class="welcome">{{$blog.title}}</div>
+<div class="content">{{$blog.content}}</div>
 <div class="clear"></div>
 <div class="pages">{{$pager.render}}</div>
 </div>
@@ -69,8 +57,8 @@ $(function(){
     <td width="45">验证码</td>
     <td><input name="authcode" type="text" id="authcode" size="10" />
       <img src="/swoole_plugin/media/gd.php" name="authcode_img" class="" id="authcode_img" />
-      <input name="app" type="hidden" id="app" value="mblog" />
-      <input name="aid" type="hidden" id="aid" value="{{$mblog.id}}" /></td>
+      <input name="app" type="hidden" id="app" value="blog" />
+      <input name="aid" type="hidden" id="aid" value="{{$blog.id}}" /></td>
   </tr>
   <tr>
     <td width="45">&nbsp;</td>

@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PHP开发社区 Swoole开发框架官方网站</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<meta name="Copyright" content="Swoole.com" />
+<meta name="description" content="Swoole是一个PHP高级开发框架" />
+<meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
+</head>
+
+<body>
+{{include file='header.html'}}
+{{include file=block/checklogin.html}}
+<div id='main'>
+<div id='mleft'>
+<h2>微博客</h2>
+<div class="microblog" id='mblog_list'>
+    <ul>
+    {{foreach from=$mblogs item=v}}
+        <li>
+        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar}}"></a>
+        </div>
+        <div class="userCont">
+        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}        </div>
+        <div>
+        <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有{{$v.reply_count}}条评论</a> | <a href="/mblog/detail/?id={{$v.id}}">评论</a>
+        <a href="/person/friend/?add={{$v.uid}}">加为好友</a> <a href="/person/sendmail/?to={{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span>
+        </div>
+        </li>
+    {{/foreach}}
+    </ul>
+<div class="clear"></div>
+<div class="pages">{{$pager.render}}</div>
+</div>
+</div>
+
+<div id='mright'>
+<h3 style="margin-left:5px;">最活跃微博主</h3>
+<ul>
+{{foreach from=$users item=v}}
+<li>
+<div style="clear:both; margin-bottom:12px;">
+<div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar}}" /></a> </div>
+<a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>
+</div>
+</li>
+{{/foreach}}
+</ul>
+
+</div>
+</div>
+{{include file='footer.html'}}
+</body>
+</html>
