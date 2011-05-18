@@ -20,11 +20,10 @@
     <ul>
     {{foreach from=$mblogs item=v}}
         <li>
-        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar}}"></a>
+        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}"></a>
         </div>
         <div class="userCont">
-        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}        </div>
-        <div>
+        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}<br />
         <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有{{$v.reply_count}}条评论</a> | <a href="/mblog/detail/?id={{$v.id}}">评论</a>
         <a href="/person/friend/?add={{$v.uid}}">加为好友</a> <a href="/person/sendmail/?to={{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span>
         </div>

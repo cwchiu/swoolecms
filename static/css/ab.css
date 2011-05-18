@@ -47,13 +47,15 @@
 .icontent .mailbox{ margin:10px auto;}
 .icontent .title{ font-size:14px; font-weight:bold; line-height:26px; margin:10px 0px;}
 .icontent .mailbox .mailboxtab{ height:22px; line-height:22px; border-bottom:1px #ccc solid; height:33px;}
-.icontent .mailbox .mailboxtab li{ margin-bottom:-1px; float:left; margin-right:10px; margin-left:10px; width:80px; height:33px; line-height:33px; text-align:center; background:#fff; border:1px solid #ddd; border-bottom:none; cursor:pointer }
-.icontent .mailbox .mailboxtab li a:link, .icontent .mailbox .mailboxtab li a:visited, .icontent .mailbox .mailboxtab li a:active {
+
+.mailboxtab li{ float:left; margin-right:10px; margin-left:10px; width:85px; height:32px; line-height:33px; text-align:center;background:#E5EEF7;border:1px solid #ddd;}
+.mailboxtab li a:link,.mailboxtab li a:visited,.mailboxtab li a:active {
     color: #484853;
     padding: 5px;
     text-decoration: none;
 }
-.icontent .mailbox .mailboxtab li.hov{ background:#E5EEF7; height:32px; }
+.mailboxtab li.hov{background:#fff;height:33px; border-bottom:none; cursor:pointer;margin-bottom:-1px;}
+
 .icontent .mailbox .mailcontent{  background:#fff; border-top:none; background:url(/static/images/detailline.gif) repeat-x top; clear:both; padding:10px;}
 .icontent .mailbox .undis{ display:none}
 .icontent .mailbox .mailcontent ul{ line-height:36px;}

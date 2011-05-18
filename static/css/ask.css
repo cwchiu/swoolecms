@@ -864,61 +864,6 @@ span.ico5{
 	border:none;
 	margin-right:6px;
 }
-/*pages*/
-.pager{
-	background-color:#f7f7f7;
-	height:25px;
-	line-height:25px;
-	margin-top:5px;
-}
-.pager .pcount{
-	float:left;
-	padding:0 10px;
-	color:#3366cc;
-	font-weight:bold;
-	}
-.pager .plist {
-	float:left;
-	padding-top:3px;
-	line-height:17px;
-}
-.pager .plist strong {
-	color:#FFF;
-	display:block;
-	float:left;
-	padding-left:8px;
-	padding-right:8px;
-	background:#F60;
-	border:1px solid #C33;
-	margin: 0px 3px 0px 0px;
-}
-.pager a {
-	display:block;
-	height:17px;
-	float:left;
-	padding-left:8px;
-	padding-right:8px;
-	border:1px solid #DDD;
-	background:#FFF;
-	text-decoration:none;
-	margin-right:2px;
-	color:#000;
-}
-.pager a:hover {
-	color:#FF0000;
-}
-.pager .pselect {
-	float:right;
-	padding:2px 5px;
-}
-.pager .pselect select {
-	border:1px solid #999;
-	font-size:11px;
-}
-.pager input {
-	border:1px solid #999;
-	padding:2px 2px 0px 4px;
-}
 /*答案评分*/
 .mark{
     border-top-width: 1px;

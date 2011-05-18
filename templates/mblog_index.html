@@ -20,7 +20,7 @@
     <ul>
     {{foreach from=$mblogs item=v}}
         <li>
-        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar}}"></a>
+        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}"></a>
         </div>
         <div class="userCont">
         <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}        </div>

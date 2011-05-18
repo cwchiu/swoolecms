@@ -47,11 +47,8 @@ $(function(){
 <table width="620" border="0" align="left" cellpadding="0" cellspacing="0" style="margin-top:12px;">	
 {{foreach item=v from=$comments}}		
   <tr style="padding:5px;">
-    <td width="90"><img class="avatar photo" src="{{$v.avatar}}" alt=""></td>
-    <td valign="top"><cite class="fn">{{$v.uname}}</cite> <span class="says">says:</span>
-    <div class="comment-meta commentmetadata">
-        	{{$v.addtime}}	
-	    </div>					
+    <td width="145" valign="top"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}" alt=""></td>
+    <td valign="top"><cite class="fn">{{$v.uname}}</cite> <span class="says">(</span><span class="date">{{$v.addtime|howLongAgo}}</span><span class="says">)says:</span>			
 			<p>{{$v.content}}</p>
     </td>
   </tr>

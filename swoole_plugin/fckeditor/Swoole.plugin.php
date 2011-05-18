@@ -29,7 +29,7 @@ function upfile_success(filepath)
 HTML;
 	if($upfile) $FCKeditor.=$ext;
 	return $FCKeditor;
-	
+
 }
 function resource($app,$aid='',$catid='')
 {
@@ -38,11 +38,11 @@ function resource($app,$aid='',$catid='')
 	function fck_insert(html)
 	{
 		var fck = FCKeditorAPI.GetInstance("content");
-		fck.InsertHtml(html); 
+		fck.InsertHtml(html);
 	}
 	</script>
 	<iframe src="/swoole_plugin/fckeditor/plus/upfile.php?app=$app&aid=$aid&catid=$catid" height="100" width="100%" frameborder="0" scrolling="no" id='upload_resource'></iframe>
 HTML;
-	return $resource;	
+	return $resource;
 }
 ?>

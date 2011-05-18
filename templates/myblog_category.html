@@ -26,9 +26,9 @@
 <div class="logs">
 <table width="100%" cellpadding="0" cellspacing="0" class="table1">
 	<tr bgcolor="#CCCCCC" class="tr2">
-		<th height="32" align="center"><strong>ID</strong></td>
-		<th height="32" align="center"><strong>标题</strong></td>
-		<th height="32" align="center"><strong>操作</strong></td>
+		<th align="center"><strong>ID</strong></th>
+		<th align="center"><strong>标题</strong></th>
+		<th align="center"><strong>操作</strong></th>
 	</tr>
 	{{section name=ol loop=$list}}
 	<tr class="tr3">
@@ -49,7 +49,7 @@
 	    <label>
 	    <input name="name" type="text" id="name" />
 	    </label>	    <label>
-	    <input type="submit" name="Submit" value="提交" />
+	    <input type="submit" name="Submit" value="提交" onclick="if(document.getElementById('name').value==''){alert('分类名称不能问为空');return false;}" />
 	    </label></td>
 	  </tr>
 	  </form>

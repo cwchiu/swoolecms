@@ -177,7 +177,7 @@ li {
     margin: 25px 0;
     text-align: center;
 }
-.pager span{
+.pager span,.pager a{
     border: 1px solid #9AAFE5;
     color: #2E6AB1;
     margin: 0 2px;

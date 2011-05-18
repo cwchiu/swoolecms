@@ -1,0 +1,10 @@
+<div class="mailbox">
+<div class="mailboxtab">
+<ul>
+<li {{if $php.mvc.view=='myquestion' and $smarty.get.act==''}}class="hov"{{/if}}><a href="/person/myquestion/">全部问题</a></li>
+<li {{if $smarty.get.act=='1'}}class="hov"{{/if}}><a href="/person/myquestion/?act=1">已解决问题</a></li>
+<li {{if $smarty.get.act=='0'}}class="hov"{{/if}}><a href="/person/myquestion/?act=0">未解决问题</a></li>
+<li {{if $php.mvc.view=='question'}}class="hov"{{/if}} style="width:90px"><a href="/person/question/"><img src="/static/images/help.png" width="16" height="16" style="margin-top:8px;" align="absmiddle" /> 我要提问</a></li>
+</ul>
+</div>
+</div>

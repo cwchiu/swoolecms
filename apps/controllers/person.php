@@ -96,7 +96,20 @@ class person extends UserBase
     }
     function myquestion()
     {
-
+        $model = createModel('AskSubject');
+        $gets['uid'] = $this->uid;
+        $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
+        $gets['pagesize'] =15;
+        if(isset($_GET['act']))
+        {
+            if($_GET['act']==1) $gets['mstatus'] = 2;
+            else $gets['where'][] = 'mstatus<2';
+        }
+        $list = $model->gets($gets,$pager);
+        $pager = array('total'=>$pager->total,'render'=>$pager->render());
+        $this->swoole->tpl->assign('list',$list);
+        $this->swoole->tpl->assign('pager',$pager);
+        $this->swoole->tpl->display();
     }
     function post_mblog()
     {
@@ -139,11 +152,6 @@ class person extends UserBase
             if(empty($_POST['nickname']))
             {
                 Swoole_js::js_back('昵称不能为空！');
-                exit;
-            }
-            if(empty($_POST['mobile']))
-            {
-                Swoole_js::js_back('手机号码不能为空！');
                 exit;
             }
             import_func("file");

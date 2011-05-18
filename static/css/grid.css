@@ -75,8 +75,10 @@
 }
 .userPic {
     float: left;
-    padding: 0 0 4px 12px;
-    width: auto;
+    padding: 0 0 4px 4px;
+}
+.userPic img{
+	float:right;
 }
 .userCont{
 	font-size: 14px;

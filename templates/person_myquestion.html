@@ -16,7 +16,7 @@
 {{include file='person_left.html'}}
 </div>
 <div class="icontent">
-{{include file=block/myblog_head.html}}
+{{include file=block/myquestion_head.html}}
 <!--欢迎页面-->
 <!--欢迎页面-->
 <!--邮件-->
@@ -30,21 +30,25 @@
 <table width="100%"  cellpadding="0" cellspacing="0" class="table1">
 	<tr bgcolor="#CCCCCC">
 		<th align="center"><strong>ID</strong></th>
-        <th align="left"><strong>标题</strong></th>		
+        <th align="left"><strong>问题标题</strong></th>		
+		<th align="center">回答数</th>       
+		<th align="center">状态</th>
 		<th align="center"><strong>添加时间</strong></th>
-		<th align="center"><strong>操作</strong></th>
-	</tr>
+		</tr>
 	{{section name=ol loop=$list}}
 	<tr>
 		<td height="24" align="center">{{$list[ol].id}}</td>
-        <td height="24" align="left">{{$list[ol].title|mbcut:20:"...":true}}</td>		
+        <td height="24" align="left"><a href="/ask/detail/?aid={{$list[ol].id}}" target="_blank">{{$list[ol].title|mbcut:20:"...":true}}</a></td>
+        <td>{{$list[ol].qcount}}</td>
+        <td align="center">
+        {{if $list[ol].mstatus==1}}<img src="/static/images/application_put.png" title="已有人回答，正在等待最佳答案" width="16" height="16" />
+        {{elseif $list[ol].mstatus==2}}<img src="/static/images/accept.png" title="已有最佳答案" width="16" height="16" />
+        {{else}}<img src="/static/images/alarm.png" title="等待回答" width="16" height="16" />{{/if}}</td>		
 		<td height="24" align="center">{{$list[ol].addtime}}</td>
-		<td height="24" align="center"><a href="/myblog/write/?id={{$list[ol].id}}"><img src="/static/images/application_edit.png" width="16" height="16" /></a>
-        &nbsp;&nbsp;<a href="?del={{$list[ol].id}}" onclick="return confirm('您确定要删除此内容？');"><img src="/static/images/cross.png" width="16" height="16" /></a>&nbsp;</td>
-	</tr>
+		</tr>
 	{{/section}}
 	<tr>
-	  <td align="center" colspan="4">{{$pager.render}}</td>
+	  <td align="center" colspan="5">{{$pager.render}}</td>
 	</tr>
 </table>
 
