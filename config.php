@@ -1,7 +1,7 @@
 <?php
 define('DEBUG','on');
 define("WEBPATH",str_replace("\\","/",dirname(__FILE__)));
-define("WEBROOT",'http://'.$_SERVER['SERVER_NAME']);
+@define("WEBROOT",'http://'.$_SERVER['SERVER_NAME']);
 //Database Driver，可以选择PdoDB , MySQL, MySQL2(MySQLi) , AdoDb(需要安装adodb插件)
 define('DBTYPE','MySQL');
 define('DBENGINE','MyISAM');

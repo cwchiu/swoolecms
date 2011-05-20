@@ -222,7 +222,7 @@ class person extends UserBase
             }
 
             $_e = createModel('UserInfo');
-            $_e->select = 'id,realname';
+            $_e->select = 'id,nickname';
             $fuser = $_e->get($ms->fid)->get();
             $this->swoole->tpl->assign('ftype','user');
             $this->swoole->tpl->assign('fuser',$fuser);

@@ -46,12 +46,13 @@ function check(of)
 <div class="mailtextcon" >
 <div class="mailcontext">
 <h1>
-发件人：<a href="/page/user/?uid={{$fuser.id}}">{{$fuser.realname}}</a>
+发件人：<a href="/page/user/?uid={{$fuser.id}}" target="_blank">{{$fuser.nickname}}</a>
 </h1>
 <h2>信件标题：{{$mail.title}}</h2>
-<p>{{$mail.content}} </p>
+<p>{{$mail.content|nl2br}} </p>
 <!--邮件正文不支持超级连接，纯文本-->
 </div>
+{{if $smarty.session.user_id!=$fuser.id}}
 <div class="mailcontent dis">
 <div class="title">回复发件人</div>
 <form id="form1" name="form1" method="post" action="/person/sendmail/" onsubmit="return check(this)">
@@ -67,6 +68,7 @@ function check(of)
   <div class="mailfiled"><button type="submit">发送邮件</button></div>
   </form>
 </div>
+{{/if}}
 </div>
 <div class="mailcontent dis"></div>
 </div>

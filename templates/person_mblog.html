@@ -65,7 +65,7 @@ $(function(){
 {{foreach from=$list item=v}}
 <li>
 <div class="userPic">
-<img class="avatar photo" src="{{$v.avatar}}">
+<img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}">
 </div>
 <div class="userCont">
 {{$v.nickname}}：{{$v.content}}

@@ -20,7 +20,7 @@
     <ul>
     {{foreach from=$mblogs item=v}}
         <li>
-        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}"></a>
+        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}"></a>
         </div>
         <div class="userCont">
         <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}        </div>
@@ -42,7 +42,7 @@
 {{foreach from=$users item=v}}
 <li>
 <div style="clear:both; margin-bottom:12px;">
-<div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar}}" /></a> </div>
+<div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}" /></a> </div>
 <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>
 </div>
 </li>

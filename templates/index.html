@@ -20,7 +20,7 @@
     <ul>
     {{foreach from=$mblogs item=v}}
         <li>
-        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}"></a>
+        <div class="userPic"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}"></a>
         </div>
         <div class="userCont">
         <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}<br />
@@ -58,10 +58,10 @@
 <li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>
-<!--{{magic func=list cid=44 num=10 order=id}}-->
+<!--{{magic func=list cid=19 num=15 order='id desc'}}-->
 <h3 style="margin-left:5px;">Swoole使用手册</h3>
 <ul>
-{{foreach from=$list44 item=v}}
+{{foreach from=$list19 item=v}}
 <li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>

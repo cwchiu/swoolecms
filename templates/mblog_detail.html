@@ -39,7 +39,7 @@ $(function(){
 <!--欢迎页面-->
 <div class="microblog" id='mblog_list' style="border-bottom:1px dotted #CCC; margin-top:12px;">
 <strong class="blu_12b" style="font-size:14px">{{$user.nickname}}</strong>(<span class="date">{{$mblog.addtime}}</span>)：<br />
-<div style="text-indent:2em">{{$mblog.content}}</div>
+<div style="text-indent:2em">{{$mblog.content|nl2br}}</div>
 <div class="clear"></div>
 <div class="pages">{{$pager.render}}</div>
 </div>
