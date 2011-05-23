@@ -51,7 +51,7 @@ class mblog extends FrontPage
         $comments = $_c->getByAid('mblog',$id);
         $mblog = $model->get($id)->get();
         $this->userinfo($mblog['uid']);
-        $mblog['addtime'] = date('n月j日 H:i',strtotime($m['addtime']));
+        $mblog['addtime'] = date('n月j日 H:i',strtotime($mblog['addtime']));
         $this->swoole->tpl->assign('mblog',$mblog);
         $this->swoole->tpl->assign('comments',$comments);
         $this->swoole->tpl->display();

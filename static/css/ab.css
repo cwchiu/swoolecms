@@ -236,3 +236,13 @@ background:url(/static/images/CMT_iPhone_002.png) no-repeat 10px 0; padding:10px
     display: block;
     text-decoration: underline;
 }
+.my-photup {
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 35px;
+    width: 142px;
+}
+.my-photup-cover img {
+    border: 1px solid #D5B5AF;
+    padding: 2px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.nickname}}的相册_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+{{include file=header.html}}
+<div class="ilayout">
+<div class="imenubar">
+{{include file=person_left.html}}
+</div>
+<div class="icontent">
+<!--邮件-->
+<div class="mailbox">
+<div class="mailtitle"></div>
+<div class="mailboxtab">
+{{include file=block/myphoto_head.html}}<br />
+<div class="my_phot" id='imga'>
+<div class="my_phottl2">您当前共有<em>{{$count.0.c}}</em>张相片</div>
+<div class="my_photpic2 clearfix">{{section name=p loop=$photo}}
+<div class="my-photup">
+<div class="my-photup-cover">
+<a href="/myphoto/show/?id={{$photo[p].id}}"> <img src="{{$photo[p].imagep}}" /></a></div>
+<p><span style="height: 32px;">{{$photo[p].title|default:"未命名"}}</span></p>
+<div class="the-btncover clearfix">
+<a href="/myphoto/delete/?&id={{$photo[p].id}}" onclick="return confirm('您确定删除这张照片吗?');">删除</a></div>
+</div>
+{{/section}}
+</div>
+</div>
+</div>
+</div>
+<!--邮件-->
+<!--编辑个人资料-->
+<!--编辑个人资料-->
+</div>
+</div>
+{{include file='footer.html'}}
+</body>
+</html>

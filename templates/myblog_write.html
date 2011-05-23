@@ -73,7 +73,12 @@ function addCategory()
 </div>
 <div class="memeberLogsDetail">{{$editor}}</div>
 <div class="clear"></div>
-<div class="mailfiled" style="margin-top:5px; margin-bottom:5px;"><button type="submit" class="btn1"><img src="/static/images/accept.png" width="16" height="16" /> 确认并发布日志</button></div>
+<div class="mailfiled" style="margin-top:5px; margin-bottom:5px;">
+<button type="submit" class="btn1"><img src="/static/images/accept.png" width="16" height="16" /> 确认并发布日志</button>&nbsp;
+<button type="button" class="btn1"><img src="/static/images/save.gif" width="16" height="16" /> 保存为草稿</button>
+<span id='save_notice' style="color:#F00">自动保存提示：草稿已自动保存，时间：{{$smarty.now|date_format:'%H:%M'}}
+</span>
+</div>
 </form>
 </div>
 <!--编辑个人资料-->
