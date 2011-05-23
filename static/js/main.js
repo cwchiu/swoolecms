@@ -64,3 +64,20 @@ function ask_vote(reid, btn) {
 		}
 	});
 }
+function auto_save(id){
+	var html = FCKeditorAPI.GetInstance('content').GetXHTML(true);
+	//内容为空
+	if(html=='') return false;
+	//内容未改变
+	if(blog_content==html) return false; 
+	var post = {'title':$('#title').val(),'c_id':$('#c_id').val(),'content':html,'autosave':1,'id':blog_id};
+	jQuery.post('/myblog/write/?act=draft',post,function(res){
+		res = parseInt(res);
+		if(res>1) blog_id = res;
+		var now=new Date();
+		var notice = '自动保存提示：草稿已自动保存，时间：'+now.getHours()+'点'+now.getMinutes()+'分';
+		$('#save_notice').html(notice);
+		blog_content = html;
+	});
+	
+}

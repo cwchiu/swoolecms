@@ -21,6 +21,7 @@ class myblog extends UserBase
             $blog['title'] = $_POST['title'];
             $blog['content'] = $_POST['content'];
             $blog['c_id'] = (int)$_POST['c_id'];
+            if(isset($_GET['act']) and $_GET['act']=='draft') $blog['dir'] = 1;
 
             if(!empty($_POST['id']))
             {
@@ -29,14 +30,16 @@ class myblog extends UserBase
                 $det = $_m->get($id)->get();
                 if($det['uid']!=$this->uid) exit('access deny!not your blog!');
                 $_m->set($id,$blog);
-                Swoole_js::js_back('修改成功',-2);
+                if(isset($_POST['autosave'])) return 1;
+                else Swoole_js::js_back('修改成功',-2);
             }
             else
             {
                 $blog['uid'] = $this->uid;
-                $_m->put($blog);
+                $bid = $_m->put($blog);
                 $_l->set($blog['c_id'],array('num'=>'`num`+1'));
-                Swoole_js::js_back('添加成功');
+                if(isset($_POST['autosave'])) return $bid;
+                else Swoole_js::js_back('添加成功');
             }
         }
         else
@@ -114,6 +117,8 @@ class myblog extends UserBase
             $_m->del((int)$_GET['del']);
             Swoole_js::js_back('删除成功！');
         }
+        if(isset($_GET['act']) and $_GET['act']=='draft') $gets['dir'] = 1;
+        else $gets['dir'] = 0;
 
         $gets['uid'] = $this->uid;
         $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
