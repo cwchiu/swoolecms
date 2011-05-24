@@ -225,7 +225,15 @@ class page extends Controller
             $this->swoole->tpl->display();
         }
     }
-
+    function chatroom()
+    {
+        session();
+        Auth::$login_url = '/page/login/?';
+        Auth::login_require();
+        $userInfo = createModel('UserInfo');
+        $this->swoole->tpl->assign('user',$userInfo->get($_SESSION['user_id'])->get());
+        $this->swoole->tpl->display();
+    }
     /**
      * 忘记密码
      * @return unknown_type

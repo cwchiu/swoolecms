@@ -17,7 +17,7 @@ window.onload = function(){
 	validator('logs');
 	//每隔1分钟保存一次
 	blog_content = FCKeditorAPI.GetInstance('content').GetXHTML(true)
-	setInterval(auto_save,6000);
+	setInterval(auto_save,60000);
 };
 function addCategory()
 {

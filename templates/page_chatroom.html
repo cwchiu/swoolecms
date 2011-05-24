@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>聊天室_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="/static/js/jquery.js" type=text/javascript></script>
+<script language="JavaScript" src="/static/js/SwooleUI.js" type=text/javascript></script>
+<script language="JavaScript" src="/static/js/validator.js" type=text/javascript></script>
+<script src="/static/js/swfobject.js"></script>
+<script src="/static/js/chat.js"></script>
+<script language="javascript">
+var uid="{{$user.id}}";
+var uname="{{$user.nickname|default:'游客'}}";
+window.onload = function(){
+	left_right();
+	initChatClient();
+}
+function left_right(){
+	var a=document.getElementById("pleft");
+	var b=document.getElementById("pright");
+	if(a.clientHeight<b.clientHeight) a.style.height=b.clientHeight+"px";
+	else b.style.height=a.clientHeight+"px";
+}
+</script>
+<style>
+.pager {
+	float: left;
+	font-size: 12px;
+	margin:0;
+	padding:0;
+	width: 240px;
+}
+</style>
+</head>
+<body>
+{{include file=header.html}}
+<div class="ilayout">
+<div class="imenubar" id="pleft" style="width:260px;height:auto">
+<p style="line-height:24px;">&nbsp;</p>
+</div>
+<div class="icontent" style="width:580px" id="pright">
+<!--邮件-->
+<div class="mailbox" id='msglist' style="height:450px; overflow-y:scroll;"></div>
+<div class="mailbox">
+<div class="mailcontent dis">
+  <p>
+     <form onsubmit="sendmsg();return false;">
+<label>
+  <select name="users" id="users">
+    <option value="0">所有人</option>
+  </select>
+</label>
+<input name="msgcontent" type="text" class="input3" id="msgcontent" style="height:24px;" value="{{$note.title}}" size="60" empty="请填写记事标题" /> 
+<button type="submit" class="btn1" style="margin-top:5px;">
+<img src="/static/images/disk.png" width="16" height="16" /> 发 送</button>
+</form>
+      <br />
+    </p>
+</div>
+</div>
+<!--邮件-->
+<!--编辑个人资料-->
+<!--编辑个人资料-->
+</div>
+</div>
+{{include file='footer.html'}}
+<div id="flashcontainer" style="visibility:hidden"></div>
+</body>
+</html>
