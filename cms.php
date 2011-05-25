@@ -18,6 +18,8 @@ if(!empty($_GET['id']))
 
     //获取详细内容
     $det = $model->get($aid)->get();
+    //阅读次数增加
+    $model->set($aid,array('click_num'=>'`click_num`+1'));
 
     //关键词
     if(!empty($_GET['q']))

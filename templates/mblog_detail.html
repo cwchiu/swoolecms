@@ -49,7 +49,7 @@ $(function(){
   <tr style="padding:5px;">
     <td width="145" valign="top"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}" alt=""></td>
     <td valign="top"><cite class="fn">{{$v.uname}}</cite> <span class="says">(</span><span class="date">{{$v.addtime|howLongAgo}}</span><span class="says">)says:</span>			
-			<p>{{$v.content}}</p>
+			<p>{{$v.content|nl2br}}</p>
     </td>
   </tr>
   <tr><td colspan="2" height="10"></td></tr>
