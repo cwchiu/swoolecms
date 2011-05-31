@@ -73,7 +73,10 @@ function auto_save(id){
 	var post = {'title':$('#title').val(),'c_id':$('#c_id').val(),'content':html,'autosave':1,'id':blog_id};
 	jQuery.post('/myblog/write/?act=draft',post,function(res){
 		res = parseInt(res);
-		if(res>1) blog_id = res;
+		if(res>1){
+			blog_id = res;
+			$('#id').val(res);
+		}
 		var now=new Date();
 		var notice = '自动保存提示：草稿已自动保存，时间：'+now.getHours()+'点'+now.getMinutes()+'分';
 		$('#save_notice').html(notice);

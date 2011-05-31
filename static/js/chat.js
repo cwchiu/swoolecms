@@ -1,4 +1,3 @@
-var now = new Date;
 var users;
 var socket = {
 	config : {
@@ -81,6 +80,7 @@ function sysinfo(msg) {
  */
 function recvmsg(msg) {
 	var txt = '';
+	var now = new Date;
 	var ntime = now.getHours() + ':' + now.getMinutes() + ':'
 			+ now.getSeconds();
 	if ("setname success" == msg) {
@@ -148,7 +148,7 @@ function sendmsg() {
 	var msg = input.value;
 	if (jQuery.trim(msg) == '')
 		return false;
-
+	var now = new Date;
 	var ntime = now.getHours() + ':' + now.getMinutes() + ':'
 			+ now.getSeconds();
 	var to = $('#users').val();

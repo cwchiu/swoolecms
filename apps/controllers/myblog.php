@@ -22,6 +22,7 @@ class myblog extends UserBase
             $blog['content'] = $_POST['content'];
             $blog['c_id'] = (int)$_POST['c_id'];
             if(isset($_GET['act']) and $_GET['act']=='draft') $blog['dir'] = 1;
+            else $blog['dir'] = 0;
 
             if(!empty($_POST['id']))
             {
