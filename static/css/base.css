@@ -129,47 +129,7 @@ li {
 	font-size:12px;
 }
 
-/*.pager {
-	float: left;
-	font-size: 13px;
-	margin: 0 0 0 70px;
-	padding: 20px 0 15px;
-	text-align: center;
-	width: 550px;
-}
-
-.pager span {
-	border: 1px solid #CCCCCC;
-	margin-right: 2px;
-	padding: 3px 6px;
-}
-
-.pager .current {
-	background: none repeat scroll 0 0 #B6B6B6;
-	border: 1px solid #CCCCCC;
-	color: #FFFFFF;
-	font-weight: bold;
-	padding: 3px 6px;
-}
-
-.pager a {
-	border: 1px solid #CCCCCC;
-	color: #333333;
-	padding: 3px 6px;
-	text-decoration: none;
-}
-
-.pager a:hover {
-	background: none repeat scroll 0 0 #B6B6B6;
-	color: #FFFFFF;
-}
-
-.pager .nobold:hover {
-	background: none repeat scroll 0 0 #B6B6B6;
-	color: #FFFFFF;
-	font-weight: normal;
-}*/
-
+.btn{width:106px;height:37px;background:url(../images/btnbg.png) no-repeat 0 2px;cursor:pointer;border:none; color:#FFF; font-size:16px; font-weight:bold;font-family:"微软雅黑",Arial, Helvetica, sans-serif;}
 .pager {
     color: #2E6AB1;
     font-size: 14px;

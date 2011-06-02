@@ -16,6 +16,7 @@ class mblog extends FrontPage
         $list = $model->gets($gets,$pager);
         foreach($list as &$m)
         {
+            $m['content'] = Func::mblog_link($m['id'],$m['content']);
             $m['addtime'] = date('n月j日 H:i',strtotime($m['addtime']));
         }
         $this->swoole->tpl->assign('mblogs',$list);

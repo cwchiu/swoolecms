@@ -94,6 +94,7 @@ class page extends Controller
             $mblogs = $_mblog->gets($gets1);
             foreach($mblogs as &$m)
             {
+                $m['content'] = Func::mblog_link($m['id'],$m['content']);
                 $m['addtime'] = date('n月j日 H:i',$m['addtime']);
             }
             $this->swoole->tpl->assign('mblogs',$mblogs);
@@ -389,6 +390,7 @@ class page extends Controller
 
         foreach($mblogs as &$m)
         {
+            $m['content'] = Func::mblog_link($m['id'],$m['content']);
             $m['addtime'] = date('n月j日 H:i',$m['addtime']);
         }
         $this->swoole->tpl->assign('mblogs',$mblogs);
