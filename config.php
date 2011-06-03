@@ -42,7 +42,7 @@ define('LOGIN_TABLE','user_login');
 //DES加密解密的KEY
 define('DESKEY','jcxh@21xiehou.com');
 
-require('libs/lib_config.php');
+require_once WEBPATH.'/libs/lib_config.php';
 $php->autoload('db','cache','tpl');
 $php->loadConfig();
 //$php->config->cms['html_static'] = true;

@@ -52,7 +52,7 @@
   {{if $det.is_ori==1}}<img src="/static/images/zz.gif" alt="转载" width="22" height="25" align="top" /> {{else}}
   <img src="/static/images/ori.gif" alt="原创" width="22" height="25" align="top" /> {{/if}}{{$det.title}}</span></h2>
   <p>发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'swoole.com'}}　　编辑：{{$det.uname|default:'管理员'}}
-     {{if $det.copyfrom}}<br />转载自：<a href="{{$det.copyfrom}}">{{$det.copyfrom}}</a> {{/if}}</p>
+     {{if $det.copyfrom}}<br />转载自：<a href="{{$det.copyfrom}}" target="_blank">{{$det.copyfrom}}</a> {{/if}}</p>
      <style>
 	 #ckepop a {
 	cursor: pointer

@@ -1,0 +1,24 @@
+<div class="title">我的微博客</div>
+<div class="mailcontent">
+<form id="form1" name="form1" method="post" action="/person/post_mblog/">
+<input name="mblog_url" type="hidden" id="mblog_url" value="" />
+<input name="mblog_pic" type="hidden" id="mblog_pic" value="" />
+  <textarea name="microblog" cols="" rows="3" id="microblog" class="microblog"></textarea>
+  <div style="margin-top:6px;">
+<ul id="ul_m">
+<li id='m_star'><a href="javascript:show_ui_star()"><img src="/static/images/star_1.png" /> 星标</a></li>
+<li id='m_pic'><a href="javascript:show_ui_pic(this)"><img src="/static/images/picture.png" /> 图片</a></li>
+<li id='m_music'><img src="/static/images/music_beam.png" /> 音乐</li>
+<li id='m_video'><img src="/static/images/film.png" /> 视频</li>
+</ul>
+<label style="float:right; margin-right:3px;">
+  <button type="submit" class="btn1"><img src="/static/images/ipod_cast.png" width="16" height="16" />发布微博客</button>
+  </label>
+</div>
+<div>
+
+</div>
+</form>
+</div>
+<div id="pic_preview" class="show_pic"></div>
+</div>

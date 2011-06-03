@@ -2,7 +2,6 @@
 html {
 	overflow-y: scroll;
 }
-
 body {
 	padding: 0px;
 	width: 960px;
@@ -17,11 +16,15 @@ td {
 	line-height: 28px;
 	color: #000000;
 }
-
 img {
 	border: 0px;
 }
-
+input,textarea{
+	border: 1px solid #ccc;
+	font-size:14px;
+	border-radius:3px;
+	padding:3px;
+}
 .fblue{
 	color: #0000CC;
 }
@@ -143,6 +146,7 @@ li {
     margin: 0 2px;
     padding: 2px 5px;
     text-decoration: none;
+	border-radius:3px;
 }
 .pager span.current {
     background-color: #2E6AB1;
@@ -443,6 +447,7 @@ a:active {color:#0069ca;}
     border:1px solid #C6D880;
     color:#529214;
 	padding:3px;
+	border-radius:5px;
 }
 
 .blu_12:link {
@@ -522,11 +527,6 @@ a:active {color:#0069ca;}
 	line-height: 180%;
 	font-weight: bold;
 	color: #ff0d00;
-}
-
-input,textarea{
-	border: 1px solid #cccccc;
-	font-size:14px;
 }
 .input3{
 	border: 1px solid #cccccc;

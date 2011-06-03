@@ -54,6 +54,7 @@ class mblog extends FrontPage
         $this->userinfo($mblog['uid']);
         $mblog['addtime'] = date('n月j日 H:i',strtotime($mblog['addtime']));
         $this->swoole->tpl->assign('mblog',$mblog);
+        $this->swoole->tpl->assign('title',strip_tags(Func::mblog_link(0,$mblog['content'])));
         $this->swoole->tpl->assign('comments',$comments);
         $this->swoole->tpl->display();
     }

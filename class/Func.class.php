@@ -4,11 +4,11 @@ class Func
     function mblog_link($id,$content,$maxlen=30)
     {
         $title = mb_substr($content,0,$maxlen);
-
         $end = mb_strpos($title,'。');
+
         if($end===false) $end = mb_strpos($title,'？');
-        elseif($end===false) $end = mb_strpos($title,'，');
-        elseif($end===false) $end = mb_strpos($title,',');
+        if($end===false) $end = mb_strpos($title,'，');
+        if($end===false) $end = mb_strpos($title,',');
         $html = "<a href='/mblog/detail/?id={$id}'>";
 
         if($end===false or $end>$maxlen)

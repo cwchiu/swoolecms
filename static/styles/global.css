@@ -11,9 +11,18 @@ h1,h2,h3,h4,h5,h6 {font-size:12px; font-weight:normal;}
 q:before,q:after {content:'';}   
 abbr,acronym {border:0;}
 address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}   
-
 .clear{ clear:both; font-size:0; height:0; line-height:0; visibility:hidden}
-
+.show_pic{
+ 	background: none repeat scroll 0 0 #F9F9F9;
+    border: 1px solid #E5E5E5;
+    display: none;
+    left: 0;
+    margin: 3px 0 8px;
+    padding: 4px;
+    position: absolute;
+    top: 15px;
+    z-index: 20;
+}	
 .topmenu{ line-height:34px; padding:3px; background:url(../images/topmenu.gif) repeat-x; text-align:left;  }
 .topmenu span{ float:right; text-align:right;}
 .topmenu a{ padding:0px 5px;}
@@ -39,10 +48,11 @@ address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}
 .right .rmzy_b li a:link,.right .rmzy_b li a:visited{ color:#666;}
 .right .rmzy_b li a:hover{ color:#F60;}
 
-#ul_m li{float:left; width:60px; clear:none; border:none;}
+#ul_m li{float:left; margin-left:15px; clear:none; border:none;}
 .microblog{
 	font-size:14px;
 	line-height:24px;
 	padding:5px;
 	width:710px;
+	border-radius:5px;
 }

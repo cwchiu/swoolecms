@@ -1,3 +1,4 @@
+@charset "utf-8";
 @CHARSET "UTF-8";
 
 .swoole_button{width:64px;height:22px; border:none; background:url(http://img1.21xiehou.com/static/images/myxh_phoabg.png) no-repeat 0 -30px; cursor:pointer; margin-left:5px;margin-right:5px;}
@@ -5,7 +6,22 @@
 .Dialog {
 	position: absolute;
 	border:#c1d9ff solid 5px;
+    border-radius: 5px 5px 5px 5px;
 	position: absolute;
+	font-size: 11px;
+	text-align: center;
+	background-color: #c0d8fe;
+	padding: 1px;
+	line-height: 22px;
+	z-index: 102;
+}
+.Dialog_fixed {
+	position:fixed;
+	_position:absolute;	
+	_bottom : auto;
+	_top : expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+	border:#c1d9ff solid 5px;
+    border-radius: 5px;
 	font-size: 11px;
 	text-align: center;
 	background-color: #c0d8fe;
@@ -19,9 +35,8 @@
 	background-color: #000000;
 	z-index: 101;}
 .Dialog_head{ height:26px; padding-left:10px; background:#e0edfe; cursor:move;}
-.Dialog_title { float:left; width:auto; color:#000; font-weight:bold; line-height:26px;}
-.Dialog_close { float:right; width:40px; padding-left:15px; font-size:12px; color:#000; line-height:26px; background:url(http://img1.21xiehou.com/static/images/myxh_dialog.gif) no-repeat 5px 9px;cursor:pointer;}
-.Dialog_close { background/*\**/:url(/static/enterimg/close.gif) no-repeat 5px 7px\9;}
+.Dialog_title{float:left; width:auto; color:#000; font-weight:bold; line-height:26px;}
+.Dialog_close { float:right; width:40px; padding-left:15px; font-size:12px; color:#000; line-height:26px; background:url(/static/images/close.gif) no-repeat 5px;cursor:pointer;}
 .Dialog_msg { background: #ebf3fe; font-size:14px;border-top:1px solid #cddefa;}
 .Dialog_cont { padding:20px 0 15px 0;}
 .Dialog_bottom { height:28px; padding-top:6px; text-align:center; color:#f0e2d8; background:#e0edfe;}

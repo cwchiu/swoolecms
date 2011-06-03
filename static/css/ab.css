@@ -31,16 +31,16 @@
 	color: #F00;
 }
 .ilayout{ width:960px; text-align:left; margin:auto}
-.ilayout .imenubar{ float:left; width:180px; margin-right:15px; background:#D2DFF0; padding:10px; font-size:14px}
+.ilayout .imenubar{ float:left; width:180px; margin-right:15px; margin-top:3px;background:#D2DFF0; padding:10px; font-size:14px;border-radius:5px;}
 .ilayout .imenubar .memberbox{ font-size:12px; text-align:center; padding:10px 0px 20px; margin-bottom:20px; border-bottom:1px dashed #000;}
 .ilayout .imenubar .memberbox img{ border:1px solid #d2d2d2;}
 .ilayout .imenubar .memberbox p{ line-height:40px; font-weight:bold;}
 .ilayout .imenubar .memberbox button{ padding:2px;}
 .ilayout .imenubar ul{ line-height:26px;}
 .ilayout .imenubar ul h2{ line-height:32px; font-size:14px; font-weight:bold}
-.ilayout .icontent{ float:left; width:745px;}
+.ilayout .icontent{ float:left; width:745px;border-radius:5px; margin-top:3px;}
 /* 欢迎页面 */
-.ilayout .icontent .welcome{ height:40px; line-height:40px; font-size:14px; font-weight:bold; background: #FFC; border:1px dashed #f60; border-left:none; border-right:none; padding:5px}
+.ilayout .icontent .welcome{ height:40px; line-height:40px; font-size:14px;font-weight:bold;background:#FFC;border:1px dotted #CCC;padding:5px;border-radius:5px;}
 /* 欢迎页面 */
 /* 邮件 */
 
@@ -48,14 +48,13 @@
 .icontent .title{ font-size:14px; font-weight:bold; line-height:26px; margin:10px 0px;}
 .icontent .mailbox .mailboxtab{ height:22px; line-height:22px; border-bottom:1px #ccc solid; height:33px;}
 
-.mailboxtab li{ float:left; margin-right:10px; margin-left:10px; width:85px; height:32px; line-height:33px; text-align:center;background:#E5EEF7;border:1px solid #ddd;}
+.mailboxtab li{ float:left; margin-right:10px; margin-left:10px; width:85px; height:32px; line-height:33px; text-align:center;background:#E5EEF7;border:1px solid #ddd;border-radius:3px 3px 0 0;}
 .mailboxtab li a:link,.mailboxtab li a:visited,.mailboxtab li a:active {
     color: #484853;
     padding: 5px;
     text-decoration: none;
 }
-.mailboxtab li.hov{background:#fff;height:33px; border-bottom:none; cursor:pointer;margin-bottom:-1px;}
-
+.mailboxtab li.hov{background:#fff;height:33px; border-bottom:none; cursor:pointer;margin-bottom:-1px;border-radius:3px 3px 0 0;}
 .icontent .mailbox .mailcontent{  background:#fff; border-top:none; background:url(/static/images/detailline.gif) repeat-x top; clear:both; padding:10px;}
 .icontent .mailbox .undis{ display:none}
 .icontent .mailbox .mailcontent ul{ line-height:36px;}
@@ -214,7 +213,6 @@ background:url(/static/images/CMT_iPhone_002.png) no-repeat 10px 0; padding:10px
 	background: #fff url(../images/bullet1.gif) no-repeat;
 	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 }
-
 .table1 .specalt {
 	border-left: 1px solid #C1DAD7;
 	border-top: 0;

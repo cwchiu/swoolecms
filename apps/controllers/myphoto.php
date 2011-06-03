@@ -8,13 +8,17 @@ class myphoto extends UserBase
      */
     function index()
     {
-        $param['uid'] = $this->uid;
-        $photo = $this->swoole->model->UserPhoto->gets($param);
-        $param['select'] = 'count(id) as c';
-        $countphoto = $this->swoole->model->UserPhoto->gets($param);
+        $gets['uid'] = $this->uid;
+        $gets['select'] = 'id,imagep';
+        $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
+        $gets['pagesize'] =15;
+
+        $photo = $this->swoole->model->UserPhoto->gets($gets,$pager);
         $this->swoole->tpl->assign('photo',$photo);
-        $this->swoole->tpl->assign('count',$countphoto);
-        $this->swoole->tpl->display('myphoto_index.html');
+        $this->swoole->tpl->assign('count',$pager->total);
+        $this->swoole->tpl->assign('pager',$pager->render());
+        if(isset($_GET['from'])) $this->swoole->tpl->display('myphoto_insert.html');
+        else $this->swoole->tpl->display('myphoto_index.html');
     }
     /**
      * 用flash添加照片

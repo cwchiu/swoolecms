@@ -145,6 +145,15 @@ class person extends UserBase
     {
 
     }
+    function mylinks()
+    {
+        if(isset($_GET['add']))
+        {
+            $add['title'] = trim($_POST['title']);
+            $add['url'] = trim($_POST['url']);
+            return createModel('UserLink')->put($add);
+        }
+    }
     function profile()
     {
         if($_POST)
