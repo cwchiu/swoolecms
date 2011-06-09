@@ -118,6 +118,8 @@ class person extends UserBase
             $model = createModel('MicroBlog');
             $in['content'] = trim($_POST['microblog']);
             $in['uid'] = $this->uid;
+            $in['url_id'] = (int)$_POST['mblog_url'];
+            $in['pic_id'] = (int)$_POST['mblog_pic'];
             $model->put($in);
             Swoole_js::js_goto('发布成功','/person/mblog/');
         }
@@ -150,7 +152,8 @@ class person extends UserBase
         if(isset($_GET['add']))
         {
             $add['title'] = trim($_POST['title']);
-            $add['url'] = trim($_POST['url']);
+            $add['url'] = Func::parse_url(trim($_POST['url']));
+            $add['uid'] = $this->uid;
             return createModel('UserLink')->put($add);
         }
     }

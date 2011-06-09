@@ -9,50 +9,10 @@
 <link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="/static/js/jquery.js"></script>
 <script language="javascript" src="/static/js/SwooleUI.js"></script>
-<style>
-.photo{
-    border-radius: 5px 5px 5px 5px;
-}
-
-</style>
-<script langugae="javascript">
-<!--
-function changephoto(event,o){
-	var nextid = {{json var=$nextid}};
-	var perid = {{json var=$perid}};
-	 event = arguments[0] || window.event;
-	if (event.offsetX == undefined) {
-		var evtOffsets = getOffset(event);
-		event.offsetX = evtOffsets.offsetX;
-		event.offsetY = evtOffsets.offsetY;
-	}
-	if(event.offsetX>=o.clientWidth/2){
-		window.location.href="/myphoto/show/?id="+nextid[0]['id'];
-	}else{
-		window.location.href="/myphoto/show/?id="+perid[0]['id'];
-	}
-}
-
-function changestyle(event) {
-	var o = obj('photoshow');
-	if(document.all){
-		var event = window.event;
-		if(event.offsetX>=o.clientWidth/2){
-			o.style.cursor="url("+"/static/images/next.cur"+")";
-		}else{
-			o.style.cursor="url("+"/static/images/pre.cur"+")";
-		}
-	}else{
-		var evtOffsets = getOffset(event);
-		event.offsetX = evtOffsets.offsetX;
-		event.offsetY = evtOffsets.offsetY;
-		if (event.offsetX >= o.clientWidth / 2)
-			o.style.cursor = "url(/static/images/next.cur) , auto";
-		else
-			o.style.cursor = "url(/static/images/pre.cur) , auto";		
-	}
-}
-//-->
+<script type="text/javascript">
+var nextid = {{json var=$nextid}};
+var perid = {{json var=$perid}};
+var scan_base_url = '/myphoto/show/?id=';
 </script>
 </head>
 <body>
@@ -68,9 +28,7 @@ function changestyle(event) {
 <div class="my_phot" id='imga' style="clear:both; margin-top:15px;">
 <div class="mailtitle">当前位置 ： <a href="/person/index/">个人中心</a> &gt; <a href="/myphoto/index/">相册</a> &gt;</div>
 <br />
-<div class="ml75">
-<div><img class="photo" src="{{$photo.picture}}" id="photoshow" onclick="changephoto(event,this)" onmousemove="changestyle(event)" /></div>
-</div>
+	{{include file=block/photo_show.html}}
 </div>
 </div>
 <!--邮件-->

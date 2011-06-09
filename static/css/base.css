@@ -117,6 +117,7 @@ li {
 .red{
 	color:#F00;
 }
+.orange{color:#FF6600}
 .red_12 {
 	font-size: 12px;
 	line-height: 160%;
@@ -598,6 +599,7 @@ ld {
 	border: 1px solid #DDDDDD;
 	margin: 0 10px 0 5px;
 	padding: 4px;
+	border-radius:5px;
 }
 .comment-list cite, .comment-list cite a, .ping-list cite, .ping-list cite a {
 	font-weight: bold;
@@ -627,4 +629,7 @@ a.title:hover {
     overflow: hidden;
     padding-right: 5px;
     padding-top: 5px;
+}
+.photo{
+    border-radius:5px;
 }

@@ -1,7 +1,7 @@
 <div class="mailboxtab">
 <ul>
 <li class="{{if $php.mvc.view==index}}hov{{/if}}"><a href="/myphoto/index/">我的相册</a></li>
-<li class="{{if $smarty.get.act==send}}hov{{/if}}"><a href="/person/mails/?act=send">相册管理</a></li>
+<li class="{{if $php.mvc.view==show}}hov{{/if}}"><a href="javascript:void(0)">浏览相片</a></li>
 <li class="{{if $php.mvc.view==add_photo}}hov{{/if}}"><a href="/myphoto/add_photo/"><img src="/static/images/add.png" style="margin-top:8px;" width="16" height="16" />上传图片</a></li>
 </ul>
 </div>

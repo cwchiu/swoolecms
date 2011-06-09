@@ -1,5 +1,6 @@
 <?php
-class page extends Controller
+require APPSPATH.'/controllers/FrontPage.php';
+class page extends FrontPage
 {
     public $pagesize = 10;
     function __construct($swoole)
@@ -85,19 +86,8 @@ class page extends Controller
     {
         if(empty($_GET['p']) or $_GET['p']=='index')
         {
-            $_mblog = createModel('MicroBlog');
-            $_user = createModel('UserInfo');
-            $gets1['select'] = $_mblog->table.'.id as id,uid,sex,substring(content,1,170) as content,nickname,avatar,UNIX_TIMESTAMP(addtime) as addtime,reply_count';
-            $gets1['order'] = $_mblog->table.'.id desc';
-            $gets1['leftjoin'] = array($_user->table,$_user->table.'.id='.$_mblog->table.'.uid');
-            $gets1['limit'] = 10;
-            $mblogs = $_mblog->gets($gets1);
-            foreach($mblogs as &$m)
-            {
-                $m['content'] = Func::mblog_link($m['id'],$m['content']);
-                $m['addtime'] = date('n月j日 H:i',$m['addtime']);
-            }
-            $this->swoole->tpl->assign('mblogs',$mblogs);
+            //微博客列表
+            $this->getMblogs();
 
             $gets['select'] = 'id,title,substring(content,1,1000) as des,addtime';
             $gets['limit'] = 10;
@@ -206,8 +196,8 @@ class page extends Controller
             $login['mobile'] = $_POST['mobile'];
             $login['nickname'] = $_POST['nickname'];
             $login['sex'] = (int)$_POST['sex'];
-            $login['skill'] = implode(',',$_POST['skill']);
-            $login['php_level'] = (int)$_POST['php_level'];
+            //$login['skill'] = implode(',',$_POST['skill']);
+            // $login['php_level'] = (int)$_POST['php_level'];
             $login['lastlogin'] = date('Y-m-d h:i:s');
             $uid = $userInfo->put($login);
             $_SESSION['isLogin'] = true;
@@ -220,8 +210,8 @@ class page extends Controller
             require WEBPATH.'/dict/forms.php';
             $_skill = createModel('UserSkill')->getMap();
             $_forms['sex'] = Form::radio('sex',$forms['sex']);
-            $_forms['skill'] = Form::checkbox('skill',$_skill);
-            $_forms['level'] = Form::radio('php_level',$forms['level'],'');
+            //$_forms['skill'] = Form::checkbox('skill',$_skill);
+            //$_forms['level'] = Form::radio('php_level',$forms['level'],'');
             $this->swoole->tpl->assign('forms',$_forms);
             $this->swoole->tpl->display();
         }
@@ -293,14 +283,14 @@ class page extends Controller
 
     function search()
     {
-	    $keyword = mb_substr(trim($_GET['k']),0,32);
+        $keyword = mb_substr(trim($_GET['k']),0,32);
         if(empty($keyword))
         {
             Swoole_js::js_back('关键词不能为空！');
             exit;
         }
         $page = empty($_GET['page'])?1:(int)$_GET['page'];
-	    $res = $this->fulltext($keyword,$page);
+        $res = $this->fulltext($keyword,$page);
         $pager = new Pager(array('page'=>$page,'perpage'=>$this->pagesize,'total'=>$res['total']));
         $this->swoole->tpl->assign('pager',array('total'=>$pager->total,'render'=>$pager->render()));
         $this->swoole->tpl->assign('forms',$_forms);
@@ -362,43 +352,8 @@ class page extends Controller
     {
         if(!isset($_GET['uid'])) exit;
         $uid = (int)$_GET['uid'];
-
-        $_user = createModel('UserInfo');
-        $_mblog = createModel('MicroBlog');
-        $_cate = createModel('UserLogCat');
-        $user = $_user->getInfo($uid);
-        $user['skill_info'] = implode('、',$user['skill']);
-        if(empty($user))
-        {
-            Swoole_js::js_back('用户不存在');
-            exit;
-        }
-
-        $gets1['select'] = $_mblog->table.'.id as id,uid,sex,content,nickname,avatar,UNIX_TIMESTAMP(addtime) as addtime,reply_count';
-        $gets1['order'] = $_mblog->table.'.id desc';
-        $gets1['leftjoin'] = array($_user->table,$_user->table.'.id='.$_mblog->table.'.uid');
-        $gets1['uid'] = $user['id'];
-        $gets1['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
-        $gets1['pagesize'] =15;
-        $mblogs = $_mblog->gets($gets1,$pager);
-
-        $gets2['select'] = 'name,id,num';
-        $gets2['uid'] = $uid;
-        $gets2['order'] = 'id';
-        $gets2['limit'] = 15;
-        $blog_cates = $_cate->gets($gets2);
-
-        foreach($mblogs as &$m)
-        {
-            $m['content'] = Func::mblog_link($m['id'],$m['content']);
-            $m['addtime'] = date('n月j日 H:i',$m['addtime']);
-        }
-        $this->swoole->tpl->assign('mblogs',$mblogs);
-        $pager->span_open = array();
-        $pager = array('total'=>$pager->total,'render'=>$pager->render());
-        $this->swoole->tpl->assign('pager',$pager);
-        $this->swoole->tpl->assign('blog_cates',$blog_cates);
-        $this->swoole->tpl->assign('user',$user);
+        $this->userinfo($uid);
+        $this->getMblogs(10,$uid);
         $this->swoole->tpl->display();
     }
 }

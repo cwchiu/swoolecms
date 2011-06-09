@@ -8,13 +8,14 @@
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/static/js/jquery.js"></script>
-<script type="text/javascript" src="/static/js/autoresize.js"></script>
-<SCRIPT  language="JavaScript" src="/static/js/SwooleUI.js" type=text/javascript></SCRIPT>
-<SCRIPT  language="JavaScript" src="/static/js/main.js" type=text/javascript></SCRIPT>
+<script type="text/javascript" src="/static/js/SwooleUI.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 	checklogin();
 };
+var nextid = {{json var=$nextid}};
+var perid = {{json var=$perid}};
+var scan_base_url = '/userhome/photo/?uid={{$user.id}}&id=';
 </script>
 </head>
 
@@ -23,28 +24,10 @@ window.onload = function(){
 <div class="ilayout">
 {{include file='block/user_left.html}}
 <div class="icontent">
-<!--欢迎页面-->
-<!--欢迎页面-->
-<div class="microblog" id='mblog_list'>
-  <ul>
-    {{foreach from=$mblogs item=v}}
-    <li>
-      <div class="userCont">
-        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content|mbcut:150:' ...'}}</div>
-      <div>
-        <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有{{$v.reply_count}}条评论</a></span>
-        </div>
-      </li>
-    {{/foreach}}
-    </ul>
-  <div class="clear"></div>
-  <div class="pages">{{$pager.render}}</div>
+<div class="welcome">{{$user.nickname}}的相册</div>
+<div class="my_photpic2 clearfix" style="margin-top:15px;">
+    {{include file=block/photo_show.html}}<br />
 </div>
-
-<!--邮件-->
-<!--邮件-->
-<!--编辑个人资料-->
-<!--编辑个人资料-->
 </div>
 </div>
 {{include file=footer.html}}

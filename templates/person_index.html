@@ -7,8 +7,11 @@
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/SwooleUI.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/SwooleUI.js"></script>
 <script type="text/javascript" src="/static/js/autoresize.js"></script>
+<script type="text/javascript" src="/static/js/ui.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('textarea#microblog').autoResize({
@@ -35,29 +38,7 @@ $(function(){
 <!--欢迎页面-->
 <div class="welcome">欢迎 {{$smarty.session.user.nickname}} 来到Swoole PHP技术社区</div>
 <!--欢迎页面-->
-<div class="mailbox">
-<div class="title">我的微博客</div>
-<div class="mailcontent">
-<form id="form1" name="form1" method="post" action="/person/post_mblog/">
-  <textarea name="microblog" cols="" rows="3" id="microblog" class="microblog"></textarea>
-  <div style="margin-top:6px;">
-  <ul id="ul_m">
-<li><img src="/static/images/star_1.png" width="16" height="16" /> 星标</li>
-<li><img src="/static/images/picture.png" width="16" height="16" /> 图片</li>
-<li><img src="/static/images/music_beam.png" width="16" height="16" /> 音乐</li>
-<li><img src="/static/images/film.png" width="16" height="16" /> 视频</li>
-</ul>
-&nbsp;&nbsp;
-<label style="float:right; margin-right:3px;">
-  <button type="submit" class="btn1"><img src="/static/images/ipod_cast.png" width="16" height="16" />发布微博客</button>
-  </label>
-</div>
-<div>
-
-</div>
-</form>
-</div>
-</div>
+{{include file=block/mblog_write.html}}
 <!--邮件-->
 <div class="mailbox">
 <div class="title">我的邮箱</div>

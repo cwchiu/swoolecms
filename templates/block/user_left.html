@@ -12,9 +12,16 @@
   {{if !empty($user.blog)}}博客地址：<br />
   <a href="{{$user.blog}}">{{$user.blog}}</a>{{/if}}
 </p>
-    <ul class="dot_ul" style="margin-top:20px; border-top:1px dashed #000; padding-top:10px">
+<p class="topline">
+<h2>我的相册（<a href="/userhome/photo/?uid={{$user.id}}">{{$myphoto_count}}张照片</a>）</h2>
+{{if $myphoto}}
+<a href="/userhome/photo/?uid={{$user.id}}"><img src="{{$myphoto.imagep}}" class="avatar" /></a>
+{{/if}}
+</p>
+<div class="clear"></div>
+  <ul class="dot_ul topline">
      {{foreach item=v from=$blog_cates}}
-     <li><a href="/blog/category/?cid={{$v.id}}">{{$v.name}} ({{$v.num}})</a></li>
+<li><a href="/blog/category/?cid={{$v.id}}">{{$v.name}} ({{$v.num}})</a></li>
       {{/foreach}}
     </ul>
 </div>

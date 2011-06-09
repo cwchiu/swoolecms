@@ -244,3 +244,8 @@ background:url(/static/images/CMT_iPhone_002.png) no-repeat 10px 0; padding:10px
     border: 1px solid #D5B5AF;
     padding: 2px;
 }
+.topline{
+	border-top:1px dashed #000; 
+	margin-top:20px; 
+	padding-top:10px
+}

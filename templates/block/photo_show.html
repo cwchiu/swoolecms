@@ -1,0 +1,40 @@
+<script langugae="javascript">
+<!--
+function changephoto(event,o){	
+	event = arguments[0] || window.event;
+	if (event.offsetX == undefined) {
+		var evtOffsets = getOffset(event);
+		event.offsetX = evtOffsets.offsetX;
+		event.offsetY = evtOffsets.offsetY;
+	}
+	if(event.offsetX>=o.clientWidth/2){
+		window.location.href=scan_base_url+nextid[0]['id'];
+	}else{
+		window.location.href=scan_base_url+perid[0]['id'];
+	}
+}
+
+function changestyle(event) {
+	var o = obj('photoshow');
+	if(document.all){
+		var event = window.event;
+		if(event.offsetX>=o.clientWidth/2){
+			o.style.cursor="url("+"/static/images/next.cur"+")";
+		}else{
+			o.style.cursor="url("+"/static/images/pre.cur"+")";
+		}
+	}else{
+		var evtOffsets = getOffset(event);
+		event.offsetX = evtOffsets.offsetX;
+		event.offsetY = evtOffsets.offsetY;
+		if (event.offsetX >= o.clientWidth / 2)
+			o.style.cursor = "url(/static/images/next.cur) , auto";
+		else
+			o.style.cursor = "url(/static/images/pre.cur) , auto";		
+	}
+}
+//-->
+</script>
+<div class="ml75">
+<div><img class="photo" src="{{$photo.picture}}" id="photoshow" onclick="changephoto(event,this)" onmousemove="changestyle(event)" /></div>
+</div>

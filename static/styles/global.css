@@ -7,7 +7,9 @@ table{margin:0 auto;}
 img{vertical-align:top;border:none;}
 ol,ul {list-style:none;}   
 caption,th {text-align:left;}  
-h1,h2,h3,h4,h5,h6 {font-size:12px; font-weight:normal;}   
+h1{font-size:16px;}
+h2{font-size:14px;}
+h3,h4,h5,h6 {font-size:12px; font-weight:normal;}  
 q:before,q:after {content:'';}   
 abbr,acronym {border:0;}
 address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}   

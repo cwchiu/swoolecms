@@ -23,28 +23,16 @@ window.onload = function(){
 <div class="ilayout">
 {{include file='block/user_left.html}}
 <div class="icontent">
-<!--欢迎页面-->
-<!--欢迎页面-->
-<div class="microblog" id='mblog_list'>
-  <ul>
-    {{foreach from=$mblogs item=v}}
-    <li>
-      <div class="userCont">
-        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content|mbcut:150:' ...'}}</div>
-      <div>
-        <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有{{$v.reply_count}}条评论</a></span>
-        </div>
-      </li>
+<div class="welcome">{{$user.nickname}}的相册</div>
+    <div class="my_photpic2 clearfix" style="margin-top:15px;">
+    {{foreach item=p key=k from=$photo}}
+    <div class="my-photup">
+    <div class="my-photup-cover">
+    <a href="/userhome/photo/?uid={{$user.id}}&id={{$p.id}}"> <img src="{{$p.imagep}}" /></a></div>
+    </div>
+    {{if $k%4==3}}<div class="clear"></div>{{/if}}
     {{/foreach}}
-    </ul>
-  <div class="clear"></div>
-  <div class="pages">{{$pager.render}}</div>
-</div>
-
-<!--邮件-->
-<!--邮件-->
-<!--编辑个人资料-->
-<!--编辑个人资料-->
+    </div>
 </div>
 </div>
 {{include file=footer.html}}
