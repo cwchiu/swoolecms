@@ -3,7 +3,8 @@ require 'config.php';
 require 'admin/func.php';
 require LIBPATH.'/system/Filter.php';
 Filter::request();
-//Error::dbd();
+define('HTML_STATIC',true);
+
 
 if(empty($_GET['app'])) exit;
 $app = ucwords(substr($_GET['app'],0,10));
@@ -34,11 +35,12 @@ if(!empty($_GET['id']))
     $ccate = getCategory($det['fid']);
     $php->tpl->assign("ccate",$ccate);
 
-    $comments = createModel('UserComment')->getByAid($app,$det['id']);
+    Widget::comment('News',$aid);
+
     //是否使用特殊模板
     if($ccate['tpl_detail']) $tplname = $ccate['tpl_detail'];
     if($cate['tpl_detail']) $tplname = $cate['tpl_detail'];
-    $php->tpl->assign('comments',$comments);
+
     $php->tpl->assign('det',$det);
     $php->tpl->display($tplname);
 }

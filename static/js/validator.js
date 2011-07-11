@@ -32,6 +32,36 @@ function isPhone(strValue){
 function isTel(strValue) {	
 	return (/^((0\d{2,3})-)(\d{7,8})(-(\d{1,4}))?$/).test(trim(strValue));
 }
+function isEnglish(strValue) {
+	var reg = /[A-Za-z0-9_]{6,20}/i;
+	var patt = new RegExp(reg);
+	return patt.test(strValue);
+}
+function isNickname(strValue) {
+	var reg = /^[a-z\-_\u4e00-\u9fa5]*$/gi;
+	return reg.test(trim(strValue));
+}
+function isRealname(strValue){
+	var reg = /^[\u4e00-\u9fa5]+$/i;
+	return reg.test(trim(strValue));
+}
+function isPassword(strValue) {
+	var reg = strValue.length;
+	if(reg >= 6 && reg <= 12 ){
+	   return true;
+	}else{
+		return false;
+	}
+}
+function isArea(strValue) {
+	var reg = /^0\d{2,3}$/;
+	var patt = new RegExp(reg);
+	return patt.test(strValue);
+}
+function isNumber(strValue){
+	var reg = /^\d+$/;
+	return reg.test(trim(strValue));
+}
 /**
  * 获取单选框的值
  * 
@@ -101,38 +131,6 @@ function chkCheckBoxChs(objNam, txt) {
 		return false;
 	}
 	return true;
-}
-
-function isEnglish(strValue) {
-	var reg = /[A-Za-z0-9_]{6,20}/i;
-	var patt = new RegExp(reg);
-	return patt.test(strValue);
-}
-function isNickname(strValue) {
-	var reg = /^[a-z\-_\u4e00-\u9fa5]*$/gi;
-	return reg.test(trim(strValue));
-}
-function isRealname(strValue){
-	var reg = /^[\u4e00-\u9fa5]+$/i;
-	return reg.test(trim(strValue));
-}
-function isPassword(strValue) {
-	var reg = strValue.length;
-	if(reg >= 6 && reg <= 12 ){
-	   return true;
-	}else{
-		return false;
-	}
-}
-function isArea(strValue) {
-	var reg = /^0\d{2,3}$/;
-	var patt = new RegExp(reg);
-	return patt.test(strValue);
-}
-
-function isNumber(strValue){
-	var reg = /^\d+$/;
-	return reg.test(trim(strValue));
 }
 function error_handle(o,msg){
 	o.focus();

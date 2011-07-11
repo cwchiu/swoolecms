@@ -2,15 +2,15 @@
     <ul>
     {{foreach from=$mblogs item=v}}
         <li>
-        <div class="userPic" style="max-width:150px"> <a href="/page/user/?uid={{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}"></a>
+        <div class="userPic" style="max-width:150px"> <a href="/page/user/uid-{{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}"></a>
         </div>
         <div class="userCont">
-        <a href="/page/user/?uid={{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}<br />
+        <a href="/page/user/uid-{{$v.uid}}">{{$v.nickname}}</a>：{{$v.content}}<br />
         {{if $v.url_id!=0}}<img src="/static/images/world.png" align="absmiddle" /> 
           <a href="{{$urls[$v.url_id].url}}" target="_blank">{{$urls[$v.url_id].title}}</a><br />
         {{/if}}
-        <span>{{$v.addtime}} <a href="/mblog/detail/?id={{$v.id}}">共有<strong class="orange">{{$v.reply_count}}</strong>条评论</a> | <a href="/mblog/detail/?id={{$v.id}}">评论</a>
-        <a href="/person/friend/?add={{$v.uid}}">加为好友</a> <a href="/person/sendmail/?to={{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span>        
+        <span>{{$v.addtime}} <a href="/mblog/detail/{{$v.id}}">共有<strong class="orange">{{$v.reply_count}}</strong>条评论</a> | <a href="/mblog/detail/{{$v.id}}">评论</a>
+        <a href="/person/friend/add-{{$v.uid}}">加为好友</a> <a href="/person/sendmail/to-{{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span>        
         {{if $v.pic_id!=0}}
         <div><a href="{{$pics[$v.pic_id].picture}}" rel="facebox"><img src="{{$pics[$v.pic_id].imagep}}" class="avatar" /></a>
         </div>{{/if}}        

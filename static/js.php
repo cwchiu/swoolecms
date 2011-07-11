@@ -8,7 +8,6 @@ if ($client_time<$now and $client_time >$now_list){
 }else{
     header('Last-Modified: '.gmdate('D, d M Y H:i:s', $now).' GMT', true, 200);
 }
-
 $js['sh'] = array('/static/scripts/shCore.js',
                 '/static/scripts/shBrushBash.js',
                 '/static/scripts/shBrushCpp.js',
@@ -27,8 +26,7 @@ $js['sh'] = array('/static/scripts/shCore.js',
                 '/static/scripts/shBrushSql.js',
                 '/static/scripts/shBrushVb.js',
                 '/static/scripts/shBrushXml.js');
-
-define("WEBPATH",str_replace("\\","/",dirname(__FILE__)));
+define("WEBPATH",realpath('../'));
 if(isset($_GET['file'])) echo getJS(explode('|',$_GET['file']));
 elseif(isset($_GET['g'])) echo getJS($js[$_GET['g']]);
 

@@ -27,53 +27,39 @@ jQuery(document).ready(function($){
 <div id='main'>
 <div id='mleft'>
 {{include file=block/mblog_list.html}}
-<h2>技术资讯 </h2>
-<ul>
-{{foreach item=v from=$list}}
-<li><a href="{{magic func=link app=News id=$v.id}}" class="news"><strong>{{$v.title}}</strong></a>
-<span class="date">{{$v.addtime|mbcut:10}}</span>
-<p>
-{{$v.des}}...
-</p>
-</li>
-{{/foreach}}
-</ul>
 </div>
 
 <div id='mright'>
 <!--{{magic func=list cid=38 num=10}}-->
-<h3 style="margin-left:5px;"><a href="http://swoole.googlecode.com/files/swoole.0.99.3.zip"><img src="/static/images/world.png" width="16" height="16" /> 最新版本Swoole-0.99.zip</a></h3>
-<h3 style="margin-left:5px;"><img src="/static/images/world.png" /> <a href="http://swoole.googlecode.com/files/Swoole文档.CHM">开发者手册 Swoole.chm</a></h3>
-<h3 style="margin-left:5px;"><img src="/static/images/world.png" /> <a href="/about.html">关于Swoole及社区</a></h3>
-<h3 style="margin-left:5px;"><img src="/static/images/group.png" /> <a href="/page/chatroom/">进入聊天室</a></h3>
+<h3><a href="http://swoole.googlecode.com/files/swoole.0.99.3.zip"><img src="/static/images/world.png" width="16" height="16" /> 最新版本Swoole-0.99.zip</a></h3>
+<h3><img src="/static/images/world.png" /> <a href="http://swoole.googlecode.com/files/Swoole文档.CHM">开发者手册 Swoole.chm</a></h3>
+<h3><img src="/static/images/world.png" /> <a href="/about.html">关于Swoole及社区</a></h3>
+<h3><img src="/static/images/group.png" /> <a href="/page/chatroom/">进入聊天室</a></h3>
+<h3>技术资讯</h3>
+<ul class="dot_ul f12">
+{{foreach item=v from=$list}}
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html" title="{{$v.title}}">{{$v.title}}</a></li>
+{{/foreach}}
+</ul>
+<!--{{magic func=list cid=27 num=10}}-->
+<h3>技术教程</h3>
+<ul class="dot_ul f12">
+{{foreach from=$list27 item=v}}
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html" title="{{$v.title}}">{{$v.title}}</a></li>
+{{/foreach}}
+</ul>
 
-<h3 style="margin-left:5px;">PHP编程常见问题</h3>
-<ul>
+<h3>PHP编程常见问题</h3>
+<ul class="dot_ul f12">
 {{foreach from=$list38 item=v}}
-<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html" title="{{$v.title}}">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>
 <!--{{magic func=list cid=19 num=15 order='id desc'}}-->
-<h3 style="margin-left:5px;">Swoole使用手册</h3>
-<ul>
+<h3>Swoole使用手册</h3>
+<ul class="dot_ul f12">
 {{foreach from=$list19 item=v}}
-<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
-{{/foreach}}
-</ul>
-
-<!--{{magic func=list cid=47 num=10}}-->
-<h3 style="margin-left:5px;">MySQL最新文章</h3>
-<ul>
-{{foreach from=$list47 item=v}}
-<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
-{{/foreach}}
-</ul>
-
-<!--{{magic func=list cid=48 num=10}}-->
-<h3 style="margin-left:5px;">Linux最新文章</h3>
-<ul>
-{{foreach from=$list48 item=v}}
-<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html" title="{{$v.title}}">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>
 

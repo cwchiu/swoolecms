@@ -601,16 +601,6 @@ span.ico5{
 .reply_edit_btn input{
 	margin-right:3px;
 	}
-.btn{
-	background:url(../images/btn.jpg) no-repeat;
-	width:95px;
-	height:31px;
-	line-height:25px;
-	text-align:center;
-	font-weight:bold;
-	color:#fff;
-	margin-top: 5px;
-	}
 .reply_box{
 	clear:both;	
 }
@@ -771,7 +761,7 @@ span.ico5{
 	height:36px;
 	font-size:0;
 	cursor:pointer;
-	}
+}
 .post_content .post_step2{
 	padding:20px 5px;
 	}

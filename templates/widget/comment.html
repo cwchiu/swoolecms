@@ -1,0 +1,23 @@
+<div class="comment" id="comment">
+{{foreach item=v from=$comments}}
+<div class='comment_li'>
+<a href="/page/user/uid={{$v.uid}}"><img src="{{$v.avatar}}" width="80" align="left" class="avatar photo">
+{{$v.uname}}</a>（<span class="date">{{$v.addtime|howLongAgo}}</span>）：{{$v.content|nl2br}}<br />
+</div>
+<div class="clear"></div>
+{{/foreach}}
+<div class='comment_li'>
+<form id="comment_form" name="comment_form" method="post" action="" onsubmit="post_comment();return false;">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><textarea name="comment_content" cols="54" rows="5" id="comment_content"></textarea>
+      <input name="app" type="hidden" id="app" value="{{$app}}" />
+      <input name="aid" type="hidden" id="aid" value="{{$det.id}}" /></td>
+    </tr>
+  <tr>
+    <td><button class="btn" type="button" onclick="post_comment()">发表评论</button></td>
+    </tr>
+</table>
+</form>
+</div>
+</div>

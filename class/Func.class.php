@@ -1,7 +1,7 @@
 <?php
 class Func
 {
-    function mblog_link($id,$content,$maxlen=30)
+    function mblog_link($id,$content,$maxlen=30,$return_title=false)
     {
         $title = mb_substr($content,0,$maxlen);
         $end = mb_strpos($title,'。');
@@ -9,17 +9,19 @@ class Func
         if($end===false) $end = mb_strpos($title,'？');
         if($end===false) $end = mb_strpos($title,'，');
         if($end===false) $end = mb_strpos($title,',');
-        $html = "<a href='/mblog/detail/?id={$id}'>";
+        $html = "<a href='/mblog/detail/{$id}'>";
 
         if($end===false or $end>$maxlen)
         {
             $html .= $title;
-            return $html.'</a>'.mb_substr($content,$maxlen);
+            if($return_title) return $html.'</a>';
+            else return $html.'</a>'.mb_substr($content,$maxlen);
         }
         else
         {
             $html.=mb_substr($content,0,$end);
-            return $html.'</a>'.mb_substr($content,$end);
+            if($return_title) return $html.'</a>';
+            else return $html.'</a>'.mb_substr($content,$end);
         }
     }
 

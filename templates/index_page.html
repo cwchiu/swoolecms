@@ -8,6 +8,16 @@
 <meta name="Copyright" content="Swoole.com" />
 <meta name="description" content="Swoole是一个PHP高级开发框架" />
 <meta name="keywords" content="PHP,Web,PHP社区,PHP程序员,PHP高级,Go语言,Python语言,Golang" />
+<script src="/static/js.php?g=sh" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="/static/css/facebox.css"/>
+<link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
+<script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = '/static/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+	$.facebox.settings.closeImage = '/static/images/closelabel.png';
+    $.facebox.settings.loadingImage = '/static//images/loading.gif';
+</script>
 </head>
 
 <body>
@@ -21,11 +31,11 @@
 </div>
 
 <div id='mright'>
-    <!--{{magic func=list name=re app=Cpage cid=$det.cid select=id,title,pagename}}-->
-    <h3 style="margin-left:5px;"></h3>
-    <ul>
+    <!--{{magic func=list name=re app=Cpage cid=$det.cid select=id,title,pagename order=id num=100}}-->
+    <h3></h3>
+    <ul class="dot_ul f12">
     {{foreach from=$re item=v}}
-    <li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/{{$v.pagename}}.html">{{$v.title}}</a></li>
+    <li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/{{$v.pagename}}.html" title="{{$v.title}}">{{$v.title}}</a></li>
     {{/foreach}}
     </ul>
 </div>

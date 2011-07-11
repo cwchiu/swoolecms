@@ -27,7 +27,6 @@
 }
 
 #main{	
-	font:14px "微软雅黑,Arial, Helvetica, sans-serif";
 	line-height:160%;
 }
 
@@ -44,6 +43,9 @@
 	color:#000;
 	margin-top:5px;
 }
+#content p{
+	text-indent:28px;
+}
 #mleft ul{	
 }
 #mleft ul li{
@@ -54,6 +56,9 @@
 	width:240px;
 	float:left;
 	padding-left:5px;
+}
+#mright h3{
+	margin-left:5px;
 }
 #pos{
 	height:30px;

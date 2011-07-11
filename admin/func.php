@@ -97,7 +97,7 @@ HTML;
 function cms_link(&$params,&$smarty)
 {
     global $php;
-    if($php->config->cms['html_static'])
+    if(HTML_STATIC)
     {
         if(empty($params['use'])) return WEBROOT."/{$params['app']}/{$params['id']}.html";
         elseif($params['use']=='list') return WEBROOT."/{$params['app']}/list_{$params['id']}_1.html";

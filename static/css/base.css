@@ -41,8 +41,15 @@ li {
 
 .dot_ul li{
 	list-style: disc inside url("../images/li.gif");
+	height: 28px;
+    overflow: hidden;
 }
-
+.f12{
+	font-size:12px;
+}
+.f14{
+	font-size:14px;
+}
 .position {
 	color: #7c3628;
 	font-size: 12px;
@@ -127,13 +134,10 @@ li {
 .clear {
 	clear: both;
 }
-
 .date {
 	color: #777;
 	font-size:12px;
 }
-
-.btn{width:106px;height:37px;background:url(../images/btnbg.png) no-repeat 0 2px;cursor:pointer;border:none; color:#FFF; font-size:16px; font-weight:bold;font-family:"微软雅黑",Arial, Helvetica, sans-serif;}
 .pager {
     color: #2E6AB1;
     font-size: 14px;
@@ -178,7 +182,7 @@ li {
 	font-weight: bold;
 }
 
-a {color:#0069ca;text-decoration:none;}
+a {color:#005A98;text-decoration:none;}
 a:hover {color:#FF6633;text-decoration:underline;}
 a:active {color:#0069ca;}
 
@@ -443,12 +447,16 @@ a:active {color:#0069ca;}
 	color: #16679a;
 }
 
-.btn1,.btn1:hover{
-    background-color:#E6EFC2;
-    border:1px solid #C6D880;
-    color:#529214;
-	padding:3px;
-	border-radius:5px;
+.btn {
+    background: url("../images/btn.jpg") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 31px;
+    line-height: 25px;
+    margin-top: 5px;
+    text-align: center;
+    width: 95px;
+	border:none;	
 }
 
 .blu_12:link {
@@ -552,13 +560,31 @@ ld {
 	width:80px;
 }
 .comment{
-	font-weight: bold;
+	font-size:13px;	
+	width:670px;
     list-style: none outside none;
-    margin: 15px 0 5px;
+	margin:0 auto;
     padding: 10px 5px 10px 10px;
 	background: none repeat scroll 0 0 #F4F4F4;
 	border: 1px solid #DDDDDD;
 }
+.comment_li{
+	border-bottom:1px dotted #ccc;
+	height:auto;
+	min-height:85px;
+	padding-bottom:12px;
+	margin-top:12px;
+}
+.comment_li div{
+	float:left;
+}
+.comment .left{
+	width:140px;
+}
+.comment .right{
+	width:500px;
+}
+
 .comment-list, .children {
 	margin: 0;
 	padding: 0;

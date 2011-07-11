@@ -21,7 +21,7 @@
 {{else}}
 <ul>
 {{foreach item=v from=$list}}
-<li class="hei28"><a href="/cms.php?app=News&id={{$v.id}}&q={{$smarty.get.k}}" class="news">{{$v.title}}</a>
+<li class="hei28"><a href="/News/{{$v.id}}.html" class="news">{{$v.title}}</a>
 <span class="date">{{$v.addtime|mbcut:10}}</span></li>
 {{/foreach}}
 </ul>

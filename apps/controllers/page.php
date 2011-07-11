@@ -89,15 +89,12 @@ class page extends FrontPage
             //微博客列表
             $this->getMblogs();
 
-            $gets['select'] = 'id,title,substring(content,1,1000) as des,addtime';
+            $gets['select'] = 'id,title,cname,cid,addtime';
             $gets['limit'] = 10;
             $gets['fid'] = 9;
             $model = createModel('News');
             $list = $model->gets($gets);
-            foreach($list as &$l)
-            {
-                $l['des'] = mb_substr(strip_tags($l['des']),0,120);
-            }
+
             $this->swoole->tpl->assign('list',$list);
             $this->swoole->tpl->display('index.html');
         }
@@ -253,8 +250,9 @@ class page extends FrontPage
 
     function test()
     {
-        echo "hello world!";
-        $this->view->showTrace();
+        $content = file_get_contents(WEBPATH.'/static/test.htm');
+        echo Filter::remove_xss($content);
+        $this->showTrace();
     }
 
     private function fulltext($q,$page)

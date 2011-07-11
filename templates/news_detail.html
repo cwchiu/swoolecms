@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/main.js"></script>
 <script type="text/javascript" src="/static/js/facebox.js"></script>
-<script src="/js.php?g=sh" type="text/javascript"></script>
+<script src="/static/js.php?g=sh" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="/static/css/facebox.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
 <link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
@@ -53,36 +53,36 @@
   <img src="/static/images/ori.gif" alt="原创" width="22" height="25" align="top" /> {{/if}}{{$det.title}}</span></h2>
   <p>发布时间：{{$det.addtime|mbcut:10}} 　来源：{{$det.source|default:'swoole.com'}}　　编辑：{{$det.uname|default:'管理员'}}
      {{if $det.copyfrom}}<br />转载自：<a href="{{$det.copyfrom}}" target="_blank">{{$det.copyfrom}}</a> {{/if}}</p>
-     <style>
-	 #ckepop a {
-	cursor: pointer
-	}	
-	#ckepop a:link {
-		color: #00C;
-		text-decoration: none;
-	}	
-	#ckepop a:visited {
-		color: #00C;
-		text-decoration: none;
-	}	
-	#ckepop a:hover {
-		color: #FFFFFF;
-		text-decoration: none;
-		background: #003399;
-	}	
-	#ckepop a:active {
-		color: #FFFFFF;
-		text-decoration: none;
-		background: #FF9933;
-	}
-	.jiathis_txt{
-		float: left;
-		font-size: 12px;
-		line-height: 18px !important;
-		text-decoration: none;
-		color:#00c;
-	}
-	 </style>
+ <style>
+ #ckepop a {
+cursor: pointer
+}	
+#ckepop a:link {
+    color: #00C;
+    text-decoration: none;
+}	
+#ckepop a:visited {
+    color: #00C;
+    text-decoration: none;
+}	
+#ckepop a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #003399;
+}	
+#ckepop a:active {
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #FF9933;
+}
+.jiathis_txt{
+    float: left;
+    font-size: 12px;
+    line-height: 18px !important;
+    text-decoration: none;
+    color:#00c;
+}
+ </style>
      <div id="ckepop">
         <a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
         <a class="jiathis_button_tools_1"></a>
@@ -91,53 +91,13 @@
         <a class="jiathis_button_tools_4"></a>
     </div><br />
   <div id='content'>{{$det.content}}</div>
-  <div id='comment'>
-  <ol class="comment-list">		
-  {{foreach item=v from=$comments}}		
-	<li class="comment">
-		<div class="comment-author">
-			<img class="avatar photo" src="{{$v.avatar}}" alt="">
-            <cite class="fn">{{$v.uname}}</cite> <span class="says">says:</span>
-         </div>            
-		<div class="comment-meta commentmetadata">
-        	{{$v.addtime}}	
-	    </div>
-		<div class="comment-content">						
-			<p>{{$v.content}}</p>
-		</div>
-		<div class="reply">
-	</div>	
-	</li>
-    {{/foreach}}
-    </ol>
-  <form id="comment_form" name="comment_form" method="post" action="">
-    <table border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="45" valign="top">内容</td>
-        <td><textarea name="comment_content" cols="54" rows="5" id="comment_content"></textarea></td>
-      </tr>
-      <tr>
-        <td width="45">验证码</td>
-        <td><input name="authcode" type="text" id="authcode" size="10" />
-          <img src="/swoole_plugin/media/gd.php" name="authcode_img" class="" id="authcode_img" />
-          <input name="app" type="hidden" id="app" value="{{$app}}" />
-          <input name="aid" type="hidden" id="aid" value="{{$det.id}}" /></td>
-      </tr>
-      <tr>
-        <td width="45">&nbsp;</td>
-        <td><label>
-          <input type="button" name="button" id="button" value="发表评论" onclick="post_comment()" />
-        </label></td>
-      </tr>
-    </table>
-   </form>
-  </div>
+{{include file=widget/comment.html}}
 </div>
 </div>
 
 <div id='mright'>
 <!--{{magic func=cate app=News name=cates fid=$det.fid}}-->
-<h3 style="margin-left:5px;">相关分类</h3>
+<h3>相关分类</h3>
 <ul>
 {{foreach from=$cates item=v}}
 <li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/News/list_{{$v.id}}.html">{{$v.name}}</a></li>
@@ -145,10 +105,10 @@
 </ul>
 
 <!--{{magic func=list name=about cid=$det.cid num=10}}-->
-<h3 style="margin-left:5px;">相关文章</h3>
-<ul>
+<h3>相关文章</h3>
+<ul class="f12 dot_ul">
 {{foreach from=$about item=v}}
-<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html">{{$v.title}}</a></li>
+<li><a href="{{$smarty.const.WEBROOT}}/News/{{$v.id}}.html" title="{{$v.title}}">{{$v.title}}</a></li>
 {{/foreach}}
 </ul>
 </div>

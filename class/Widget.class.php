@@ -54,4 +54,23 @@ class Widget
         self::$swoole->tpl->assign('nextid',$nextid);
         self::$swoole->tpl->assign('photo',$photo);
     }
+
+    static function comment($app,$aid)
+    {
+        $model = createModel('UserComment');
+        $userinfo = createModel('UserInfo');
+
+        $gets['leftjoin'] = array($userinfo->table,$userinfo->table.'.id='.$model->table.'.uid');
+	    $gets['select'] = 'content,uid,uname,avatar,addtime';
+	    $gets['aid'] = $aid;
+	    $gets['app'] = $app;
+	    $gets['order'] = 'addtime desc';
+	    $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
+	    $gets['pagesize'] = Swoole::$config['comment']['pagesize'];
+	    $comments = $model->gets($gets,$pager);
+	    $pager->fragment = 'comment';
+	    $pager = array('total'=>$pager->total,'render'=>$pager->render());
+        self::$swoole->tpl->assign('comments',$comments);
+        self::$swoole->tpl->assign('pager',$pager);
+    }
 }

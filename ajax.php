@@ -7,8 +7,7 @@ $php->runAjax();
 function ajax_comment()
 {
     session();
-    if(!$_SESSION['isLogin']) return 'nologin';
-    if(!isset($_POST['authcode']) or strtoupper($_POST['authcode'])!==$_SESSION['authcode']) return 'noauth';
+    if(!$_SESSION['isLogin']) return 'nologin';   
     $post['aid'] = (int)$_POST['aid'];
     $post['app'] = $_POST['app'];
     $post['content'] = $_POST['content'];
@@ -25,7 +24,12 @@ function ajax_comment()
         $m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
     }
     createModel('UserComment')->put($post);
-    return 'ok';
+    $return = array('id'=>$_SESSION['user']['id'],
+                    'addtime'=>Swoole_tools::howLongAgo(date('Y-m-d H:i:s')),
+                    'nickname'=>$_SESSION['user']['nickname']);
+    if(empty($_SESSION['user']['avatar'])) $return['avatar'] = Swoole::$config['user']['default_avatar'];
+    else $return['avatar'] = $_SESSION['user']['avatar'];
+    return $return;
 }
 
 function ajax_ask_best()

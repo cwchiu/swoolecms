@@ -62,7 +62,7 @@ function check_change(){
   {{else}}
   <li class="note">
   <img src="/static/images/page_2.png" width="16" height="16" />
-  <a href="/person/notes/?id={{$v.id}}">{{$v.title|mbcut:14:' ...'}}</a></li>
+  <a href="/person/notes/{{$v.id}}">{{$v.title|mbcut:14:' ...'}}</a></li>
   {{/if}}
   {{/foreach}}
 </ul>

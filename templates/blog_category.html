@@ -43,11 +43,11 @@ $(function(){
   {{foreach from=$blogs item=v}}
   <li>
     <div class="userCont">
-      <a href="/blog/detail/?id={{$v.id}}" class="title">{{$v.title}}</a>
+      <a href="/blog/detail/{{$v.id}}" class="title">{{$v.title}}</a>
       <p class="desc">{{$v.des}}...</p>
-       <span>发布于：{{$v.addtime}} <a href="/blog/detail/?id={{$v.id}}#comment">
+       <span>发布于：{{$v.addtime}} <a href="/blog/detail/{{$v.id}}#comment">
        <img src="/static/images/icon_comment.gif" width="17" height="17" />共有{{$v.reply_count}}条评论</a>
-         <a href="/blog/detail/?id={{$v.id}}"><img src="/static/images/icon_arrow.gif" />{{$v.look_count}}人阅读</a>
+         <a href="/blog/detail/{{$v.id}}"><img src="/static/images/icon_arrow.gif" />{{$v.look_count}}人阅读</a>
          </span>
        </div>      
     </li>

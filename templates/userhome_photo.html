@@ -28,7 +28,7 @@ window.onload = function(){
     {{foreach item=p key=k from=$photo}}
     <div class="my-photup">
     <div class="my-photup-cover">
-    <a href="/userhome/photo/?uid={{$user.id}}&id={{$p.id}}"> <img src="{{$p.imagep}}" /></a></div>
+    <a href="/userhome/photo/uid-{{$user.id}}-id-{{$p.id}}"> <img src="{{$p.imagep}}" /></a></div>
     </div>
     {{if $k%4==3}}<div class="clear"></div>{{/if}}
     {{/foreach}}

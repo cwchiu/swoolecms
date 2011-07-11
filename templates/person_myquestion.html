@@ -54,7 +54,7 @@
 
 {{foreach  item=m from=$id}} 
       <label>
-       {{$m.title|truncate:50}}<a href="/person/logs/?id={{$m.id}}">修改</a><a href="/person/logmanage/?del={{$m.id}}">删除</a> <br/>
+       {{$m.title|truncate:50}}<a href="/person/logs/{{$m.id}}">修改</a><a href="/person/logmanage/?del={{$m.id}}">删除</a> <br/>
        </label>
       {{/foreach}}
 

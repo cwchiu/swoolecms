@@ -4,7 +4,7 @@ class UserComment extends Model
 	//Here write Database table's name
 	var $table = 'user_comment';
 
-	function getByAid($app,$aid)
+	function getByAid($app,$aid,&$pager)
 	{
 	    $gets['leftjoin'] = array(createModel('UserInfo')->table,createModel('UserInfo')->table.'.id='.$this->table.'.uid');
 	    $gets['select'] = 'content,uid,uname,avatar,addtime';

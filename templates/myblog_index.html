@@ -39,7 +39,7 @@
 		<td height="24" align="center">{{$list[ol].id}}</td>
         <td height="24" align="left">{{$list[ol].title|mbcut:20:"...":true}}</td>		
 		<td height="24" align="center">{{$list[ol].addtime}}</td>
-		<td height="24" align="center"><a href="/myblog/write/?id={{$list[ol].id}}"><img src="/static/images/application_edit.png" width="16" height="16" /></a>
+		<td height="24" align="center"><a href="/myblog/write/{{$list[ol].id}}"><img src="/static/images/application_edit.png" width="16" height="16" /></a>
         &nbsp;&nbsp;<a href="?del={{$list[ol].id}}" onclick="return confirm('您确定要删除此内容？');"><img src="/static/images/cross.png" width="16" height="16" /></a>&nbsp;</td>
 	</tr>
 	{{/section}}
@@ -50,7 +50,7 @@
 
 {{foreach  item=m from=$id}} 
       <label>
-       {{$m.title|truncate:50}}<a href="/person/logs/?id={{$m.id}}">修改</a><a href="/person/logmanage/?del={{$m.id}}">删除</a> <br/>
+       {{$m.title|truncate:50}}<a href="/person/logs/{{$m.id}}">修改</a><a href="/person/logmanage/?del={{$m.id}}">删除</a> <br/>
        </label>
       {{/foreach}}
 
