@@ -216,21 +216,23 @@ function check_input(input){
 			return false;
 		}
 	}
+
+	// 检查值的类型 -regx，自定义正则检查
+	if (input.getAttribute('regx') && input.value!='') {
+		attr = input.getAttribute('regx');
+		qs = attr.split('|');
+		var patt = eval(qs[0]);
+		if (!patt.test(trim(input.value))) {
+			error_handle(input,qs[1]);
+			return false;
+		}
+	}
 	
 	// 检查异步请求的情况Ajax
 	if (input.getAttribute('ajax')) {
 		attr = input.getAttribute('ajax');
 		eval(attr+'(input);');
-	}
-	
-	for(var j=0;j<custom_filter.length;j++){
-		if(input.id==custom_filter[j].name || input.name==custom_filter[j].name){
-			if(custom_filter[j].callback(input)==false){
-				error_handle(input,custom_filter[j].msg);
-				return false;
-			}
-		}
-	}
+	}	
 	return true;
 }
 function checkform(event, oform) {
@@ -242,6 +244,12 @@ function checkform(event, oform) {
 		var r = check_input(elms[i]);
 		if(r==false) return false;
 		else if(r!=false) right_handle(elms[i]);
+	}
+	for(var i=0;i<custom_filter.length;i++){		
+		if(!custom_filter[i].callback(custom_filter[i].name)){
+			error_handle(document.getElementsByName(custom_filter[i].name)[0],custom_filter[i].msg);
+			return false;
+		}
 	}
 	return true;
 }

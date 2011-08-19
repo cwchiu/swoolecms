@@ -446,7 +446,6 @@ a:active {color:#0069ca;}
 	line-height: 160%;
 	color: #16679a;
 }
-
 .btn {
     background: url("../images/btn.jpg") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
@@ -458,7 +457,13 @@ a:active {color:#0069ca;}
     width: 95px;
 	border:none;	
 }
-
+.btn1,.btn1:hover{
+    background-color:#E6EFC2;
+    border:1px solid #C6D880;
+    color:#529214;
+	padding:3px;
+	border-radius:5px;
+}
 .blu_12:link {
 	color: #16679a;
 	text-decoration: none;
@@ -658,4 +663,11 @@ a.title:hover {
 }
 .photo{
     border-radius:5px;
+}
+.snssina {
+    background: url("../images/oauthlogo.gif") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 21px;
+	margin-top:6px;
+    width: 124px;
 }

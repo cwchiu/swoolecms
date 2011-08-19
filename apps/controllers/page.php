@@ -7,6 +7,54 @@ class page extends FrontPage
     {
         parent::__construct($swoole);
     }
+    function oauth()
+    {
+        if(empty($_GET['s']) or $_GET['s']=='sina')
+        {
+            session();
+            require_once(WEBPATH.'/class/WeiboOAuth.class.php' );
+            $oauth = new WeiboOAuth(WeiBo_AKEY,WeiBo_SKEY);
+            $keys = $oauth->getRequestToken();
+            $_SESSION['oauth_keys'] = $keys;
+            $_SESSION['oauth_serv'] = 'sina';
+            $login_url = $oauth->getAuthorizeURL($keys['oauth_token'],false,WEBROOT.'/page/oauth_callback/');
+            Swoole_client::redirect($login_url);
+        }
+    }
+    function oauth_callback()
+    {
+        session();
+        if($_SESSION['oauth_serv']=='sina')
+        {
+            require_once(WEBPATH.'/class/WeiboOAuth.class.php');
+            $oauth = new WeiboOAuth(WeiBo_AKEY,WeiBo_SKEY,$_SESSION['oauth_keys']['oauth_token'],$_SESSION['oauth_keys']['oauth_token_secret']);
+            $_SESSION['last_key'] = $oauth->getAccessToken($_REQUEST['oauth_verifier']);
+
+            $client = new WeiboClient(WeiBo_AKEY,WeiBo_SKEY,$_SESSION['last_key']['oauth_token'],$_SESSION['last_key']['oauth_token_secret']);
+            $userinfo = $client->verify_credentials();
+            if(!isset($userinfo['id'])) return Swoole_js::js_back("登录错误");
+            $model = createModel('UserInfo');
+            $username = 'sina_'.$userinfo['id'];
+            $u = $model->get($username,'username')->get();
+            //不存在
+            if(empty($user))
+            {
+                $u['username'] = $username;
+                $u['nickname'] = $userinfo['name'];
+                $u['avatar'] = $userinfo['profile_image_url'];
+                list($u['province'],$u['city']) = explode(' ',$userinfo['location']);
+                //插入到表中
+                $uid = $model->put($u);
+            }
+            else $uid = $u['id'];
+
+            //写入SESSION
+            $_SESSION['isLogin'] = 1;
+            $_SESSION['user_id'] = $uid;
+            $_SESSION['user'] = $u;
+            Swoole_client::redirect(WEBROOT."/person/index/");
+        }
+    }
     function flist()
     {
         //Error::dbd();
@@ -250,9 +298,24 @@ class page extends FrontPage
 
     function test()
     {
-        $content = file_get_contents(WEBPATH.'/static/test.htm');
-        echo Filter::remove_xss($content);
-        $this->showTrace();
+        $me = createModel('Me');
+        if($_POST)
+        {
+            if(!$me->checkForm($_POST,'add',$error))
+            {
+                Swoole_js::js_back($error);
+                return;
+            }
+            echo 'ok';
+        }
+        else
+        {
+            $form = $me->getForm();
+            $this->swoole->tpl->assign('head',Form::head('me_add','post','',true));
+            $this->swoole->tpl->assign('js',Form::js('me_add'));
+            $this->swoole->tpl->assign('form',$form);
+            $this->swoole->tpl->display('test.html');
+        }
     }
 
     private function fulltext($q,$page)

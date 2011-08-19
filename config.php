@@ -13,6 +13,10 @@ define("DBNAME","swoolecms");
 define("DBCHARSET","utf8");
 define("DBSETNAME",true);
 
+//OAuth
+define( "WeiBo_AKEY" , '1418646107' );
+define( "WeiBo_SKEY" , '8b1fed32df42548d71acac00dddb05bb');
+
 //应用程序的位置
 define("APPSPATH",WEBPATH.'/apps');
 define('HTML',WEBPATH.'/html');
