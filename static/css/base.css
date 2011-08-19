@@ -671,3 +671,9 @@ a.title:hover {
 	margin-top:6px;
     width: 124px;
 }
+.snsrenren {
+    background: url("../images/oauthlogo.gif") no-repeat scroll 0 -25px transparent;
+    display: inline-block;
+    height: 21px;
+    width: 111px;
+}

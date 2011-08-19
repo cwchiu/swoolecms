@@ -9,15 +9,22 @@ class page extends FrontPage
     }
     function oauth()
     {
+        session();
         if(empty($_GET['s']) or $_GET['s']=='sina')
         {
-            session();
-            require_once(WEBPATH.'/class/WeiboOAuth.class.php' );
+            require_once WEBPATH.'/class/WeiboOAuth.class.php';
             $oauth = new WeiboOAuth(WeiBo_AKEY,WeiBo_SKEY);
             $keys = $oauth->getRequestToken();
             $_SESSION['oauth_keys'] = $keys;
             $_SESSION['oauth_serv'] = 'sina';
             $login_url = $oauth->getAuthorizeURL($keys['oauth_token'],false,WEBROOT.'/page/oauth_callback/');
+            Swoole_client::redirect($login_url);
+        }
+        elseif($_GET['s']=='renren')
+        {
+            require WEBPATH.'/class/renren/config.inc.php';
+            $login_url = $oauth->getAuthorizeURL();
+            $_SESSION['oauth_serv'] = 'renren';
             Swoole_client::redirect($login_url);
         }
     }
@@ -32,25 +39,58 @@ class page extends FrontPage
 
             $client = new WeiboClient(WeiBo_AKEY,WeiBo_SKEY,$_SESSION['last_key']['oauth_token'],$_SESSION['last_key']['oauth_token_secret']);
             $userinfo = $client->verify_credentials();
-            if(!isset($userinfo['id'])) return Swoole_js::js_back("登录错误");
+            if(!isset($userinfo['id'])) return Swoole_js::js_back("请求错误");
             $model = createModel('UserInfo');
             $username = 'sina_'.$userinfo['id'];
             $u = $model->get($username,'username')->get();
-            //不存在
-            if(empty($user))
+            //不存在，则插入数据库
+            if(empty($u))
             {
                 $u['username'] = $username;
                 $u['nickname'] = $userinfo['name'];
                 $u['avatar'] = $userinfo['profile_image_url'];
                 list($u['province'],$u['city']) = explode(' ',$userinfo['location']);
                 //插入到表中
-                $uid = $model->put($u);
+                $u['id'] = $model->put($u);
             }
-            else $uid = $u['id'];
-
             //写入SESSION
             $_SESSION['isLogin'] = 1;
-            $_SESSION['user_id'] = $uid;
+            $_SESSION['user_id'] = $u['id'];
+            $_SESSION['user'] = $u;
+            Swoole_client::redirect(WEBROOT."/person/index/");
+        }
+        elseif($_SESSION['oauth_serv']=='renren')
+        {
+            if(empty($_GET['code']))  return Swoole_js::js_back("请求错误");
+            require WEBPATH.'/class/renren/config.inc.php';
+            $oauth_token = $oauth->getToken($_GET['code']);
+            $sess_key = $oauth->getSession($oauth_token->access_token);
+            $_SESSION['renren_id'] = $sess_key->user->id;
+            $username = 'renren_'.$_SESSION['renren_id'];
+            $model = createModel('UserInfo');
+            $u = $model->get($username,'username')->get();
+            //不存在，则插入数据库
+            if(empty($u))
+            {
+                $oauth->setSessionKey($sess_key->renren_token->session_key);
+                $user = $oauth->POST('users.getInfo', array($_SESSION['renren_id'],'uid,sex,name,headurl,hometown_location,work_history,university_history'));
+                if(empty($user[0])) return Swoole_js::js_back("请求错误");
+                $user = $user[0];
+                $u['username'] = $username;
+                $u['nickname'] = $user->name;
+                if($user->sex==1) $u['sex']=2;
+                else $u['sex']=1;
+                $u['avatar'] = $user->headurl;
+                $u['province'] = $user->hometown_location->province;
+                $u['city'] = $user->hometown_location->city;
+                $work_history = $user->work_history[count($user->work_history)-1];
+                $u['company'] = $work_history->company_name;
+                //插入到表中
+                $u['id'] = $model->put($u);
+            }
+            //写入SESSION
+            $_SESSION['isLogin'] = 1;
+            $_SESSION['user_id'] = $u['id'];
             $_SESSION['user'] = $u;
             Swoole_client::redirect(WEBROOT."/person/index/");
         }
