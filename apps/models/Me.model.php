@@ -28,11 +28,12 @@ class Me extends Model
         $this->_form = array(
             'name'=>array('type'=>'input','size'=>40,'empty'=>'名称不能为空','ctype'=>'realname|真实姓名只能为汉字'),
             'email'=>array('type'=>'input','size'=>80,'empty'=>'邮件不能为空','ctype'=>'email|Email格式不正确'),
-            'password'=>array('type'=>'password','size'=>40,'empty'=>'密码不能为空','ctype'=>'password|密码只能为英文字母和数字','maxlen'=>32,'minlen'=>6),
-        	'file'=>array('type'=>'upload','empty'=>'文件不能为空'),
+            'password'=>array('type'=>'password','size'=>40,'empty'=>'密码不能为空','ctype'=>'password|密码只能为英文字母和数字','maxlen'=>'32|密码不得超过32位','minlen'=>'6|密码至少6位'),
+        	//'file'=>array('type'=>'upload','empty'=>'文件不能为空'),
+            'hello'=>array('type'=>'input','empty'=>'hello不能为空','regx'=>'/\d{3}\-\d{8}/i|格式不正确'),
             'sex'=>array('type'=>'radio','option'=>$forms['sex'],'empty'=>'性别不能为空'),
             'fav'=>array('type'=>'checkbox','option'=>$forms['level'],'empty'=>'爱好不能为空'),
-            'edu'=>array('type'=>'select','option'=>$forms['education'],'empty'=>'学历不能为空'),
+            //'edu'=>array('type'=>'select','option'=>$forms['education'],'empty'=>'学历不能为空'),
         );
     }
 	/**

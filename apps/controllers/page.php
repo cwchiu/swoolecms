@@ -27,6 +27,17 @@ class page extends FrontPage
             $_SESSION['oauth_serv'] = 'renren';
             Swoole_client::redirect($login_url);
         }
+        elseif($_GET['s']=='qq')
+        {
+            require WEBPATH.'/class/qqoauth.func.php';
+            require WEBPATH.'/apps/configs/oauth.inc.php';
+            $oauth = new QQOAuth($oauth['qq']['APP_ID'],$oauth['qq']['APP_KEY']);
+            $token = $oauth->getRequestToken();
+            $_SESSION['oauth_keys'] = $token;
+            $_SESSION['oauth_serv'] = 'qq';
+            $login_url = $oauth->getAuthorizeURL($token,WEBROOT.'/page/oauth_callback/');
+            Swoole_client::redirect($login_url);
+        }
     }
     function oauth_callback()
     {
@@ -85,6 +96,34 @@ class page extends FrontPage
                 $u['city'] = $user->hometown_location->city;
                 $work_history = $user->work_history[count($user->work_history)-1];
                 $u['company'] = $work_history->company_name;
+                //插入到表中
+                $u['id'] = $model->put($u);
+            }
+            //写入SESSION
+            $_SESSION['isLogin'] = 1;
+            $_SESSION['user_id'] = $u['id'];
+            $_SESSION['user'] = $u;
+            Swoole_client::redirect(WEBROOT."/person/index/");
+        }
+        elseif($_SESSION['oauth_serv']=='qq')
+        {
+            require WEBPATH.'/class/qqoauth.func.php';
+            require WEBPATH.'/apps/configs/oauth.inc.php';
+            $oauth = new QQOAuth($oauth['qq']['APP_ID'],$oauth['qq']['APP_KEY']);
+            $oauth->getAccessToken($_GET['oauth_token'],$_SESSION['oauth_keys']['oauth_token_secret'],$_GET['oauth_vericode']);
+
+            $username = $oauth->access_token['openid'];
+            $model = createModel('UserInfo');
+            $u = $model->get($username,'username')->get();
+            //不存在，则插入数据库
+            if(empty($u))
+            {
+                $user = $oauth->api_get('user/get_user_info');
+                if(empty($user)) return Swoole_js::js_back("请求错误");
+
+                $u['username'] = $username;
+                $u['nickname'] = $user['nickname'];
+                $u['avatar'] = $user['figureurl_2'];
                 //插入到表中
                 $u['id'] = $model->put($u);
             }
