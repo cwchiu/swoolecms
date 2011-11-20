@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>三明智管理后台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/static/js/SwooleUI.js"></script>
+<style>
+label{
+	margin-left:5px;
+	margin-right:5px;
+}
+label input{
+	margin-right:3px;
+}
+</style>
+</head>
+
+
+<base target="mainFrame">
+<div class="m"></div>
+<div class="t">
+<table width="96%" border="0" cellspacing="0" cellpadding="0">
+	<tr class="tr4">
+		<td width="11%" height="32"><strong>{{$groups[$group]}}</strong></td>
+	  <td width="89%" height="32">&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;</tr>
+</table>
+
+</div>
+<form action="" method="post" name="mainform" id="mainform">
+<div class="t">
+<table align=center cellspacing=0 cellpadding=0>
+<tr class=head>
+	<td colspan="2">
+    {{foreach item=v from=$groups key=k}}
+    <a href="?action=config&group={{$k}}">{{$v}}</a>
+    {{/foreach}}
+    </td>
+</tr>
+{{foreach item=v from=$list}}
+<tr class="line" height="40">
+  <td width="10%">{{$v.name}}：</td>
+  <td>{{$v.form}}</td>
+</tr>
+{{/foreach}}
+<tr class=line>
+  <td><input name="change" type="hidden" id="change" value="" /></td>
+  <td><input type="submit" class="btn" value="提交" /></td>
+</tr>
+</table>
+</div>
+</form>
+
+<form id="form1" name="form1" method="post" action="">
+<div class="t">
+<table align="left" cellpadding="0" cellspacing="0">
+  <tr class="tr2">
+    <td colspan="2" align="center">增加项目</td>
+  </tr>  
+    <tr class="tr3">
+      <td width="80">名称</td>
+      <td><input name="name" type="text" id="name" size="40" /></td>
+    </tr>
+    <tr class="tr3">
+      <td width="80">英文代号</td>
+      <td><input name="ckey" type="text" id="ckey" size="40" /></td>
+    </tr>
+    <tr class="tr3">
+      <td width="80">分组</td>
+      <td><select name="cgroup" id="cgroup">
+      {{foreach item=v from=$groups key=k}} 
+      <option value="{{$k}}">{{$v}}</option>
+      {{/foreach}}          
+       </select></td>
+    </tr>
+    <tr class="tr3">
+      <td width="80">值</td>
+      <td><textarea name="cvalue" id="cvalue" cols="80" rows="5"></textarea></td>
+    </tr>
+    <tr class="tr3">
+      <td width="80">选项</td>
+      <td><textarea name="options" cols="80" rows="5" id="options"></textarea></td>
+    </tr>
+    <tr class="tr3">
+      <td colspan="2"><input type="submit" class="btn" value="增加内容" /></td>
+    </tr>
+</table>
+</div>
+</form>
+</html>

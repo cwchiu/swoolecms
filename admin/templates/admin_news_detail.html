@@ -74,9 +74,19 @@
 	    <input class="input" name="title" value="{{$det.title}}" size="70" />
 	    <input type="hidden" name="id" value="{{$det.id}}" />
 	{{if !empty($smarty.get.fid)}}<input type="hidden" name="fid" value="{{$smarty.get.fid}}" />{{/if}}
-    {{if !empty($smarty.get.cid)}}<input type="hidden" name="cid" value="{{$smarty.get.cid}}" />{{/if}}                      </span>      
-	</tr>
+    {{if !empty($smarty.get.cid)}}<input type="hidden" name="cid" value="{{$smarty.get.cid}}" />{{/if}}                      </span>	</tr>
 	{{include file='cms/select_catelog.html'}}
+    {{if !$det.pic}}
+	<tr class="tr3">
+	  <td>内容操作</td>
+	  <td><label>
+	    <input name="img_local" type="checkbox" id="img_local" value="1" checked="checked" />
+	    自动获取远程图片 
+	    <input name="first_thumb" type="checkbox" id="first_thumb" value="1" />
+提取第一张图片为缩略图 
+</label></td>
+	  </tr>
+    {{/if}}
     {{if $det.pic}}
 	<tr class="tr3">
 	  <td>缩略图</td>

@@ -42,11 +42,14 @@ function getChildCount($fid)
     $_model = createModel('Catelog');
     return $_model->count($c);
 }
-
+/**
+ * 获取CMS的APP列表
+ * @return unknown_type
+ */
 function getApps()
 {
     global $php;
-    $list = $php->db->query('select * from '.TABLE_PREFIX.'_apps')->fetchall();
+    $list = $php->db->query('select * from '.TABLE_PREFIX.'_apps where close=0')->fetchall();
     $return = array();
     foreach($list as $li)
     {
@@ -150,7 +153,16 @@ function cms_list(&$params,&$smarty)
 
 function cms_det(&$params,&$smarty)
 {
+	
+}
 
+function cms_conf(&$params,&$smarty)
+{
+	if(empty($params['name'])) exit('配置名称不能为空！');
+	global $php;
+	$c = $php->db->query('select cvalue from st_config where ckey="'.$params['name'].'" limit 1')->fetch();
+	if(empty($c)) return false;
+	else return $c['cvalue'];
 }
 
 function cms_htmlcode($file,&$smarty)

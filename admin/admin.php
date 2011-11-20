@@ -21,16 +21,16 @@ class admin extends GeneralView
 		$this->uid = $_SESSION['admin_user_id'];
 	}
 
-    function admin_dict()
+	function admin_dict()
 	{
 		$dictname = "sitedict";
-	    $filename =  WEBPATH.'/gold/sitedict'.date('Ymd').'.php';
-	    $options = array('销售价（元/盎司）','销售价（元/克）','回购价（元/盎司）','回购价（元/克）');
-	    if(!is_file($filename))
-	    {
-	        file_put_contents($filename,"<?php\n\${$dictname}=".var_export(array(),true).';');
-	    }
-	    require $filename;
+		$filename =  WEBPATH.'/gold/sitedict'.date('Ymd').'.php';
+		$options = array('销售价（元/盎司）','销售价（元/克）','回购价（元/盎司）','回购价（元/克）');
+		if(!is_file($filename))
+		{
+			file_put_contents($filename,"<?php\n\${$dictname}=".var_export(array(),true).';');
+		}
+		require $filename;
 
 		if(isset($_GET['del']))
 		{
@@ -40,41 +40,87 @@ class admin extends GeneralView
 		}
 		elseif(isset($_GET['id']))
 		{
-		    if($_POST)
-    		{
-    			$sitedict[$_GET['id']] = $_POST;
-    			file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
-    			Swoole_js::js_goto('修改成功','admin.php?action=dict');
-    		}
-    		else
-    		{
-    		     $this->swoole->tpl->assign('dict',$sitedict[$_GET['id']]);
-		         $this->swoole->tpl->display('admin_dict_detail.html');
-    		}
+			if($_POST)
+			{
+				$sitedict[$_GET['id']] = $_POST;
+				file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
+				Swoole_js::js_goto('修改成功','admin.php?action=dict');
+			}
+			else
+			{
+				$this->swoole->tpl->assign('dict',$sitedict[$_GET['id']]);
+				$this->swoole->tpl->display('admin_dict_detail.html');
+			}
 
 		}
 		else
 		{
-    		if($_POST)
-    		{
-    			$sitedict[] = $_POST;
-    			file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
-    			Swoole_js::js_goto('添加成功','admin.php?action=dict');
-    		}
-    		foreach($sitedict as $d)
-    		{
-    		    unset($options[array_search($d['title'],$options)]);
-    		}
-    		$opt = false;
-    		if(!empty($options))
-    		{
-    		    $opt = Form::select('title',$options,null,true,array('empty'=>'请选择项目'));
-    		    $this->swoole->tpl->assign('opt',$opt);
-    		}
-		    $this->swoole->tpl->assign('sitedict',$sitedict);
-		    $this->swoole->tpl->display('admin_dict.html');
+			if($_POST)
+			{
+				$sitedict[] = $_POST;
+				file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
+				Swoole_js::js_goto('添加成功','admin.php?action=dict');
+			}
+			foreach($sitedict as $d)
+			{
+				unset($options[array_search($d['title'],$options)]);
+			}
+			$opt = false;
+			if(!empty($options))
+			{
+				$opt = Form::select('title',$options,null,true,array('empty'=>'请选择项目'));
+				$this->swoole->tpl->assign('opt',$opt);
+			}
+			$this->swoole->tpl->assign('sitedict',$sitedict);
+			$this->swoole->tpl->display('admin_dict.html');
 		}
 
+	}
+
+	function admin_config()
+	{
+		if(!empty($_POST['change']))
+		{
+			//Error::dbd();
+			$changes = array_unique(explode(',',$_POST['change']));
+			unset($changes[0]);
+			foreach($changes as $ch)
+			{
+				if(is_array($_POST[$ch])) $value = implode(',',$_POST[$ch]);
+				else $value = $_POST[$ch];
+				$this->swoole->db->query("update st_config set cvalue='{$value}' where id={$ch}");
+			}
+		}
+		if(!empty($_POST['name']))
+		{
+			//Error::dbd();
+			$this->swoole->db->insert($_POST,'st_config');
+			Swoole_js::js_goto("添加成功",'admin.php?action=config&group='.$_POST['cgroup']);
+		}
+		if(isset($_GET['group'])) $group = $_GET['group'];
+		else $group = 'product';
+
+		$list = $this->swoole->db->query("select id,name,cvalue,options,form_type from st_config where cgroup='{$group}'")->fetchall();
+		foreach($list as &$li)
+		{
+			if(empty($li['options']))
+			{
+				if($li['form_type']==0) $func = 'text';
+				else $func = 'input';
+				$li['form'] = Form::$func($li['id'],$li['cvalue'],array('size'=>80,'onchange'=>"obj('change').value+=',{$li['id']}'"));
+			}
+			else
+			{
+				$options = explode(',',$li['options'],3);
+				$form_type = $options[0];
+				$li['form'] = Form::$form_type($li['id'],array_slice($options,1),$li['cvalue'],false,array('onchange'=>"obj('change').value+=',{$li['id']}'"));
+			}
+		}
+		$groups = $this->swoole->db->query("select cvalue from st_config where ckey='config_groups' limit 1")->fetch();
+		$this->swoole->tpl->assign('group',$group);
+		$this->swoole->tpl->assign('groups',SwooleConfig::decode($groups['cvalue']));
+		$this->swoole->tpl->assign('list',$list);
+		$this->swoole->tpl->display('admin_config.html');
 	}
 
 	private function _check_cms()
@@ -511,14 +557,14 @@ class admin extends GeneralView
 				$this->swoole->model->Guestbook->del((int)$_GET['del']);
 			}
 			$gets['page'] = empty($_GET['page'])?1:$_GET['page'];
-	        $gets['select'] = "*";
-	        $gets['pagesize'] = 10;
-	        $pager=null;
-	        $list = $this->swoole->model->Guestbook->gets($gets,$pager);
-	        $pager = array('total'=>$pager->total,'render'=>$pager->render());
-	        $this->swoole->tpl->assign('pager',$pager);
-	        $this->swoole->tpl->assign('list',$list);
-	        $this->swoole->tpl->display('admin_guestbook.html');
+			$gets['select'] = "*";
+			$gets['pagesize'] = 10;
+			$pager=null;
+			$list = $this->swoole->model->Guestbook->gets($gets,$pager);
+			$pager = array('total'=>$pager->total,'render'=>$pager->render());
+			$this->swoole->tpl->assign('pager',$pager);
+			$this->swoole->tpl->assign('list',$list);
+			$this->swoole->tpl->display('admin_guestbook.html');
 		}
 	}
 
