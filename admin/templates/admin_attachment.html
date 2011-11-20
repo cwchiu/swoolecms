@@ -4,7 +4,7 @@
 <head>
 <title>三明智管理后台</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
 <meta content="MSHTML 6.00.5730.13" name="GENERATOR" />
 <style type="text/css">
 <!--
@@ -83,7 +83,7 @@ window.onload=function()
         <td><a href="<?php echo $li['url'];?>" target="_blank"><?php echo $li['url'];?></a></td>
         <td><?php echo $li['addtime'];?></td>
         <td><a href="?action=attachment&del=<?php echo $li['id'];?>&app=<?php echo $_GET['app'];?>&aid=<?php echo $id;?>"><img
-            src="/static/images/admin/del.gif" alt="删除" border="0" align="absmiddle"
+            src="/admin/static/images/del.gif" alt="删除" border="0" align="absmiddle"
             onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;&nbsp;
             <a href="javascript:window.parent.fck_insert('<?php echo cms_htmlcode($li["url"]); ?>')">插入编辑器</a></td>
     </tr>

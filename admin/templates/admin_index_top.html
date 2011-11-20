@@ -3,7 +3,7 @@
 <head>
 <title>SwooleCMS管理后台</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="/static/js/admin.js"></script>
 <base target='mainFrame' />
 </head>
@@ -11,7 +11,7 @@
 <body>
 <style>
 .frameTop{
-	background: url('/static/images/admin/top_bg.png') top left no-repeat;
+	background: url('/admin/static/images/top_bg.png') top left no-repeat;
 	background-color:#cfe2f6;
 	height: 45px;
 	min-width: 610px;
@@ -22,7 +22,7 @@
 	float:left;
 	height:45px;
 	width:280px;
-	background: url('/static/images/admin/logo.png') top left no-repeat;
+	background: url('/admin/static/images/logo.png') top left no-repeat;
 }
 .nav{
 	padding-top: 10px;
@@ -44,7 +44,7 @@
 	background: #8cd6ff;
 }
 .navPanel{
-	background: #8cd6ff url('/static/images/admin/menu.png') top left repeat-x;
+	background: #8cd6ff url('/admin/static/images/menu.png') top left repeat-x;
 	line-height: 200%;
 	border-top:1px #8cd6ff solid;
 }
@@ -72,16 +72,16 @@
 	text-decoration: none;
 	border-right: 1px solid #8cd6ff;
 	border-left: 1px solid #fff;
-	background: #F4FBE1 url('/static/images/admin/bg_btn.png');
+	background: #F4FBE1 url('/admin/static/images/bg_btn.png');
 }
 .navActive{
 	color: #395500;
-	background: #8cd6ff url('/static/images/admin/bg_btn_hover.png') top left repeat-x;
+	background: #8cd6ff url('/admin/static/images/bg_btn_hover.png') top left repeat-x;
 }
 .topButtons a:hover
 {
 	color: #395500;
-	background: #8cd6ff url('/static/images/admin/bg_btn_hover.png') top left repeat-x;
+	background: #8cd6ff url('/admin/static/images/bg_btn_hover.png') top left repeat-x;
 }
 .topImage {
 	float:right;
@@ -96,9 +96,9 @@
   <div class="topLogo"></div>
 </div>
 <div class="navPanel">
-<img src="/static/images/admin/close.png" class="topImage" onClick="closeSys();" title="关闭本系统">
-<img src="/static/images/admin/fresh.png" class="topImage" onClick="parent.mainFrame.location.reload();" title="刷新主框架">
-<img src="/static/images/admin/back.png" class="topImage" onClick="parent.mainFrame.history.go(-1);" title="后退">
+<img src="/admin/static/images/close.png" class="topImage" onClick="closeSys();" title="关闭本系统">
+<img src="/admin/static/images/fresh.png" class="topImage" onClick="parent.mainFrame.location.reload();" title="刷新主框架">
+<img src="/admin/static/images/back.png" class="topImage" onClick="parent.mainFrame.history.go(-1);" title="后退">
 	<div class="innerNavPanel">
 		<div class="topButtons">
 		<a href="index.php?page=main" target="mainFrame" onclick="ShowMenu('setting');">管理首页</a>

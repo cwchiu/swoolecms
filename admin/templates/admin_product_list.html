@@ -4,7 +4,7 @@
 <head>
 <title>涛谱科技后台管理</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="/admin/static/js/forms.js"></script>
 <style type="text/css">
 <!--
@@ -53,7 +53,7 @@ body {
 		<td><a href="/admin/admin.php?action=add&amp;id={{$list[ol].id}}&amp;app={{$app}}">{{$list[ol].name}}</a></td>
 		<td>{{$list[ol].cname}}</td>
 		<td>{{$list[ol].addtime}}</td>
-		<td><a href="admin.php?app={{$app}}&amp;action=add&amp;id={{$list[ol].id}}"><img src="/static/images/admin/edit.gif" alt="修改" border="0" /></a> <a href="admin.php?action=html&amp;id={{$list[ol].id}}&amp;app={{$app}}"><img src="/static/images/admin/update.gif" alt="更新" border="0" /></a> <a href="/cms.php?app={{$app}}&amp;id={{$list[ol].id}}" target="_blank"><img src="/static/images/admin/page_nav.png" alt="预览" width="16" height="16" border="0" /></a> <a href="/admin/admin.php?action=del&amp;app={{$app}}&amp;del={{$list[ol].id}}"> <img src="/static/images/admin/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;</td>
+		<td><a href="admin.php?app={{$app}}&amp;action=add&amp;id={{$list[ol].id}}"><img src="/admin/static/images/edit.gif" alt="修改" border="0" /></a> <a href="admin.php?action=html&amp;id={{$list[ol].id}}&amp;app={{$app}}"><img src="/admin/static/images/update.gif" alt="更新" border="0" /></a> <a href="/cms.php?app={{$app}}&amp;id={{$list[ol].id}}" target="_blank"><img src="/admin/static/images/page_nav.png" alt="预览" width="16" height="16" border="0" /></a> <a href="/admin/admin.php?action=del&amp;app={{$app}}&amp;del={{$list[ol].id}}"> <img src="/admin/static/images/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;</td>
 	</tr>
 	{{/section}}
 	<tr class="tr3" >

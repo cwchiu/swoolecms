@@ -4,7 +4,7 @@
 <head>
 <title>涛谱科技后台管理</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/static/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="/static/js/forms.js"></script>
 <style type="text/css">
 <!--
@@ -69,7 +69,7 @@ body {
 		<td>{{$list[ol].conn}}</td>
 		<td>{{$list[ol].addtime}}</td>
 		<td><a href="admin.php?action=guestbook&amp;app={{$app}}&amp;id={{$list[ol].id}}">查看详细</a><a	href="admin.php?action=guestbook&del={{$list[ol].id}}&app={{$app}}"><img
-			src="/static/images/admin/del.gif" alt="删除" border="0"
+			src="/admin/static/images/del.gif" alt="删除" border="0"
 			align="absmiddle" onclick="return confirm('您确定要删除此内容？');" /></a><!--<a href="admin_news.php?action=reply&amp;id={{$list[ol].id}}">&nbsp;回答</a>--></td>
 	</tr>
 	{{/section}}
