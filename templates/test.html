@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>测试</title>
+<SCRIPT  language="JavaScript" src="/static/js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" src="/static/js/SwooleUI.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" src="/static/js/validator.js" type=text/javascript></SCRIPT>
+</head>
+
+<body>
+{{$js}}
+<form {{$head}}>
+  <table border="0">
+    <tr>
+      <td height="35">姓名</td>
+      <td height="35">{{$form.name}}</td>
+      <td height="35">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="35">邮件</td>
+      <td height="35">{{$form.email}}</td>
+      <td height="35">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="35">性别</td>
+      <td height="35">{{$form.sex}}</td>
+      <td height="35">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="35">爱好</td>
+      <td height="35">{{$form.fav}}</td>
+      <td height="35">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="35">Hello</td>
+      <td height="35">{{$form.hello}}</td>
+      <td height="35">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="35">密码</td>
+      <td height="35">{{$form.password}}</td>
+      <td height="35">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="35" colspan="3"><label>
+        <input type="submit" value="提交" />
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
