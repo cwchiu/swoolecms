@@ -570,7 +570,8 @@ span.ico5{
 	background-color:#f1f8e9;
 	overflow:hidden;
 	zoom:1;
-	}
+	margin-bottom:10px;
+}
 .reply h3{
 	color:#618d09;
 	font-size:16px;

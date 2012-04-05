@@ -57,7 +57,9 @@ addEvent(window,'load',function(){
     </table>
     </div>
     {{/foreach}}
-    {{$pager}}<div class="clear"></div>    
+    {{if $pager}}{{$pager}}{{/if}}
+    
+    <div class="clear"></div>    
        <div class="bor1 mt10 pd10 reply">
       	<form action="/ask/reply/" method="post" name="form1" id="form1" target="op">
          <h3><span class="fl">我来回答这个问题</span></h3>
@@ -74,7 +76,7 @@ addEvent(window,'load',function(){
 </div>
     <div class="fr col2 mt10">
           <div class="bor1 pd10 userinfo bg2">
-        <a class="fl" href="/page/user/uid-{{$user.id}}"><img src="{{$user.avatar}}"></a>
+        <a class="fl" href="/page/user/uid-{{$user.id}}"><img src="{{$user.avatar|default:'/static/images/default.png'}}"></a>
         <p class="u_name">
                 <a href="/page/user/uid-{{$user.id}}">{{$user.nickname}}</a>
         <!--<span class="grade">列兵</span>--></p>

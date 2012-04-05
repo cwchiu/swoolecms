@@ -52,6 +52,9 @@ class person extends UserBase
     {
         if($_POST)
         {
+        	$_POST['title'] = trim($_POST['title']);
+        	$_POST['content'] = trim($_POST['content']);
+
             if(empty($_POST['title']) or empty($_POST['content']))
             {
                 Swoole_js::js_back('标题和内容不能为空！');

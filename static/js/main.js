@@ -36,7 +36,7 @@ function post_comment() {
 		} else {		
 			var html = '<div class="comment_li"><a href="/page/user/uid='+data.id+'"><img src="'+data.avatar+'" align="left" class="avatar photo">'+
 			data.nickname+'</a>（<span class="date">'+data.addtime+'</span>）：'+content+'<br /></div><div class="clear"></div>';
-			$('#comment').append(html);
+			$('#comment').prepend(html);
 			$('#comment_form')[0].reset();
 		}
 		

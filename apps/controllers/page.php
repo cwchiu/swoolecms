@@ -224,7 +224,7 @@ class page extends FrontPage
 
             $this->swoole->tpl->assign('list',$list);
             $this->swoole->tpl->display('index.html');
-        }
+	}
         else
         {
             $page = $_GET['p'];
