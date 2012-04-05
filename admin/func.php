@@ -82,7 +82,7 @@ function getHtmlList($app,$cate_id,$page=1,$level='fid')
     return file_get_contents($url);
 }
 
-function cms_attachment(&$params,&$smarty)
+function cms_attachment($params,&$smarty)
 {
     $attachment = <<<HTML
     <script language="javascript">
@@ -97,7 +97,7 @@ HTML;
     return $attachment;
 }
 
-function cms_link(&$params,&$smarty)
+function cms_link($params,&$smarty)
 {
     global $php;
     if(HTML_STATIC)
@@ -114,7 +114,7 @@ function cms_link(&$params,&$smarty)
     }
 }
 
-function cms_cate(&$params,&$smarty)
+function cms_cate($params,&$smarty)
 {
     if(empty($params['app'])) exit('App名称不能为空');
     if(empty($params['name'])) $params['name'] = 'cate';
@@ -122,12 +122,13 @@ function cms_cate(&$params,&$smarty)
     $smarty->_tpl_vars[$params['name']] = getChildCategory($params['app'],(int)$params['fid']);
 }
 
-function cms_list(&$params,&$smarty)
+function cms_list($params,&$smarty)
 {
     if(empty($params['cid'])) exit('分类不能为空');
     $cid = (int)$params['cid'];
     if(empty($params['name'])) $params['name'] = 'list'.$cid;
     $cate = getCategory($cid);
+    if(empty($cate)) return '没有此分类';
     $model = createModel($cate['app']);
 
     if($cate['fid']==0) $gets['fid'] = $cid;
@@ -151,7 +152,7 @@ function cms_list(&$params,&$smarty)
     $smarty->_tpl_vars[$params['name']] = $model->gets($gets);
 }
 
-function cms_det(&$params,&$smarty)
+function cms_det($params,&$smarty)
 {
 	
 }
@@ -165,7 +166,7 @@ function cms_conf(&$params,&$smarty)
 	else return $c['cvalue'];
 }
 
-function cms_htmlcode($file,&$smarty)
+function cms_htmlcode($file,$smarty)
 {
     if(!function_exists('file_ext')) import_func('file');
     $ext = file_ext($file);

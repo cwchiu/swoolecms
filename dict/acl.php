@@ -1,21 +1,12 @@
 <?php
 $ugroups = array(
 'root'=>'超级管理员',
-'qihua'=>'企划部',
-'it'=>'IT部',
-'xingzheng'=>'行政部',
-'shichang'=>'市场部',
-'renshi'=>'人事部',
-'qita'=>'客服部',
+'user'=>'普通用户'
 );
 
 $access = array(
-'qihua'=>'qihua',
-'it'=>'it',
-'xingzheng'=>'xingzheng',
-'shichang'=>'shichang',
-'renshi'=>'renshi',
-'qita'=>'qita');
+'news'=>'user'
+);
 
 function checkAB($op)
 {

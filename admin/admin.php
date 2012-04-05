@@ -460,6 +460,10 @@ class admin extends GeneralView
 		if(!checkAG('st_admin')) exit;
 		if(isset($_POST['username']))
 		{
+			if(empty($_POST['username']) or empty($_POST['password']) or empty($_POST['realname']))
+			{
+				return Swoole_js::js_back('用户名和密码不能为空');
+			}
 			$res=$php->db->query("select count(id) as cc from $table where username='{$_POST['username']}'")->fetch();
 			if($res['cc']==0)
 			{
@@ -474,7 +478,7 @@ class admin extends GeneralView
 		if(isset($_GET['del']) and $_GET['del']!="")
 		{
 			$php->db->query('delete from '.$table.' where id='.$_GET['del']);
-			Swoole_js::location("/admin/admin_news.php?action=users");
+			Swoole_js::location("/admin/admin.php?action=users");
 		}
 		else
 		{

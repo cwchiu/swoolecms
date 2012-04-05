@@ -48,7 +48,7 @@ define('DESKEY','jcxh@21xiehou.com');
 
 require_once WEBPATH.'/libs/lib_config.php';
 $php->autoload('db','cache','tpl');
-$php->loadConfig();
+//$php->loadConfig();
 //动态配置系统
 //$php->tpl->assign('_site_','/site/'.SITENAME);
 //指定国际编码的方式
