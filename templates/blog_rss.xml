@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"  xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{$user.nickname}}</title>
+    <description>{{$user.intro}}</description>
+    <link>http://www.swoole.com/page/user/uid-{{$user.id}}</link>
+    <language>zh-CN</language>
+    <copyright>Copyright 2009-2012, Swoole.com</copyright>
+    <docs>{{$user.blog}}</docs>
+    <generator>Swoole - PHP高级技术社区</generator>
+    <atom:link href="http://www.swoole.com/blog/rss/{{$user.id}}" rel="self" type="application/rss+xml" />
+    {{foreach item=v from=$list}}
+	<item>
+    <title>{{$v.title}}</title>
+            <description>
+              <![CDATA[
+			  {{$v.content}}
+              ]]>
+            </description>
+            <pubDate>{{$v.addtime}}</pubDate>
+            <link>{{$v.url}}</link>
+            <guid isPermaLink="false">{{$v.url}}</guid>
+    </item>
+{{/foreach}}
+    </channel>
+</rss>

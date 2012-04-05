@@ -28,7 +28,9 @@ input,textarea{
 .fblue{
 	color: #0000CC;
 }
-
+.noborder{
+	border:none;
+}
 ul {
 	margin: 5px;
 	padding: 0;

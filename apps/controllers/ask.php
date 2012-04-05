@@ -54,12 +54,13 @@ class ask extends Controller
             if($vote['c']>0) $if_vote=false;
         }
         $this->swoole->tpl->assign('if_vote',$if_vote);
+        $this->swoole->tpl->assign('if_vote',$if_vote);
         $this->swoole->tpl->assign('expire',$timeout);
-        $this->swoole->tpl->assign('user',$user);
-        $this->swoole->tpl->assign('ask',$ask->get());
-        $this->swoole->tpl->assign('content',$content);
-        $this->swoole->tpl->assign('replys',$replys);
-        $this->swoole->tpl->assign('pager',$pager->render());
+        $this->swoole->tpl->ref('user',$user);
+        $this->swoole->tpl->ref('ask',$ask->get());
+        $this->swoole->tpl->ref('content',$content);
+        $this->swoole->tpl->ref('replys',$replys);
+        if($pager->totalpage>1) $this->swoole->tpl->ref('pager',$pager->render());
         $this->swoole->tpl->display();
     }
     function reply()

@@ -2,7 +2,14 @@
 <div class="memberbox">
 <div class="memberpic">
 <img src="{{$user.avatar|default:'/static/images/default.gif'}}" />
-<p style="margin-top:12px;"><button type="button" style="width:120px; height:32px;" onclick="location.href='/person/sendmail/?to={{$user.id}}'">写信给他</button></p>
+<p style="margin-top:12px;">
+<ul style="height:42px;">
+<li style="float:left; margin-right:12px;"><a href="/person/friend/add-{{$user.id}}">
+<img src="/static/images/smiley_cool.png" border="0" align="absmiddle" width="16" height="16" alt="加为好友"  style="border:none" /> 加为好友</a></li>
+<li style="float:left"><a href="/person/sendmail/to-{{$user.id}}"><img src="/static/images/email.png" align="absmiddle" width="16" height="16"  style="border:none" alt="写信给他" /> 写信给{{$ta}}</a></li>
+<li style="float:left"><img src="/static/images/rss2.png" width="46" height="15" alt="订阅" /> <a href="/blog/rss/{{$user.id}}">订阅{{$ta}}的发布</a></li>
+</ul>
+</p>
 </div>
 </div>
 <p>{{$user.nickname}}<br />

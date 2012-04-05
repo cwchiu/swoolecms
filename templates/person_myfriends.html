@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/grid.css" rel="stylesheet" type="text/css">
+<link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+{{include file='header.html}}
+<div class="header"></div>
+<div class="ilayout">
+<div class="imenubar">
+{{include file='person_left.html'}}
+</div>
+<div class="icontent">
+
+{{if count($list)<1}}
+<div class="welcome">您还没有好友，赶快去添加好友吧</div>{{/if}}
+{{foreach item=v from=$list}}
+<div class="friend">
+<div class="userPic" style="max-width:150px"> <a href="/page/user/uid-{{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}"></a>
+</div>
+<a href="/page/user/uid-{{$v.uid}}">{{$v.nickname}}</a><br />
+最近登录：<span>{{$v.addtime|howLongAgo}} <br />
+<a href="/page/user/uid-{{$v.uid}}">个人主页</a> |
+<a href="/person/sendmail/to-{{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span></div>
+
+{{/foreach}}
+{{if $pager.totalpage>1}} {{$pager}} {{/if}}
+</div>
+</div>
+{{include file=footer.html}}
+</body>
+</html>

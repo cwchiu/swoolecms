@@ -7,6 +7,41 @@ class blog extends FrontPage
 
     }
 
+    function rss()
+    {
+    	if(!empty($_GET['id']))
+    	{
+    		$uid = (int)$_GET['id'];
+    		$user = Func::getUser($uid);
+    		$_mblog = createModel('MicroBlog');
+    		$_blog = createModel('UserLogs');
+    		$gets['uid'] = $uid;
+    		$gets['select'] = 'id,content,addtime';
+    		$gets['limit'] = 10;
+    		$mblogs = $_mblog->gets($gets);
+
+    		foreach($mblogs as &$v)
+    		{
+    			$v['title'] = strip_tags(Func::mblog_link($v['id'],$v['content'],30,true));
+    			$v['url'] = WEBROOT.'/mblog/detail/'.$v['id'];
+    		}
+    		$gets['uid'] = $uid;
+    		$gets['select'] = 'id,title,content,addtime';
+    		$gets['limit'] = 10;
+    		$blogs = $_blog->gets($gets);
+			$list = array_merge($mblogs,$blogs);
+    		usort($list,'Func::time_sort');
+    		foreach($list as &$v)
+    		{
+    			$v['addtime'] = date('r',strtotime($v['addtime']));
+    			if(empty($v['url'])) $v['url'] = WEBROOT.'/blog/detail/'.$v['id'];
+    		}
+    		$this->swoole->tpl->ref('user',$user);
+    		$this->swoole->tpl->ref('list',$list);
+    		$this->swoole->tpl->display('blog_rss.xml');
+    	}
+    }
+
     function detail()
     {
         $id = (int)$_GET['id'];

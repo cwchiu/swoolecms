@@ -1,6 +1,12 @@
 <?php
 class Func
 {
+	static $sort_mode = -1; //升序/降序
+	function time_sort($a,$b)
+	{
+		if(strtotime($a['addtime'])>strtotime($b['addtime'])) return self::$sort_mode;
+		else return -self::$sort_mode;
+	}
     function mblog_link($id,$content,$maxlen=30,$return_title=false)
     {
         $title = mb_substr($content,0,$maxlen);
@@ -23,6 +29,12 @@ class Func
             if($return_title) return $html.'</a>';
             else return $html.'</a>'.mb_substr($content,$end);
         }
+    }
+
+    function getUser($uid)
+    {
+    	$_user = createModel('UserInfo');
+    	return $_user->getInfo($uid);
     }
 
     function parse_url($url)

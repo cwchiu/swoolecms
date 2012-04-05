@@ -323,5 +323,40 @@ class person extends UserBase
             $this->swoole->tpl->display();
         }
     }
-
+    /**
+     * 添加好友
+     */
+	function friend()
+	{
+		if(!empty($_GET['add']))
+		{
+			$fm = createModel('UserFriend');
+			$get['frid'] = (int)$_GET['add'];
+			$get['uid'] = $this->uid;
+			$c = $fm->count($get);
+			if($c>0)
+			{
+				Swoole_js::js_goto('你们已经是好友了！','/person/myfriends/');
+			}
+			else
+			{
+				$fm->put($get);
+				Swoole_js::js_goto('添加好友成功！','/person/myfriends/');
+			}
+		}
+	}
+	/**
+	 * 我的好友
+	 */
+	function myfriends()
+	{
+		$gw = new GeneralView($this->swoole);
+		$gw->setModel('UserFriend');
+		$gets['uid'] = $this->uid;
+		$gets['select'] = 'frid as uid,addtime,nickname,avatar,sex,addtime,lastlogin';
+		$gets['leftjoin'] = array('user_login','frid=user_login.id');
+		$gw->setParam($gets);
+		$gw->action_list();
+		$this->swoole->tpl->display();
+	}
 }
