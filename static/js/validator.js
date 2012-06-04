@@ -26,10 +26,10 @@ function isMobile(mobile) {
 function isEmail(strValue) {
 	return (/^[\w-\.]+@[\w-]+(\.(\w)+)*(\.(\w){2,4})$/).test(trim(strValue));
 }
-function isPhone(strValue){
-	return (/^\d{3}-?\d{8}|\d{4}-?\d{7}$/).test(trim(strValue));	
+function isPhone(strValue) {
+	return (/^\d{3}-?\d{8}|\d{4}-?\d{7}$/).test(trim(strValue));
 }
-function isTel(strValue) {	
+function isTel(strValue) {
 	return (/^((0\d{2,3})-)(\d{7,8})(-(\d{1,4}))?$/).test(trim(strValue));
 }
 function isEnglish(strValue) {
@@ -41,15 +41,15 @@ function isNickname(strValue) {
 	var reg = /^[a-z\-_\u4e00-\u9fa5]*$/gi;
 	return reg.test(trim(strValue));
 }
-function isRealname(strValue){
+function isRealname(strValue) {
 	var reg = /^[\u4e00-\u9fa5]+$/i;
 	return reg.test(trim(strValue));
 }
 function isPassword(strValue) {
 	var reg = strValue.length;
-	if(reg >= 6 && reg <= 12 ){
-	   return true;
-	}else{
+	if (reg >= 6 && reg <= 12) {
+		return true;
+	} else {
 		return false;
 	}
 }
@@ -58,7 +58,7 @@ function isArea(strValue) {
 	var patt = new RegExp(reg);
 	return patt.test(strValue);
 }
-function isNumber(strValue){
+function isNumber(strValue) {
 	var reg = /^\d+$/;
 	return reg.test(trim(strValue));
 }
@@ -132,75 +132,76 @@ function chkCheckBoxChs(objNam, txt) {
 	}
 	return true;
 }
-function error_handle(o,msg){
+function error_handle(o, msg) {
 	o.focus();
 	alert(msg);
 }
-function right_handle(){}
-function split_param(attr){
+function right_handle() {
+}
+function split_param(attr) {
 	return attr.split('|');
 }
 
 // 自定义过滤器
 var custom_filter = new Array;
 
-function check_input(input){
+function check_input(input) {
 	var qs;
 	var attr;
 	var other_obj;
 	var value;
-	
+
 	// 为空的情况 -empty
 	if (input.getAttribute('empty') && input.value == '') {
-		error_handle(input,input.getAttribute('empty'));
+		error_handle(input, input.getAttribute('empty'));
 		return false;
 	}
-	
+
 	// 检测字符串最大长度
 	if (input.getAttribute('maxlen')) {
 		qs = split_param(input.getAttribute('maxlen'));
-		if(input.value.length > qs[0]){
-			error_handle(input,qs[1]);
+		if (input.value.length > qs[0]) {
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
-	
+
 	// 检测字符串最小长度
 	if (input.getAttribute('minlen')) {
 		qs = split_param(input.getAttribute('minlen'));
-		if(input.value.length < qs[0]){
-			error_handle(input,qs[1]);
+		if (input.value.length < qs[0]) {
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
-	
+
 	// 检查数值相等的情况 -equal
 	if (input.getAttribute('equal')) {
 		attr = input.getAttribute('equal');
 		qs = attr.split('|');
 		if (input.value != qs[0]) {
-			error_handle(input,qs[1]);
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
-	
+
 	// 检查数值不相等的情况 -noequal
 	if (input.getAttribute('noequal')) {
 		attr = input.getAttribute('noequal');
 		qs = attr.split('|');
 		if (input.value == qs[0]) {
-			error_handle(input,qs[1]);
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
-	
+
 	// 检查对象相等的情况 -equalo
 	if (input.getAttribute('equalo')) {
 		attr = input.getAttribute('equalo');
 		qs = attr.split('|');
 		other_obj = document.getElementById(qs[0]);
 		if (input.value != other_obj.value) {
-			error_handle(input,qs[1]);
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
@@ -209,30 +210,53 @@ function check_input(input){
 	if (input.getAttribute('ctype')) {
 		attr = input.getAttribute('ctype');
 		qs = attr.split('|');
-		var func = 'is'+ qs[0].substring(0,1).toUpperCase()+qs[0].substring(1).toLowerCase();
-		
-		if (!eval(func+'(input.value)')) {
-			error_handle(input,qs[1]);
+		var func = 'is' + qs[0].substring(0, 1).toUpperCase()
+				+ qs[0].substring(1).toLowerCase();
+
+		if (!eval(func + '(input.value)')) {
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
 
 	// 检查值的类型 -regx，自定义正则检查
-	if (input.getAttribute('regx') && input.value!='') {
+	if (input.getAttribute('regx') && input.value != '') {
 		attr = input.getAttribute('regx');
 		qs = attr.split('|');
 		var patt = eval(qs[0]);
 		if (!patt.test(trim(input.value))) {
-			error_handle(input,qs[1]);
+			error_handle(input, qs[1]);
 			return false;
 		}
 	}
-	
+
 	// 检查异步请求的情况Ajax
 	if (input.getAttribute('ajax')) {
 		attr = input.getAttribute('ajax');
-		eval(attr+'(input);');
-	}	
+		eval(attr + '(input);');
+	}
+
+	// 检测上传文件类型
+	if (input.getAttribute('filetype')) {
+		attr = input.getAttribute('filetype');
+		qs = attr.split('|');
+		allow_ext = qs[0].split(',');
+		var file = trim(input.value);
+		while (file.indexOf("\\") != -1)
+			file = file.slice(file.indexOf("\\") + 1);
+		ext = file.slice(file.indexOf(".")).toLowerCase();
+		allow = false;
+		for ( var i = 0; i < allow_ext.length; i++) {
+			if (allow_ext[i] == ext) {
+				allow = true;
+				break;
+			}
+		}
+		if (!allow) {
+			error_handle(input, qs[1]);
+			return false;
+		}
+	}
 	return true;
 }
 function checkform(event, oform) {
@@ -240,14 +264,17 @@ function checkform(event, oform) {
 	if (oform == undefined || oform == null)
 		var oform = event.srcElement ? event.srcElement : event.target;
 	var elms = oform.elements;
-	for ( var i = 0; i < elms.length; i++) {		
+	for ( var i = 0; i < elms.length; i++) {
 		var r = check_input(elms[i]);
-		if(r==false) return false;
-		else if(r!=false) right_handle(elms[i]);
+		if (r == false)
+			return false;
+		else if (r != false)
+			right_handle(elms[i]);
 	}
-	for(var i=0;i<custom_filter.length;i++){		
-		if(!custom_filter[i].callback(custom_filter[i].name)){
-			error_handle(document.getElementsByName(custom_filter[i].name)[0],custom_filter[i].msg);
+	for ( var i = 0; i < custom_filter.length; i++) {
+		if (!custom_filter[i].callback(custom_filter[i].name)) {
+			error_handle(document.getElementsByName(custom_filter[i].name)[0],
+					custom_filter[i].msg);
 			return false;
 		}
 	}
@@ -258,8 +285,12 @@ function checkform(event, oform) {
  * 
  * @return
  */
-function add_filter(name,msg,callback){
-	custom_filter.push({'name':name,'msg':msg,'callback':callback});
+function add_filter(name, msg, callback) {
+	custom_filter.push({
+		'name' : name,
+		'msg' : msg,
+		'callback' : callback
+	});
 }
 /**
  * 验证表单
@@ -268,18 +299,22 @@ function add_filter(name,msg,callback){
  * @return
  */
 function validator(id) {
-	if(id==null) return false;
+	if (id == null)
+		return false;
 	var oform = document.getElementById(id);
 	oform.onsubmit = checkform;
 }
-function validator_each(id){
-	if(id==null) return false;
+function validator_each(id) {
+	if (id == null)
+		return false;
 	var elms = document.getElementById(id);
 	for ( var i = 0; i < elms.length; i++) {
-		elms[i].onblur = function(){
+		elms[i].onblur = function() {
 			var r = check_input(this);
-			if(r==false) return false;
-			else if(r!=false) right_handle(this);
+			if (r == false)
+				return false;
+			else if (r != false)
+				right_handle(this);
 			return true;
 		};
 	}

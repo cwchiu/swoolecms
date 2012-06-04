@@ -23,6 +23,7 @@ class blog extends FrontPage
     		foreach($mblogs as &$v)
     		{
     			$v['title'] = strip_tags(Func::mblog_link($v['id'],$v['content'],30,true));
+    			$v['content'] = nl2br($v['content']);
     			$v['url'] = WEBROOT.'/mblog/detail/'.$v['id'];
     		}
     		$gets['uid'] = $uid;

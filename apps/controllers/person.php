@@ -183,7 +183,8 @@ class person extends UserBase
             }
             if(!empty($_FILES['certificate']['name'])) $set['certificate'] = file_upload('certificate','/static/uploads/certificate');
 
-            $set['nickname'] = $_POST['nickname'];
+            $set['nickname'] = trim($_POST['nickname']);
+            $set['intro'] = trim($_POST['intro']);
             $set['company'] = $_POST['company'];
             $set['blog'] = $_POST['blog'];
             $set['mobile'] = $_POST['mobile'];

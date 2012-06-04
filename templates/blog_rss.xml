@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0"  xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{$user.nickname}}</title>
+    <title>{{$user.nickname}}_Swoole_PHP高级社区</title>
     <description>{{$user.intro}}</description>
     <link>http://www.swoole.com/page/user/uid-{{$user.id}}</link>
     <language>zh-CN</language>
