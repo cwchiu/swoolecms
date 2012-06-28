@@ -49,7 +49,7 @@ function getChildCount($fid)
 function getApps()
 {
     global $php;
-    $list = $php->db->query('select * from '.TABLE_PREFIX.'_apps where close=0')->fetchall();
+    $list = $php->db->query('select * from '.TABLE_PREFIX.'_apps')->fetchall();
     $return = array();
     foreach($list as $li)
     {
