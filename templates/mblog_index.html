@@ -30,17 +30,13 @@ jQuery(document).ready(function($){
 </div>
 <div id='mright'>
 <h3 style="margin-left:5px;">最活跃微博主</h3>
-<ul>
-{{foreach from=$users item=v}}
-<li>
-<div style="clear:both; margin-bottom:12px;">
-<div class="userPic"> <a href="/page/user/uid-{{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}" /></a> </div>
-<a href="/page/user/uid-{{$v.uid}}">{{$v.nickname}}</a>
-</div>
-</li>
-{{/foreach}}
-</ul>
 
+{{foreach from=$users item=v}}
+<div style="clear:both;">
+<div class="userPic" style="margin-bottom:12px;"> <a href="/page/user/uid-{{$v.uid}}"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}" /></a> </div>
+<a href="/page/user/uid-{{$v.uid}}" class="f12">{{$v.nickname}}</a>
+</div>
+{{/foreach}}
 </div>
 </div>
 {{include file='footer.html'}}

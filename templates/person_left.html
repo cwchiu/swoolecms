@@ -1,6 +1,5 @@
 <div class="memberbox">
-<div class="memberpic">
-  <img src="{{$smarty.session.user.avatar|default:'/static/images/default.gif'}}" />
+<div class="memberpic"> <a href="/page/user/uid-{{$smarty.session.user_id}}"><img src="{{$smarty.session.user.avatar|default:'/static/images/default.gif'}}" /></a>
   </div>
   <p>id:{{$smarty.session.user_id}} {{if empty($smarty.session.user.avatar)}}<a href="/person/profile/">上传头像</a>{{/if}}</p>
 </div>

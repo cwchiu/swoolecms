@@ -6,19 +6,13 @@ class mblog extends FrontPage
     {
         //微博客列表
         $this->getMblogs();
-
-        $gets2['select'] = 'uid';
-        $gets2['group'] = 'uid';
-        $gets2['limit'] = 10;
-        $gets2['order'] = 'id desc';
-        $uids = createModel('MicroBlog')->gets($gets2);
-        foreach($uids as $u) $_uids[] = $u['uid'];
-
-        $gets3['in'] = array('id',implode(',',$_uids));
-        $gets3['select'] = 'id as uid,nickname,avatar,php_level';
-        $gets3['order'] = '';
+        $gets3['select'] = 'uid,nickname,avatar,php_level,addtime';
+        $gets3['order'] = 'user_microblog.addtime desc';
+        $gets3['leftjoin'] = array('user_login','user_login.id=uid');
         $gets3['limit'] = 10;
-        $users = createModel('UserInfo')->gets($gets3);
+        $gets3['group'] = 'uid';
+        $gets3['where'] = 'user_login.id = uid';
+        $users = createModel('MicroBlog')->gets($gets3);
         $this->swoole->tpl->assign('users',$users);
         $this->swoole->tpl->display();
     }

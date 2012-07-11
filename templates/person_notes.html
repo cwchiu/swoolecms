@@ -2,28 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{$smarty.session.user.nickname}}的用户中心_{{$smarty.const.SITENAME}}</title>
+<title>{{$smarty.session.user.nickname}}的记事本_{{$smarty.const.SITENAME}}</title>
 <link href="/static/css/base.css" rel="stylesheet" type="text/css">
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
 <SCRIPT  language="JavaScript" src="/static/js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT  language="JavaScript" src="/static/js/main.js" type=text/javascript></SCRIPT>
 <SCRIPT  language="JavaScript" src="/static/js/SwooleUI.js" type=text/javascript></SCRIPT>
 <SCRIPT  language="JavaScript" src="/static/js/validator.js" type=text/javascript></SCRIPT>
 <script language="javascript">
 window.onload = function(){
 	validator('form1');
- 
-  var a=document.getElementById("pleft");   
-  var b=document.getElementById("pright");   
-  if(a.clientHeight<b.clientHeight)   
-  {   
-	 a.style.height=b.clientHeight+"px";   
-  }   
-  else
-  {   
- 	b.style.height=a.clientHeight+"px";   
-  }
+    left_eq_right();
 }
 function new_note(){
 	$('#title').val('');

@@ -68,6 +68,7 @@ class page extends FrontPage
 			$_SESSION['isLogin'] = 1;
 			$_SESSION['user_id'] = $u['id'];
 			$_SESSION['user'] = $u;
+			$this->setLoginStat();
 			Swoole_client::redirect(WEBROOT."/person/index/");
 		}
 		elseif($_SESSION['oauth_serv']=='renren')
@@ -103,6 +104,7 @@ class page extends FrontPage
 			$_SESSION['isLogin'] = 1;
 			$_SESSION['user_id'] = $u['id'];
 			$_SESSION['user'] = $u;
+			$this->setLoginStat();
 			Swoole_client::redirect(WEBROOT."/person/index/");
 		}
 		elseif($_SESSION['oauth_serv']=='qq')
@@ -131,6 +133,7 @@ class page extends FrontPage
 			$_SESSION['isLogin'] = 1;
 			$_SESSION['user_id'] = $u['id'];
 			$_SESSION['user'] = $u;
+			$this->setLoginStat();
 			Swoole_client::redirect(WEBROOT."/person/index/");
 		}
 	}
@@ -262,6 +265,7 @@ class page extends FrontPage
 			{
 				$userinfo = $this->swoole->model->UserInfo->get($_SESSION['user_id'])->get();
 				$_SESSION['user'] = $userinfo;
+				$this->setLoginStat();
 				header('location:'.$refer);
 			}
 			else
@@ -495,5 +499,12 @@ class page extends FrontPage
 		$this->userinfo($uid);
 		$this->getMblogs(10,$uid);
 		$this->swoole->tpl->display();
+	}
+
+	private function setLoginStat()
+	{
+		$tm = time();
+		setcookie('uname', $_SESSION['user']['nickname'], $tm+86400*30,'/');
+		setcookie('uid', $_SESSION['user_id'], $tm+86400*30,'/');
 	}
 }

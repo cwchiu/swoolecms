@@ -7,15 +7,22 @@
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <link href="/static/css/ab.css" rel="stylesheet" type="text/css" />
 <link href="/static/styles/global.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/main.js"></script>
 </head>
 
 <body>
+<script type="text/javascript">
+$(document).ready(function(){
+	left_eq_right();		   
+});
+</script>
 {{include file='header.html}} 
 <div class="ilayout">
 <div class="imenubar">
 {{include file='person_left.html'}}
 </div>
-<div class="icontent">
+<div class="icontent" id="pright">
 {{include file=block/myblog_head.html}}
 <!--欢迎页面-->
 <!--欢迎页面-->
@@ -37,7 +44,7 @@
 	{{section name=ol loop=$list}}
 	<tr>
 		<td height="24" align="center">{{$list[ol].id}}</td>
-        <td height="24" align="left">{{$list[ol].title|mbcut:20:"...":true}}</td>		
+        <td height="24" align="left"><a href="/blog/detail/{{$list[ol].id}}" target="_blank">{{$list[ol].title|mbcut:20:"...":true}}</a></td>		
 		<td height="24" align="center">{{$list[ol].addtime}}</td>
 		<td height="24" align="center"><a href="/myblog/write/{{$list[ol].id}}"><img src="/static/images/application_edit.png" width="16" height="16" /></a>
         &nbsp;&nbsp;<a href="?del={{$list[ol].id}}" onclick="return confirm('您确定要删除此内容？');"><img src="/static/images/cross.png" width="16" height="16" /></a>&nbsp;</td>

@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/static/js/SwooleUI.js"></script>
 <script type="text/javascript">
 window.onload = function(){
-	checklogin();
+	left_eq_right();
 };
 var nextid = {{json var=$nextid}};
 var perid = {{json var=$perid}};
@@ -23,7 +23,7 @@ var scan_base_url = '/userhome/photo/uid-{{$user.id}}-id-';
 {{include file='header.html}}
 <div class="ilayout">
 {{include file='block/user_left.html}}
-<div class="icontent">
+<div class="icontent" id="pright">
 <div class="welcome">{{$user.nickname}}的相册</div>
 <div class="my_photpic2 clearfix" style="margin-top:15px;">
     {{include file=block/photo_show.html}}<br />

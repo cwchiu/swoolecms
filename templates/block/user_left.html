@@ -1,4 +1,4 @@
-<div class="imenubar">
+<div class="imenubar" id="pleft">
 <div class="memberbox">
 <div class="memberpic">
 <img src="{{$user.avatar|default:'/static/images/default.gif'}}" />
@@ -17,7 +17,7 @@
   {{if !empty($user.company)}}就职于{{$user.company}}<br />{{/if}}
   {{if !empty($user.skill)}}所掌握的技能：{{$user.skill_info}}<br />{{/if}}
   {{if !empty($user.blog)}}博客地址：<br />
-  <a href="{{$user.blog}}">{{$user.blog}}</a>{{/if}}
+  <a href="{{$user.blog}}" style="word-break: break-word;">{{$user.blog}}</a>{{/if}}
 </p>
 <p class="topline">
 <h2>我的相册（<a href="/userhome/photo/uid-{{$user.id}}">{{$myphoto_count}}张照片</a>）</h2>

@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/static/js/SwooleUI.js"></script>
 <script type="text/javascript" src="/static/js/autoresize.js"></script>
 <script type="text/javascript" src="/static/js/ui.js"></script>
+<script type="text/javascript" src="/static/js/main.js"></script>
 <style>
 .Dialog_msg p{
 	padding:10px;
@@ -20,6 +21,9 @@
 }
 </style>
 <script type="text/javascript">
+$(document).ready(function(){
+	left_eq_right();		   
+});
 $(function(){
 	$('textarea#microblog').autoResize({
     onResize : function() {
@@ -38,10 +42,10 @@ $(function(){
 <body>
 {{include file='header.html}}
 <div class="ilayout">
-<div class="imenubar">
+<div class="imenubar" id="pleft">
  {{include file='person_left.html'}}
 </div>
-<div class="icontent">
+<div class="icontent"  id="pright">
 <!--欢迎页面-->
 <!--欢迎页面-->
 <div class="mailbox">
@@ -49,20 +53,18 @@ $(function(){
 <!--邮件-->
 <div class="mailbox">
 <div class="microblog"><!--使用undis隐藏-->
-  <ul>
+<ul>
 {{foreach from=$list item=v}}
 <li>
-<div class="userPic">
-<img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.png'}}">
-</div>
 <div class="userCont">
-{{$v.nickname}}：{{$v.content}}
-</div>
+<span class="date">发表时间：{{$v.addtime}}</span> [<a href="/person/mblog/del-{{$v.id}}" onclick="return confirm('您确定要删除此内容？');" >删除</a>] [<a href="javascript:void(0);">修改</a>]<br />
+{{$v.content}} </div>
 </li>
 {{/foreach}}
 </ul>
 <div class="clear"></div>
 <div class="pages">{{$pager.render}}</div>
+</div>
 </div>
 </div>
 <!--邮件-->

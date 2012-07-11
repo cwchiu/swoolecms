@@ -13,7 +13,7 @@
 <SCRIPT  language="JavaScript" src="/static/js/main.js" type=text/javascript></SCRIPT>
 <script type="text/javascript">
 window.onload = function(){
-	checklogin();
+	left_eq_right();
 };
 $(function(){
 	$('textarea#microblog').autoResize({
@@ -34,7 +34,7 @@ $(function(){
 {{include file='header.html}}
 <div class="ilayout">
 {{include file='block/user_left.html}}
-<div class="icontent">
+<div class="icontent" id="pright">
 <!--欢迎页面-->
 <!--欢迎页面-->
 <div class="microblog" id='mblog_list'>

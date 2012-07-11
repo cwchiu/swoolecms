@@ -101,3 +101,13 @@ function auto_save(id) {
 	});
 
 }
+
+function left_eq_right() {
+	var a = document.getElementById("pleft");
+	var b = document.getElementById("pright");
+	if (a.clientHeight < b.clientHeight) {
+		a.style.height = b.clientHeight + "px";
+	} else {
+		b.style.height = a.clientHeight + "px";
+	}
+}

@@ -132,8 +132,14 @@ class person extends UserBase
         $model = createModel('MicroBlog');
         $_user = createModel('UserInfo');
 
+        if(!empty($_GET['del']))
+        {
+        	$del = (int)$_GET['del'];
+        	$model->del($del);
+        }
+
         $gets['uid'] = $this->uid;
-        $gets['select'] = $model->table.'.id as id,uid,sex,content,nickname,avatar,UNIX_TIMESTAMP(addtime) as addtime,reply_count';
+        $gets['select'] = $model->table.'.id as id,uid,sex,content,nickname,avatar,addtime,reply_count';
         $gets['order'] = $model->table.'.id desc';
         $gets['leftjoin'] = array($_user->table,$_user->table.'.id='.$model->table.'.uid');
         $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];

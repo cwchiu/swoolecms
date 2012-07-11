@@ -46,6 +46,22 @@ li {
 	height: 28px;
     overflow: hidden;
 }
+.tag{
+	float:left;
+}
+.tag a{
+    background-color: #D2DFF0;
+    border-radius: 10px 10px 10px 10px;
+    color: #005A98;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.tag a:hover, .tag a.cur {
+    background-color: #F87B00;
+	color:#fff;
+}
 .f12{
 	font-size:12px;
 }
@@ -72,6 +88,9 @@ li {
 	height: 28px;
 }
 
+.hei32 {
+	height: 32px;
+}
 .wit_13 {
 	color: #ffffff;
 	font-size: 13px;

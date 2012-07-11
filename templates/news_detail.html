@@ -45,7 +45,7 @@
 <body>
 {{include file='header.html'}}
 <div id='main'>
-<div id='mleft'>
+<div id='mleft' style="padding-top:15px; padding-left:15px; width:690px;">
 <div id='pos'>当前位置： <a href="/">首页</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.fid}}.html">{{$det.fname}}</a> &gt;&gt; <a href="/{{$app}}/list_{{$det.cid}}.html">{{$det.cname}}</a> &gt;&gt; 正文</div>
 <div class="main">
   <h2><span class="font_18">
@@ -100,10 +100,10 @@ cursor: pointer
 <h3>相关分类</h3>
 <ul>
 {{foreach from=$cates item=v}}
-<li class="dot_ul"><a href="{{$smarty.const.WEBROOT}}/News/list_{{$v.id}}.html">{{$v.name}}</a></li>
+<li class="tag"><a {{if $v.id==$det.cid}}class="cur"{{/if}} href="{{$smarty.const.WEBROOT}}/News/list_{{$v.id}}.html">{{$v.name}}</a></li>
 {{/foreach}}
 </ul>
-
+<div class="clear"></div>
 <!--{{magic func=list name=about cid=$det.cid num=10}}-->
 <h3>相关文章</h3>
 <ul class="f12 dot_ul">

@@ -31,8 +31,15 @@ class ask extends Controller
 
         $aid = (int)$_GET['aid'];
         $ask = createModel('AskSubject')->get($aid);
-        $ask->lcount++;
-        $ask->save();
+        if(empty($ask->_data))
+        {
+        	header("HTTP/1.1 404 Not Found");
+        	return Error::info("Page not found","");
+        }
+
+		$ask->lcount++;
+		$ask->save();
+
         $timeout['day'] = intval(($ask['expire']-time())/86400);
         $timeout['hour'] = intval(($ask['expire']-time()-$timeout['day']*86400)/3600);
 

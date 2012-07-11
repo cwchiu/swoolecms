@@ -5,8 +5,8 @@
     <td width="72" height="80" align="center"><img src="/static/images/logo.jpg" width="55" height="55" /></td>
     <td width="918" height="80">
     <ul id='checklogin'>
-    {{if $smarty.session.isLogin}}
-    <li>欢迎 <strong>{{$smarty.session.user.nickname}}</strong></li>
+    {{if $smarty.cookies.uname}}
+    <li>欢迎 <strong>{{$smarty.cookies.uname}}</strong></li>
     <li><a href="/person/index/">进入个人中心</a></li>
     <li><a href="/page/logout/">退出登录</a></li>
     {{else}}

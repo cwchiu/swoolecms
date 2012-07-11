@@ -14,7 +14,7 @@
 <div class="imenubar">
 {{include file='person_left.html'}}
 </div>
-<div class="icontent">
+<div class="icontent" id="pright">
 <!--欢迎页面-->
 {{include file=block/myblog_head.html}}
 <!--欢迎页面-->
@@ -36,8 +36,8 @@
 	    {{$list[ol].id}}</td>
 		<td height="24">{{$list[ol].name}}</td>
 		<td height="24">
-		<a href="/person/logcat/{{$list[ol].id}}"><img src="/admin/static/images/edit.gif" alt="修改" border="0" /></a>			
-		<a href="?del={{$list[ol].id}}"><img src="/admin/static/images/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;		</td>
+		<a href="/person/logcat/{{$list[ol].id}}"><img src="/static/images/application_edit.png" alt="修改" border="0" /></a>			
+		<a href="?del={{$list[ol].id}}"><img src="/static/images/cross.png" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>&nbsp;		</td>
 	</tr>
 	{{/section}}
 	<tr class="tr3" >
