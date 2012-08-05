@@ -1,5 +1,4 @@
 <?php
-require APPSPATH.'/controllers/FrontPage.php';
 class userhome extends FrontPage
 {
     function photo()

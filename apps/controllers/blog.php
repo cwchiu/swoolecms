@@ -1,5 +1,4 @@
 <?php
-require APPSPATH.'/controllers/FrontPage.php';
 class blog extends FrontPage
 {
     function index()

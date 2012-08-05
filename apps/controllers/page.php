@@ -1,5 +1,4 @@
 <?php
-require APPSPATH.'/controllers/FrontPage.php';
 class page extends FrontPage
 {
 	public $pagesize = 10;

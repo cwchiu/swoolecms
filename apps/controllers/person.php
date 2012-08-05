@@ -1,5 +1,4 @@
 <?php
-require WEBPATH.'/apps/controllers/UserBase.php';
 class person extends UserBase
 {
     function notes()

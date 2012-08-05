@@ -1,5 +1,12 @@
 <?php
-require('config.php');
+if($_SERVER['HTTP_HOST']=="www.taopukeji.loc")
+{
+	require('apps/taopukeji/config.php');
+}
+else
+{
+	require('config.php');
+}
 require_once LIBPATH.'/system/Swoole_tools.php';
 require 'admin/func.php';
 $php->runMVC('mvc');
@@ -9,6 +16,7 @@ function url_process_mvc()
 	$array = array('controller'=>'page','view'=>'index','segs'=>'');
 	if(!empty($_GET["c"])) $array['controller']=$_GET["c"];
 	if(!empty($_GET["v"])) $array['view']=$_GET["v"];
+	if(!empty($_GET["a"])) $array['app']=$_GET["a"];
 
 	if(!empty($_GET['_q']))
 	{

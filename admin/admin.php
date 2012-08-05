@@ -21,62 +21,6 @@ class admin extends GeneralView
 		$this->uid = $_SESSION['admin_user_id'];
 	}
 
-	function admin_dict()
-	{
-		$dictname = "sitedict";
-		$filename =  WEBPATH.'/gold/sitedict'.date('Ymd').'.php';
-		$options = array('销售价（元/盎司）','销售价（元/克）','回购价（元/盎司）','回购价（元/克）');
-		if(!is_file($filename))
-		{
-			file_put_contents($filename,"<?php\n\${$dictname}=".var_export(array(),true).';');
-		}
-		require $filename;
-
-		if(isset($_GET['del']))
-		{
-			unset($sitedict[$_GET['del']]);
-			file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
-			Swoole_js::js_goto('删除成功','admin.php?action=dict');
-		}
-		elseif(isset($_GET['id']))
-		{
-			if($_POST)
-			{
-				$sitedict[$_GET['id']] = $_POST;
-				file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
-				Swoole_js::js_goto('修改成功','admin.php?action=dict');
-			}
-			else
-			{
-				$this->swoole->tpl->assign('dict',$sitedict[$_GET['id']]);
-				$this->swoole->tpl->display('admin_dict_detail.html');
-			}
-
-		}
-		else
-		{
-			if($_POST)
-			{
-				$sitedict[] = $_POST;
-				file_put_contents($filename,"<?php\n\${$dictname}=".var_export($sitedict,true).';');
-				Swoole_js::js_goto('添加成功','admin.php?action=dict');
-			}
-			foreach($sitedict as $d)
-			{
-				unset($options[array_search($d['title'],$options)]);
-			}
-			$opt = false;
-			if(!empty($options))
-			{
-				$opt = Form::select('title',$options,null,true,array('empty'=>'请选择项目'));
-				$this->swoole->tpl->assign('opt',$opt);
-			}
-			$this->swoole->tpl->assign('sitedict',$sitedict);
-			$this->swoole->tpl->display('admin_dict.html');
-		}
-
-	}
-
 	function admin_config()
 	{
 		if(!empty($_POST['change']))
