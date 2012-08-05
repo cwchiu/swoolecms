@@ -1,12 +1,5 @@
 <?php
-if($_SERVER['HTTP_HOST']=="www.taopukeji.loc")
-{
-	require('apps/taopukeji/config.php');
-}
-else
-{
-	require('config.php');
-}
+require('config.php');
 require_once LIBPATH.'/system/Swoole_tools.php';
 require 'admin/func.php';
 $php->runMVC('mvc');
