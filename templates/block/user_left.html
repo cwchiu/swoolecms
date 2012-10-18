@@ -27,8 +27,9 @@
 </p>
 <div class="clear"></div>
   <ul class="dot_ul topline">
+  <li><a href="/blog/category/user-{{$user.id}}.html">全部日志</a></li>
      {{foreach item=v from=$blog_cates}}
-<li><a href="/blog/category/cid-{{$v.id}}.html">{{$v.name}} ({{$v.num}})</a></li>
+	<li><a href="/blog/category/cid-{{$v.id}}.html">{{$v.name}} ({{$v.num}})</a></li>
       {{/foreach}}
     </ul>
 </div>

@@ -17,6 +17,7 @@ class blog extends FrontPage
     		$gets['uid'] = $uid;
     		$gets['select'] = 'id,content,addtime';
     		$gets['limit'] = 10;
+    		$gets['dir'] = 0;
     		$mblogs = $_mblog->gets($gets);
 
     		foreach($mblogs as &$v)
@@ -65,17 +66,26 @@ class blog extends FrontPage
 
     function category()
     {
-        if(empty($_GET['cid'])) error(409);
-        $cid = (int)$_GET['cid'];
+        if(empty($_GET['cid']) and empty($_GET['user'])) error(409);
+		
         $_blog = createModel('UserLogs');
         $_cate = createModel('UserLogCat');
-
-        $cate = $_cate->get($cid)->get();
-        $uid = $cate['uid'];
+		$gets1 = array();
+		if(isset($_GET['cid']))
+		{
+			$cid = (int)$_GET['cid'];
+			$cate = $_cate->get($cid)->get();
+			$uid = $cate['uid'];
+			$gets1['c_id'] = $cid;
+		}
+        else
+		{
+			$uid = (int)$_GET['user'];
+			$cate = array();
+		}
         $this->userinfo($uid);
-
         $gets1['uid'] = $uid;
-        $gets1['c_id'] = $cid;
+        $gets1['dir'] = 0;
         $gets1['select'] = 'title,id,substring(content,1,1000) as des,addtime,reply_count,look_count';
         $gets1['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
         $gets1['pagesize'] = 10;

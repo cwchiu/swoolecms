@@ -6,7 +6,7 @@ class Feeds extends Model
 	function send($type,$uid,$tid=0,$event_id=0)
 	{
 		$id = $this->put(array('ftype'=>$type,'uid'=>$uid,'tid'=>$tid,'eventid'=>$event_id));
-		$user = $this->swoole->model->UserInfo->getBase($uid);
+		$user = $this->swoole->model->UserInfo->getInfo($uid);
 		$this->db->query("update {$this->table} set nickname='{$user['nickname']}' where id=$id");
 		if($tid!==0)
 		{

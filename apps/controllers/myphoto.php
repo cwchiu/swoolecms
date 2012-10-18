@@ -55,4 +55,14 @@ class myphoto extends UserBase
         Widget::photoDetail($pid,$this->uid);
         $this->swoole->tpl->display();
     }
+    
+    function delete()
+    {
+    	if(empty($_GET['id'])) error(409);
+    	$id = (int)$_GET['id'];
+    	if($this->swoole->model->UserPhoto->del($id))
+    	{
+    		Swoole_js::js_back('删除成功');
+    	}
+    }
 }

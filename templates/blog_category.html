@@ -38,7 +38,7 @@ $(function(){
 <!--欢迎页面-->
 <!--欢迎页面-->
 <div class="microblog" id='mblog_list'>
-<div class="welcome">{{if $cate}}当前分类：{{$cate.name}}{{/if}}</div>
+<div class="welcome">{{if $cate}}当前分类：{{$cate.name}}{{else}}所有日志{{/if}}</div>
 <ul>
   {{foreach from=$blogs item=v}}
   <li>
