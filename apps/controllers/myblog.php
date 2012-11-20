@@ -1,5 +1,4 @@
 <?php
-require WEBPATH.'/apps/controllers/UserBase.php';
 class myblog extends UserBase
 {
     function write()

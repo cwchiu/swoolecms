@@ -14,7 +14,7 @@ class ask extends Controller
         $list['f3'] = $ask->gets($gets);
 
         unset($gets['mstatus']);
-        $gets['order'] = 'gold desc';
+        $gets['order'] = 'gold desc,id desc';
         $gets['where'] = 'mstatus!=2';
         $list['f2'] = $ask->gets($gets);
 
@@ -48,7 +48,7 @@ class ask extends Controller
 
         $gets['aid'] = $aid;
         $gets['select'] = $_reply->table.'.id as id,uid,sex,best,content,nickname,avatar,addtime';
-        $gets['order'] = 'best desc,'.$_reply->table.'.id desc';
+        $gets['order'] = 'best desc,'.$_reply->table.'.id asc';
         $gets['leftjoin'] = array($_user->table,$_user->table.'.id='.$_reply->table.'.uid');
         $gets['pagesize'] = 10;
         $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
@@ -81,12 +81,12 @@ class ask extends Controller
         $this->swoole->autoload('user');
         if(!empty($_POST['reply']))
         {
-            $q['content'] = $_POST['reply'];
-            $q['uid'] = $this->swoole->user->getUid();
-            $user = createModel('UserInfo')->get($q['uid']);
+            $answer['content'] = $_POST['reply'];
+            $answer['uid'] = $this->swoole->user->getUid();
+            $user = createModel('UserInfo')->get($answer['uid']);
 
-            $q['aid'] = (int)$_POST['aid'];
-            $ask = createModel('AskSubject')->get($q['aid']);
+            $answer['aid'] = (int)$_POST['aid'];
+            $ask = createModel('AskSubject')->get($answer['aid']);
             //答案数量加1
             $ask->qcount +=1;
             //如果是未答状态，则设置为已答
@@ -96,8 +96,10 @@ class ask extends Controller
             //为用户增加积分，回答即加5分
             $user->gold +=5;
             $user->save();
+            
+            Api::sendmail($ask['uid'], $answer['uid'], "【系统】".$user['nickname']."回答了你的提问.({$ask['title']})", $answer['content']);
 
-            createModel('AskReply')->put($q);
+            createModel('AskReply')->put($answer);
             Swoole_js::alert('发布成功');
             Swoole_js::echojs('window.parent.location.href = window.parent.location.href;');
         }

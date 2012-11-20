@@ -27,15 +27,7 @@
 </div>
 <div class="mailcontent dis">
 <!--使用undis隐藏-->
-<ul>
-{{foreach from=$list item=v}}
-<li>
-<span class="mailcontentTitle"><a href="/person/readmail/?mid={{$v.id}}">{{$v.title}}</a></span>
-<span class="date">{{$v.addtime|mbcut:10}}</span>
-<span class="delete"><a href="/person/delmail/?mid={{$v.id}}" title="删除" onclick="return confirm('您确定要删除此内容？');">删除</a></span>
-</li>
-{{/foreach}}
-</ul>
+{{include file=block/person_mail.html}}
 <div class="clear"></div>
 <div class="pages">{{$pager.render}}</div>
 </div>

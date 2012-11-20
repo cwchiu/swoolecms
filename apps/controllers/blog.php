@@ -17,7 +17,6 @@ class blog extends FrontPage
     		$gets['uid'] = $uid;
     		$gets['select'] = 'id,content,addtime';
     		$gets['limit'] = 10;
-    		$gets['dir'] = 0;
     		$mblogs = $_mblog->gets($gets);
 
     		foreach($mblogs as &$v)
@@ -29,6 +28,7 @@ class blog extends FrontPage
     		$gets['uid'] = $uid;
     		$gets['select'] = 'id,title,content,addtime';
     		$gets['limit'] = 10;
+			$gets['dir'] = 0;
     		$blogs = $_blog->gets($gets);
 			$list = array_merge($mblogs,$blogs);
     		usort($list,'Func::time_sort');

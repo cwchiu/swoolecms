@@ -2,7 +2,7 @@
 var star_dlg;
 var pic_dlg;
 function show_ui_star() {
-	var html = '<p>文字：<input type="text" name="star_title" id="star_title" size="42" /><br />链接：<input name="star_url" type="text" id="star_url" size="42" /></p>';
+	var html = '<p style="line-height: 35px;">文字：<input type="text" name="star_title" id="star_title" size="42" /><br />链接：<input name="star_url" type="text" id="star_url" size="42" /></p>';
 	var btns = [ new swoole.Button(
 			'确定添加',
 			function() {
@@ -32,7 +32,7 @@ function mblog_clear_pic(){
 }
 function show_ui_pic() {
 	var html = '<iframe frameborder="0" scrolling="auto" height="300" width="500" src="/myphoto/index/?from=mblog"></iframe>';
-	pic_dlg = new swoole.Dialog('添加星标', html, 500, 300, true, "请从相册中选取图片",
+	pic_dlg = new swoole.Dialog('添加图片', html, 500, 300, true, "请从相册中选取图片",
 			true, true);
 	pic_dlg.show();
 }

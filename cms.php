@@ -75,7 +75,7 @@ elseif(!empty($_GET['cid']))
     $pager = null;
     $gets['order'] = 'addtime desc';
     $gets['page'] = empty($_GET['page'])?1:(int)$_GET['page'];
-    $gets['pagesize'] = empty($model->pagesize)?$php->config->cms['pagesize']:$model->pagesize;
+    $gets['pagesize'] = empty($model->pagesize)?Swoole::$config->cms['pagesize']:$model->pagesize;
     $gets['select'] = "id,title,addtime";
     $list = $model->gets($gets,$pager);
     if($php->config->cms['html_static']) $pager->page_tpl = WEBROOT."/$app/list_{$cate_id}_%s.html";

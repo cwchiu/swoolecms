@@ -15,8 +15,9 @@ class Feeds extends Model
 			$user['look'] = $feed_type[$type][1];
 			$user['link'] = $feed_type[$type][2];
 			$user['event'] = $event_id;
-			//UserMsg::insertMsg($tid,'feeds',$user);
+			//UserMsg::insertMsg($tid, 'feeds', $user);
 		}
+		return true;
 	}
 	function recv($uid)
 	{

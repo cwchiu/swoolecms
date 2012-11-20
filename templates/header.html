@@ -4,9 +4,15 @@
   <tr>
     <td width="80" height="80" align="center"><img src="/static/images/logo.png" width="64" height="64" /></td>
     <td width="918" height="80">
-    <ul id='checklogin'>
+	<table height="80"  border="0"  cellspacing="0" align="left">
+	<tr height="24"><td> 
+	<ul id='checklogin'>
     {{if $smarty.cookies.uname}}
+	{{getone from=user_mail _name=mail_num select="count(*) as c" mstatus=0 tid=$smarty.cookies.uid}}
     <li>欢迎 <strong>{{$smarty.cookies.uname}}</strong></li>
+	{{if $mail_num.c > 0}}
+	<li><a href="/person/mails/">【您有<span class="red"> {{$mail_num.c}} </span>条新消息】</a></li>
+	{{/if}}
     <li><a href="/person/index/">进入个人中心</a></li>
     <li><a href="/page/logout/">退出登录</a></li>
     {{else}}
@@ -18,8 +24,9 @@
     <a class="snsrenren" title="人人网帐号登录" href="/page/oauth/?s=renren"></a>
     </li>      
     {{/if}}    
-    </ul>
-  <ul>
+    </ul></td>
+	</tr>
+	</tr height="24"><td><ul>
   <li><a href="/">网站首页</a></li>
   <li><a href="/ask/index/" style="color:#F00; font-weight:bold">有问必答</a> <img src="/admin/static/images/page_feed.png" width="16" height="16" align="absmiddle" /></li>
   <li><a href="/mblog/index/">微博客</a></li>
@@ -36,7 +43,8 @@
       </label>
     </form>
   </li>
-  </ul>
+  </ul></td></tr>
+	</table>
 </td>
   </tr>
 </table>

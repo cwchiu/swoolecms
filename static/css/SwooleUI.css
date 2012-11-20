@@ -39,7 +39,7 @@
 .Dialog_close { float:right; width:40px; padding-left:15px; font-size:12px; color:#000; line-height:26px; background:url(/static/images/close.gif) no-repeat 5px;cursor:pointer;}
 .Dialog_msg { background: #ebf3fe; font-size:14px;border-top:1px solid #cddefa;}
 .Dialog_cont { padding:20px 0 15px 0;}
-.Dialog_bottom { height:28px; padding-top:6px; text-align:center; color:#f0e2d8; background:#e0edfe;}
+.Dialog_bottom { height:28px; padding-top:6px; text-align:center; font-size:14px; background:#e0edfe;}
 
 .calendar_td {
 	cursor: hand;

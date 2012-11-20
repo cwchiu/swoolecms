@@ -38,7 +38,10 @@ $(function(){
 <!--欢迎页面-->
 <!--欢迎页面-->
 <div class="microblog" id='mblog_list' style="border-bottom:1px dotted #CCC; margin-top:12px;">
-<strong class="blu_12b" style="font-size:14px">{{$user.nickname}}</strong>(<span class="date">{{$mblog.addtime}}</span>)：<br />
+<a href="/page/user/uid-{{$user.id}}">
+<strong class="blu_12b" style="font-size:14px">{{$user.nickname}}</strong>
+</a>
+(<span class="date">{{$mblog.addtime}}</span>)：<br />
 <div style="text-indent:2em">{{$mblog.content|nl2br}}</div>
 <div class="clear"></div>
 <div class="pages">{{$pager.render}}</div>
@@ -48,7 +51,10 @@ $(function(){
 {{foreach item=v from=$comments}}		
   <tr style="padding:5px;">
     <td width="145" valign="top"><img class="avatar photo" src="{{$v.avatar|default:'/static/images/default.gif'}}" alt=""></td>
-    <td valign="top"><cite class="fn">{{$v.uname}}</cite> <span class="says">(</span><span class="date">{{$v.addtime|howLongAgo}}</span><span class="says">)says:</span>			
+    <td valign="top">
+    <cite class="fn">
+      <a href="/page/user/uid-{{$v.uid}}">{{$v.uname}}</a>
+    </cite> <span class="says">(</span><span class="date">{{$v.addtime|howLongAgo}}</span><span class="says">)says:</span>			
 			<p>{{$v.content|nl2br}}</p>
     </td>
   </tr>

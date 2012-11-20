@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{{include file=block/myphoto_upload_head.html}}
 <title>插入图片</title>
 <style type="text/css">
 <!--
@@ -12,13 +13,27 @@ body,td,th {
 	border-radius: 5px;
 }
 -->
-</style></head>
+</style>
+<script language="javascript">
+function uploadSuccess(file, serverData)
+{
+	window.location.reload();
+}
+</script>
+</head>
 
 <body>
+<form id="form1" method="post" enctype="multipart/form-data">
+<div class="fieldset flash" id="fsUploadProgress">
+<span class="legend">上传队列</span></div>
+<div id="divStatus">0 个文件</div>
+<div><span><span id="spanButtonPlaceHolder"></span> 
+<input	id="btnCancel" type="button" value="取消上传" onclick="swfu.cancelQueue();"	disabled="disabled" class="inpt_qb1" /></span></div>
+</form>
 <table width="470" border="0" cellspacing="5">
   <tr>
-    {{foreach item=p key=k from=$photo}}
-    <td width="154"><a href="javascript:window.parent.insert_pic({{$p.id}},'{{$p.imagep}}')"><img src="{{$p.imagep}}" class="image" /></a></td>
+  {{foreach item=p key=k from=$photo}}
+  <td width="154"><a href="javascript:window.parent.insert_pic({{$p.id}},'{{$p.imagep}}')"><img src="{{$p.imagep}}" class="image" /></a></td>
   {{if $k%3==2}}</tr>
   <tr>{{/if}}
    {{/foreach}}

@@ -1,0 +1,12 @@
+<ul>
+{{foreach from=$list item=v}}
+<li>
+<span class="mailcontentTitle">
+<a {{if $v.mstatus==0}} style="font-weight: bold;" {{/if}} href="/person/readmail/?mid={{$v.id}}">
+{{if $v.mstatus==0}}【未读】{{/if}}
+{{$v.title}}</a></span>
+<span class="date">{{$v.addtime|mbcut:10}}</span>
+<span class="delete"><a href="/person/delmail/?mid={{$v.id}}" title="删除" onclick="return confirm('您确定要删除此内容？');">X</a></span>
+</li>
+{{/foreach}}
+</ul>

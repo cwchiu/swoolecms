@@ -8,20 +8,33 @@ function ajax_comment()
 {
     session();
     if(!$_SESSION['isLogin']) return 'nologin';   
+    $uid = $_SESSION['user_id'];
     $post['aid'] = (int)$_POST['aid'];
     $post['app'] = $_POST['app'];
     $post['content'] = $_POST['content'];
-    $post['uid'] = $_SESSION['user_id'];
+    $post['uid'] = $uid;
     $post['uname'] = $_SESSION['user']['nickname'];
     if($post['app']==='mblog')
     {
         $m = createModel('MicroBlog');
-        $m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
+        $entity = $m->get($post['aid']);
+        $entity->reply_count ++;
+        $entity->save();
+        if($entity->uid!=$uid)
+        {
+        	Api::sendmail($entity->uid, $uid, "【系统】{$post['uname']}评论了你的微博", $post['content']);
+        }
     }
     elseif($post['app']==='blog')
     {
         $m = createModel('UserLogs');
-        $m->set($post['aid'],array('reply_count'=>'`reply_count`+1'));
+        $entity = $m->get($post['aid']);
+        $entity->reply_count ++;
+        $entity->save();
+        if($entity->uid!=$uid)
+        {
+        	Api::sendmail($entity->uid, $uid, "【系统】{$post['uname']}评论了你的日志.({$entity['title']})", $post['content']);
+        }
     }
     createModel('UserComment')->put($post);
     $return = array('id'=>$_SESSION['user']['id'],

@@ -1,5 +1,4 @@
 <?php
-require WEBPATH.'/apps/controllers/UserBase.php';
 class myphoto extends UserBase
 {
     /**
@@ -44,8 +43,13 @@ class myphoto extends UserBase
             $data['picture'] = $up_pic['name'];
             $data['imagep'] = $up_pic['thumb'];
             $data['uid'] = $_POST['uid'];
-            $this->swoole->model->UserPhoto->put($data);
-            if(isset($_POST['post'])) $this->swoole->model->Feeds->send('photo',$data['uid']);
+            $up_pic['photo_id'] = $this->swoole->model->UserPhoto->put($data);
+            
+            if(isset($_POST['post']))
+            {
+            	Api::feed('photo', $data['uid'], 0, $up_pic['photo_id']);
+            }
+            return json_encode($up_pic);
         }
         else $this->swoole->tpl->display('myphoto_add_photo.html');
     }

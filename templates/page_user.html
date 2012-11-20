@@ -27,6 +27,9 @@ window.onload = function(){
 <!--欢迎页面-->
 <div class="microblog" id='mblog_list'>
   <ul>
+    {{if empty($mblogs)}}
+    暂无内容
+    {{else}}
     {{foreach from=$mblogs item=v}}
     <li>
       <div class="userCont">
@@ -36,6 +39,7 @@ window.onload = function(){
         </div>
       </li>
     {{/foreach}}
+    {{/if}}
     </ul>
   <div class="clear"></div>
   <div class="pages">{{$pager.render}}</div>

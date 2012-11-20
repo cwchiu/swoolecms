@@ -236,7 +236,7 @@ class person extends UserBase
         if($ms->tid!=$this->uid and $ms->fid!=$this->uid) die('Access deny!');
         else
         {
-            if($ms->mstatus==0)
+            if($ms->tid == $this->uid and $ms->mstatus==0)
             {
                 $ms->mstatus = 1;
                 $ms->save();

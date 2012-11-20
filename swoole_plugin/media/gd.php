@@ -1,3 +1,3 @@
 <?php
-require '../../libs/system/Image.php';
+require '../../config.php';
 Image::authcode_gd();
