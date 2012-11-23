@@ -9,10 +9,12 @@
         {{if $v.url_id!=0}}<img src="/static/images/world.png" align="absmiddle" /> 
           <a href="{{$urls[$v.url_id].url}}" target="_blank">{{$urls[$v.url_id].title}}</a><br />
         {{/if}}
-        <span>{{$v.addtime}} <a href="/mblog/detail/{{$v.id}}">共有<strong class="orange">{{$v.reply_count}}</strong>条评论</a> | <a href="/mblog/detail/{{$v.id}}">评论</a>
-        <a href="/person/friend/add-{{$v.uid}}">加为好友</a> <a href="/person/sendmail/to-{{$v.uid}}">发信给{{if $v.sex==1}}她{{else}}他{{/if}} </a></span>        
+        <span>发布于{{$v.addtime}}&nbsp;&nbsp;
+		<img src="/static/images/icon_comment.gif" align="absmiddle" width="17" height="17" />
+		<a href="/mblog/detail/{{$v.id}}">评论(<strong class="orange">{{$v.reply_count}}</strong>)</a></span>        
         {{if $v.pic_id!=0}}
-        <div><a href="{{$pics[$v.pic_id].picture}}" rel="facebox"><img src="{{$pics[$v.pic_id].imagep}}" class="avatar" /></a>
+        <div><a href="{{$pics[$v.pic_id].picture}}" rel="facebox">
+		<img src="{{$pics[$v.pic_id].imagep}}" class="avatar" /></a>
         </div>{{/if}}        
         </div>
         </li>

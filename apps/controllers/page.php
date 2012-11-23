@@ -215,15 +215,18 @@ class page extends FrontPage
 	{
 		if(empty($_GET['p']) or $_GET['p']=='index')
 		{
+			$_user = createModel('UserInfo');
 			//微博客列表
-			$this->getMblogs();
+			$this->getMblogs(14);
 
 			$gets['select'] = 'id,title,cname,cid,addtime';
 			$gets['limit'] = 10;
 			$gets['fid'] = 9;
 			$model = createModel('News');
 			$list = $model->gets($gets);
-
+			
+			$userlist = $this->getActiveUsers(50);
+			$this->swoole->tpl->assign('userlist',$userlist);
 			$this->swoole->tpl->assign('list',$list);
 			$this->swoole->tpl->display('index.html');
 		}

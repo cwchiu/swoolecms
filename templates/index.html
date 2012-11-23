@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>PHP开发社区 Swoole开发框架官方网站</title>
+<link href="/static/css/ab.css" rel="stylesheet" type="text/css">
 <link href="/static/css/base.css" rel="stylesheet" type="text/css">
 <link href="/static/css/grid.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/static/js/jquery.js"></script>
@@ -25,11 +26,21 @@ jQuery(document).ready(function($){
 {{include file='header.html'}}
 {{include file=block/checklogin.html}}
 <div id='main'>
-<div id='mleft'>
+<div class="index_left">
+<div class="index_user_order">
+<h4>&nbsp;&nbsp;活跃博主排行</h4>
+<ul>
+{{foreach item=v key=k from=$userlist}}
+<li>{{$k+1}}. <a href="/page/user/uid-{{$v.id}}">{{$v.nickname}}</a></li>
+{{/foreach}}
+</ul>
+</div>
+</div>
+<div class="index_center">
 {{include file=block/mblog_list.html}}
 </div>
 
-<div id='mright'>
+<div class="index_right">
 <!--{{magic func=list cid=38 num=10}}-->
 <h3><a href="http://swoole.googlecode.com/files/swoole.0.99.3.zip"><img src="/static/images/world.png" width="16" height="16" /> 最新版本Swoole-0.99.zip</a></h3>
 <h3><img src="/static/images/world.png" /> <a href="http://swoole.googlecode.com/files/Swoole文档.CHM">开发者手册 Swoole.chm</a></h3>

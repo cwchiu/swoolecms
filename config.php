@@ -6,7 +6,7 @@ define("WEBPATH",str_replace("\\","/",dirname(__FILE__)));
 define('DBTYPE','MySQL');
 define('DBENGINE','MyISAM');
 define("DBMS","mysql");
-define("DBHOST","localhost");
+define("DBHOST","127.0.0.1");
 define("DBUSER","root");
 define("DBPASSWORD","root");
 define("DBNAME","swoolecms");
@@ -41,7 +41,7 @@ define('CACHE_URL','file://localhost#site_cache');
 //Login登录用户配置
 define('LOGIN_TABLE','user_login');
 
-require_once WEBPATH.'/libs/lib_config.php';
+require_once WEBPATH.'/../swoole/libs/lib_config.php';
 
 //所有全局对象都改为动态延迟加载，也就是说你的app代码中没用到数据库或者模板系统，Swoole将不会连接数据库或加载smarty
 //如果希望启动加载,请使用Swoole::load()函数

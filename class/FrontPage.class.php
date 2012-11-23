@@ -82,4 +82,26 @@ class FrontPage extends Controller
 		$this->swoole->tpl->assign('mblogs',$mblogs);
 		$this->swoole->tpl->assign('pager',$pager);
 	}
+	
+	function getActiveUsers($num = 10)
+	{
+		$_uids = array();
+		$_mblog = createModel('MicroBlog');
+		$_user = createModel('UserInfo');
+		$table = $_mblog->table;
+		$uids = $this->swoole->db->query("select uid from $table order by id desc limit 500")->fetchall();
+		foreach($uids as $u)
+		{
+			$_uids[$u['uid']] = 1;
+		}
+		$gets['select'] = 'id,nickname,avatar';
+		$gets['in'] = array('id', implode(',', array_keys($_uids)));
+		$_users = $_user->getMap($gets);
+		$new = array();
+		foreach($_uids as $uid=>$u)
+		{
+			$new[] = $_users[$uid];
+		}
+		return $new;
+	}
 }

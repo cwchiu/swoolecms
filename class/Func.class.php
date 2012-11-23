@@ -15,19 +15,19 @@ class Func
         if($end===false) $end = mb_strpos($title,'？');
         if($end===false) $end = mb_strpos($title,'，');
         if($end===false) $end = mb_strpos($title,',');
-        $html = "<a href='/mblog/detail/{$id}'>";
+        $html = "<a href='/mblog/detail/{$id}'><strong>";
 
         if($end===false or $end>$maxlen)
         {
             $html .= $title;
             if($return_title) return $html.'</a>';
-            else return $html.'</a>'.mb_substr($content,$maxlen);
+            else return $html.'</strong></a>'.mb_substr($content,$maxlen);
         }
         else
         {
             $html.=mb_substr($content,0,$end);
             if($return_title) return $html.'</a>';
-            else return $html.'</a>'.mb_substr($content,$end);
+            else return $html.'</strong></a>'.mb_substr($content,$end);
         }
     }
 

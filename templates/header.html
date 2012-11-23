@@ -2,7 +2,14 @@
 <div id='header' class="bg1">
 <table width="100%" border="0">
   <tr>
-    <td width="80" height="80" align="center"><img src="/static/images/logo.png" width="64" height="64" /></td>
+    <td width="60" height="80" align="center">
+	<a href="http://www.swoole.com/">
+	<img src="/static/images/logo.png" align="absmiddle" width="64" height="64" />
+	</a>
+	</td>
+	<td width="80" height="80" align="left">
+	<img src="/static/images/logow.jpg" height="64" />
+	</td>
     <td width="918" height="80">
 	<table height="80"  border="0"  cellspacing="0" align="left">
 	<tr height="24"><td> 
@@ -26,20 +33,22 @@
     {{/if}}    
     </ul></td>
 	</tr>
-	</tr height="24"><td><ul>
-  <li><a href="/">网站首页</a></li>
-  <li><a href="/ask/index/" style="color:#F00; font-weight:bold">有问必答</a> <img src="/admin/static/images/page_feed.png" width="16" height="16" align="absmiddle" /></li>
-  <li><a href="/mblog/index/">微博客</a></li>
+	</tr height="24"><td>
+	<ul>
+  <li class="tag"><a href="/">网站首页</a></li>
+  <li class="tag">
+  <a href="/ask/index/">有问必答</a> </li>
+  <li class="tag"><a href="/mblog/index/">技术微博</a></li>
   {{foreach item=v from=$cate}}
-  <li><a href="/news/list_{{$v.id}}.html">{{$v.name}}</a></li>
+  <li class="tag"><a href="/news/list_{{$v.id}}.html">{{$v.name}}</a></li>
   {{/foreach}}
   <li id='search_box' style="float:right">
     <form id="search" name="search" method="get" action="/page/search/">
       <label>
-        <input type="text" name="k" id="k" class="input3" />
+        <input type="text" name="k" id="k" style="height:24px" class="input3" />
       </label>
       <label>
-        <button type="submit" class="btn1"><img src="/static/images/magnifier.png" width="16" height="16" /> 全文检索</button>
+        <button type="submit" class="btn1"><img src="/static/images/magnifier.png" width="16" height="16" /> 搜索</button>
       </label>
     </form>
   </li>

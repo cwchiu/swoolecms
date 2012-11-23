@@ -26,8 +26,35 @@
 	float:left	
 }
 
+.index_left{
+	background: none repeat scroll 0 0 #EFF4FA;
+	width: 150px;
+	position: absolute;
+    top: 110px;
+	border-radius:5px 0 0 5px;
+	border-right:1px #ccc solid;
+	font-size: 12px;
+	padding: 5px;
+}
+
+.index_center{
+	margin: 10px 320px 0 160px;
+}
+
+.index_right{
+	background: none repeat scroll 0 0 #EFF4FA;
+	border-left:1px #ccc solid;
+	width: 300px;
+	position: absolute;
+    top: 110px;
+	right: 10px;
+	padding: 8px;
+	border-radius:0 5px 5px 0 ;
+}
+
 #main{	
 	line-height:160%;
+	margin: 10px 0 10px 0;
 }
 
 #mleft{
@@ -67,6 +94,7 @@
 #mblog_list ul li{
 	list-style:none;
 	line-height:24px;
+	
 }
 #mblog_list span{
 	color:#889DB6;
